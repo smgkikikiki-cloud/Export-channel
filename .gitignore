@@ -1,0 +1,13 @@
+# Local work directory: API cache, partial and completed audio, exports.
+# Never commit generated media, scripts or anything derived from a paid request.
+work/
+
+# Footage agent output (downloaded media and candidate assets).
+footage/
+
+# Never commit credentials.
+.env
+*.key
+
+__pycache__/
+*.py[cod]
