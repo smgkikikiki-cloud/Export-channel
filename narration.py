@@ -159,7 +159,11 @@ def stream_to_pcm(body, api_key, destination, opener=None):
         with open_request(request, timeout=180) as response:
             if "text/event-stream" not in response.headers.get("Content-Type", ""):
                 raise PipelineError("Expected an event stream; response saved as incomplete. No retry.")
-            audio_type = response.headers.get("Speechify-Audio-Content-Type", "").lower()
+            # Speechify emits both the canonical and the legacy X- spelling of this
+            # header; the legacy name stays valid until 2027-07-24. Accept either,
+            # but still require one: an unconfirmed format must not be treated as PCM.
+            audio_type = (response.headers.get("Speechify-Audio-Content-Type")
+                          or response.headers.get("X-Speechify-Audio-Content-Type") or "").lower()
             if not audio_type.startswith(("audio/l16", "audio/pcm")):
                 raise PipelineError("API did not confirm PCM audio. Stopping without retry.")
             if "rate=" in audio_type and not re.search(r"rate=\s*24000(?:;|$)", audio_type):

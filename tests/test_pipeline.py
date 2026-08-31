@@ -140,5 +140,28 @@ class PipelineTests(unittest.TestCase):
             n.stream_to_pcm(n.request_body("Hello", n.DEFAULT_VOICE, n.DEFAULT_MODEL), "secret", self.root / "partial.pcm", lambda *args, **kwargs: FakeResponse(stream))
 
 
+    def test_either_audio_content_type_spelling_confirms_pcm(self):
+        pcm = b"\x01\x02" * n.RATE
+        stream = event("speech.chunk", {"audio": base64.b64encode(pcm).decode()})
+        stream += event("speech.done", {"audio_duration_ms": 1000})
+        for name in ("Speechify-Audio-Content-Type", "X-Speechify-Audio-Content-Type"):
+            response = FakeResponse(stream)
+            response.headers = {"Content-Type": "text/event-stream",
+                                name: "audio/L16; rate=24000; channels=1"}
+            destination = self.root / (name + ".pcm")
+            n.stream_to_pcm(n.request_body("Hello", n.DEFAULT_VOICE, n.DEFAULT_MODEL),
+                            "secret", destination, lambda *a, **k: response)
+            self.assertEqual(destination.read_bytes(), pcm)
+
+    def test_absent_audio_content_type_is_never_assumed_to_be_pcm(self):
+        stream = event("speech.chunk", {"audio": base64.b64encode(b"\x01\x02" * n.RATE).decode()})
+        stream += event("speech.done", {"audio_duration_ms": 1000})
+        response = FakeResponse(stream)
+        response.headers = {"Content-Type": "text/event-stream"}
+        with self.assertRaises(n.PipelineError):
+            n.stream_to_pcm(n.request_body("Hello", n.DEFAULT_VOICE, n.DEFAULT_MODEL),
+                            "secret", self.root / "unconfirmed.pcm", lambda *a, **k: response)
+
+
 if __name__ == "__main__":
     unittest.main()
