@@ -6,9 +6,43 @@ import subprocess
 import sys
 import threading
 import tkinter as tk
-from tkinter import filedialog, messagebox, scrolledtext, ttk
+from tkinter import filedialog, font as tkfont, messagebox, scrolledtext, ttk
 
 from narration import DEFAULT_MODEL, DEFAULT_VOICE, PipelineError, make_plan, run
+
+# One family and one size ladder, so no control falls back to Tk's 9 pt default.
+UI_FAMILIES = ("Segoe UI", "Helvetica Neue", "DejaVu Sans", "Arial")
+MONO_FAMILIES = ("Consolas", "Menlo", "DejaVu Sans Mono", "Courier New")
+SIZES = {"title": 22, "subtitle": 13, "body": 11, "editor": 12, "log": 11}
+
+
+def pick_family(candidates, fallback):
+    installed = {name.casefold() for name in tkfont.families()}
+    for name in candidates:
+        if name.casefold() in installed:
+            return name
+    return fallback
+
+
+def apply_fonts(window):
+    """Point every named font and ttk style at the same family and scale."""
+    ui = pick_family(UI_FAMILIES, tkfont.nametofont("TkDefaultFont").cget("family"))
+    mono = pick_family(MONO_FAMILIES, tkfont.nametofont("TkFixedFont").cget("family"))
+    for name in ("TkDefaultFont", "TkTextFont", "TkMenuFont", "TkHeadingFont",
+                 "TkTooltipFont", "TkIconFont", "TkSmallCaptionFont", "TkCaptionFont"):
+        try:
+            named = tkfont.nametofont(name)
+        except tk.TclError:
+            continue
+        named.configure(family=ui, size=SIZES["body"])
+    tkfont.nametofont("TkFixedFont").configure(family=mono, size=SIZES["log"])
+    style = ttk.Style(window)
+    style.configure("TLabel", font=(ui, SIZES["body"]))
+    style.configure("TEntry", font=(ui, SIZES["body"]))
+    style.configure("TButton", font=(ui, SIZES["body"]), padding=(12, 6))
+    style.configure("Title.TLabel", font=(ui, SIZES["title"], "bold"))
+    style.configure("Subtitle.TLabel", font=(ui, SIZES["subtitle"]))
+    return ui, mono
 
 
 class App:
@@ -20,13 +54,15 @@ class App:
         self.output = None
         self.approved = None
         window.title("Narration Desk — English to CapCut")
-        window.geometry("940x730")
-        window.minsize(720, 570)
+        window.geometry("1060x830")
+        window.minsize(860, 660)
         window.protocol("WM_DELETE_WINDOW", self.close)
-        frame = ttk.Frame(window, padding=18)
+        ui, mono = apply_fonts(window)
+        frame = ttk.Frame(window, padding=20)
         frame.pack(fill="both", expand=True)
-        ttk.Label(frame, text="Narration Desk", font=("Arial", 20, "bold")).pack(anchor="w")
-        ttk.Label(frame, text="Paste final English text → Speechify → 5-minute WAV files. Edit footage in CapCut.").pack(anchor="w", pady=(4, 12))
+        ttk.Label(frame, text="Narration Desk", style="Title.TLabel").pack(anchor="w")
+        ttk.Label(frame, text="Paste final English text → Speechify → 5-minute WAV files. Edit footage in CapCut.",
+                  style="Subtitle.TLabel").pack(anchor="w", pady=(6, 14))
         settings = ttk.Frame(frame)
         settings.pack(fill="x")
         self.key = tk.StringVar(value=os.environ.get("SPEECHIFY_API_KEY", ""))
@@ -35,11 +71,11 @@ class App:
         for row, (label, variable, hidden) in enumerate([
             ("Speechify API key (stays in memory)", self.key, True),
             ("Voice ID", self.voice, False), ("Model", self.model, False)]):
-            ttk.Label(settings, text=label).grid(row=row, column=0, sticky="w", padx=(0, 12), pady=3)
-            ttk.Entry(settings, textvariable=variable, show="*" if hidden else "", width=55).grid(row=row, column=1, sticky="ew", pady=3)
+            ttk.Label(settings, text=label).grid(row=row, column=0, sticky="w", padx=(0, 14), pady=5)
+            ttk.Entry(settings, textvariable=variable, show="*" if hidden else "", width=50).grid(row=row, column=1, sticky="ew", pady=5)
         settings.columnconfigure(1, weight=1)
-        self.text = scrolledtext.ScrolledText(frame, wrap="word", font=("Arial", 11), undo=True, height=16)
-        self.text.pack(fill="both", expand=True, pady=12)
+        self.text = scrolledtext.ScrolledText(frame, wrap="word", font=(ui, SIZES["editor"]), undo=True, height=15)
+        self.text.pack(fill="both", expand=True, pady=14)
         controls = ttk.Frame(frame)
         controls.pack(fill="x")
         self.load_button = ttk.Button(controls, text="Load .txt", command=self.load)
@@ -51,10 +87,16 @@ class App:
         self.open_button = ttk.Button(controls, text="Open output folder", command=self.open_output, state="disabled")
         self.open_button.pack(side="right")
         self.status = tk.StringVar(value="No API request is made until you click Generate audio.")
-        ttk.Label(frame, textvariable=self.status, wraplength=870).pack(anchor="w", pady=10)
-        self.logs = scrolledtext.ScrolledText(frame, height=7, wrap="word", state="disabled")
+        self.status_label = ttk.Label(frame, textvariable=self.status, wraplength=980)
+        self.status_label.pack(anchor="w", fill="x", pady=12)
+        frame.bind("<Configure>", self.rewrap_status)
+        self.logs = scrolledtext.ScrolledText(frame, height=7, wrap="word", font=(mono, SIZES["log"]), state="disabled")
         self.logs.pack(fill="x")
         window.after(100, self.poll)
+
+    def rewrap_status(self, event):
+        """Keep the status line inside the padded frame as the window resizes."""
+        self.status_label.configure(wraplength=max(320, event.width - 48))
 
     def snapshot(self):
         return self.text.get("1.0", "end-1c"), self.voice.get().strip(), self.model.get().strip()
