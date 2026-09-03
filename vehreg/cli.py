@@ -15,10 +15,12 @@ from pathlib import Path
 from typing import Any, Optional
 
 from . import allocate as allocate_mod, authoring, cube as cube_mod
+from . import dlt as dlt_mod
 from .catalog import (
     DATA_DIR, DEFAULT_YEAR, Catalog, CatalogError, available_years, fork_year,
 )
 from .db import connect, loaded_years, rebuild_dimension, unmatched_summary
+from . import normalize
 from .ingest import ColumnMap, ingest_csv, teach_alias
 from .taxonomy import (
     BodyType, BrandSegment, CabType, Drivetrain, ImportType, MarketPosition,
@@ -228,6 +230,53 @@ def cmd_ingest(args) -> int:
     return 0
 
 
+def cmd_dlt(args) -> int:
+    raw_dir = Path(args.raw_dir)
+    if args.dlt_cmd == "list":
+        for resource in dlt_mod.list_resources():
+            tag = resource.period or (f"ปี {resource.year}" if resource.year
+                                      else "?")
+            print(f"  {tag:<10} {resource.id}  {resource.name}")
+        return 0
+
+    index = dlt_mod.monthly_index()
+    if args.month:
+        periods = [normalize.period_key(args.month)]
+    else:
+        year = args.fetch_year or args.year
+        periods = dlt_mod.months_of(year, index)
+        if not periods:
+            print(f"DLT publishes no month for {year}; available years: "
+                  + ", ".join(sorted({p[:4] for p in index})))
+            return 1
+
+    reports = [dlt_mod.fetch_month(period, raw_dir, resources=index)
+               for period in periods]
+    for report in reports:
+        print(report.render())
+        print()
+
+    if args.dlt_cmd == "fetch":
+        return 0
+
+    # load = fetch then ingest, with the exact columns the fetcher wrote.
+    catalog = _catalog(args)
+    conn = _conn(args)
+    if not conn.execute("SELECT 1 FROM dim_unit LIMIT 1").fetchone():
+        rebuild_dimension(conn, catalog)
+    for report in reports:
+        ingested = ingest_csv(
+            conn, catalog, report.path, f"DLT {report.period}",
+            colmap=dlt_mod.column_map(), publisher="DLT",
+            url=f"{dlt_mod.CKAN_BASE}/datastore_search"
+                f"?resource_id={report.resource_id}",
+            notes=f"sha256 {report.sha256}")
+        print(f"--- {report.period}")
+        print(ingested.render())
+        print()
+    return 0
+
+
 def cmd_review(args) -> int:
     conn = _conn(args)
     if args.map:
@@ -383,6 +432,23 @@ def build_parser() -> argparse.ArgumentParser:
         p.add_argument(f"--col-{name}", dest=f"col_{name}")
     p.add_argument("--col-regtype", dest="col_regtype")
     p.set_defaults(func=cmd_ingest)
+
+    p = sub.add_parser("dlt", help="talk to DLT's open-data API")
+    dsub = p.add_subparsers(dest="dlt_cmd", required=True)
+    for name, helptext in (("list", "show every published resource"),
+                           ("fetch", "download months to --raw-dir"),
+                           ("load", "download months and ingest them")):
+        d = dsub.add_parser(name, help=helptext)
+        d.add_argument("--raw-dir", default="data/raw")
+        if name != "list":
+            d.add_argument("--month", help="YYYY-MM (or Thai/BE, e.g. 2569-01)")
+            d.add_argument("--fetch-year", type=int,
+                           help="every published month of this year "
+                                "(defaults to --year)")
+        else:
+            d.add_argument("--month", default=None, help=argparse.SUPPRESS)
+            d.add_argument("--fetch-year", default=None, help=argparse.SUPPRESS)
+        d.set_defaults(func=cmd_dlt)
 
     p = sub.add_parser("review", help="see and resolve unmatched labels")
     p.add_argument("--limit", type=int, default=25)

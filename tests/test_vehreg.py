@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from vehreg import allocate, authoring, cube, db, normalize, taxonomy
+from vehreg import allocate, authoring, cube, db, dlt, normalize, taxonomy
 from vehreg.catalog import (
     DEFAULT_YEAR, Catalog, CatalogError, available_years, fork_year, year_dir,
 )
@@ -629,6 +629,62 @@ class CubeTests(unittest.TestCase):
         report = cube.coverage_report(self.conn)
         self.assertEqual(report["fact_years"], [YEAR])
         self.assertEqual(report["units_without_dimension_row"], 0)
+
+
+class DltFeedTests(unittest.TestCase):
+    """Parsing of the DLT open-data feed. No network: these are pure shape tests."""
+
+    def test_resource_names_yield_their_period(self):
+        monthly = "รถจดทะเบียนครั้งแรก (รถยนต์)-จำแนกตามยี่ห้อและรุ่น มกราคม 2569"
+        yearly = "รถจดทะเบียนครั้งแรก (รถยนต์)-จำแนกตามยี่ห้อและรุ่น ปี 2568"
+        self.assertEqual(dlt._classify_resource(monthly), ("2026-01", 2026))
+        self.assertEqual(dlt._classify_resource(yearly), (None, 2025))
+
+    def test_only_the_three_car_classes_become_facts(self):
+        records = [
+            {"ประเภทรถ": "รถยนต์นั่งส่วนบุคคลไม่เกิน 7 คน", "ยี่ห้อ": "TOYOTA",
+             "รุ่น": "YARIS ATIV", "จำนวน": 4213},
+            {"ประเภทรถ": "รถยนต์บรรทุกส่วนบุคคล", "ยี่ห้อ": "TOYOTA",
+             "รุ่น": "HILUX REVO", "จำนวน": 2500},
+            {"ประเภทรถ": "รถยนต์นั่งส่วนบุคคลเกิน 7 คน", "ยี่ห้อ": "TOYOTA",
+             "รุ่น": "COMMUTER", "จำนวน": 600},
+            {"ประเภทรถ": "รถจักรยานยนต์", "ยี่ห้อ": "HONDA", "รุ่น": "WAVE",
+             "จำนวน": 154124},
+            {"ประเภทรถ": "รถแทร็กเตอร์", "ยี่ห้อ": "KUBOTA", "รุ่น": "M",
+             "จำนวน": 3380},
+        ]
+        rows, skipped, units = dlt._to_rows(records, "2026-01")
+        self.assertEqual([r["ประเภท"] for r in rows], ["RY1", "RY3", "RY2"])
+        self.assertEqual(units, 7313)
+        # Skipped classes are counted, never silently dropped.
+        self.assertEqual(skipped,
+                         {"รถจักรยานยนต์": 154124, "รถแทร็กเตอร์": 3380})
+
+    def test_the_same_nameplate_appears_under_several_classes(self):
+        # This is why the DLT class has to disambiguate a split pickup: DLT
+        # prints "HILUX REVO" for the double cab and for the other cabs alike.
+        records = [
+            {"ประเภทรถ": "รถยนต์นั่งส่วนบุคคลไม่เกิน 7 คน", "ยี่ห้อ": "TOYOTA",
+             "รุ่น": "HILUX REVO", "จำนวน": 23057},
+            {"ประเภทรถ": "รถยนต์บรรทุกส่วนบุคคล", "ยี่ห้อ": "TOYOTA",
+             "รุ่น": "HILUX REVO", "จำนวน": 35314},
+        ]
+        rows, _, _ = dlt._to_rows(records, "2026-01")
+        self.assertEqual({r["ประเภท"] for r in rows}, {"RY1", "RY3"})
+        self.assertEqual({r["แบบรถ"] for r in rows}, {"HILUX REVO"})
+
+    def test_unreadable_counts_do_not_crash_the_load(self):
+        rows, _, units = dlt._to_rows(
+            [{"ประเภทรถ": "รถยนต์นั่งส่วนบุคคลไม่เกิน 7 คน", "ยี่ห้อ": "X",
+              "รุ่น": "Y", "จำนวน": "-"}], "2026-01")
+        self.assertEqual((len(rows), units), (1, 0))
+
+    def test_the_written_columns_match_the_declared_column_map(self):
+        mapping = dlt.column_map()
+        for column in (mapping.period, mapping.brand, mapping.model,
+                       mapping.units, mapping.registration_type):
+            self.assertIn(column, dlt.CSV_HEADER)
+        self.assertEqual(mapping.missing(), [])
 
 
 class AuthoringTests(unittest.TestCase):
