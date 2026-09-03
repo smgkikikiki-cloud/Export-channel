@@ -30,10 +30,10 @@ from typing import Any, Iterator, Optional
 from .entities import (
     Brand, Generation, Model, ResolvedVehicle, Variant, cross_check, resolve,
 )
-from .normalize import MatchIndex, slug
+from .normalize import MatchIndex, base_nameplate, slug
 from .taxonomy import (
-    BodyType, BrandSegment, CabType, Drivetrain, ImportType, Powertrain,
-    RegistrationType, Segment, registration_type_for,
+    BodyType, BrandSegment, CabType, Drivetrain, ImportType, MarketScope,
+    Powertrain, RegistrationType, Segment, registration_type_for,
 )
 
 DATA_DIR = Path(__file__).with_name("data")
@@ -70,7 +70,7 @@ _OVERRIDE_PARSERS = {
     "body_type": BodyType, "cab_type": CabType, "segment": Segment,
     "powertrain": Powertrain, "drivetrain": Drivetrain,
     "import_type": ImportType, "brand_segment": BrandSegment,
-    "registration_type": RegistrationType,
+    "registration_type": RegistrationType, "market_scope": MarketScope,
 }
 
 
@@ -163,6 +163,11 @@ class Catalog:
             brand_id=brand_id,
             name_en=raw["name_en"],
             name_th=raw.get("name_th", ""),
+            # A blank nameplate falls back to the model name with its split
+            # suffix removed, so Mazda2 Sedan rolls up to Mazda2 without the
+            # owner typing anything. Hilux says "Hilux" explicitly, because
+            # Revo and Champ are one nameplate but not one base name.
+            nameplate=raw.get("nameplate") or base_nameplate(raw["name_en"]),
             body_type=body,
             cab_type=cab,
             # A blank registration_type follows from body and cab, which is
@@ -170,6 +175,8 @@ class Catalog:
             registration_type=_facet(RegistrationType,
                                      raw.get("registration_type"),
                                      registration_type_for(body, cab)),
+            market_scope=_facet(MarketScope, raw.get("market_scope"),
+                                MarketScope.CORE),
             aliases=_tuple(raw.get("aliases")),
             notes=raw.get("notes", ""),
             overrides=_overrides(raw.get("overrides")),
@@ -218,6 +225,8 @@ class Catalog:
             engine_cc=raw.get("engine_cc"),
             battery_kwh=raw.get("battery_kwh"),
             price_thb=raw.get("price_thb"),
+            price_min_thb=raw.get("price_min_thb"),
+            price_max_thb=raw.get("price_max_thb"),
             import_type=_facet(ImportType, raw.get("import_type"),
                                ImportType.UNKNOWN),
             origin_country=raw.get("origin_country", "UNKNOWN"),
@@ -269,7 +278,25 @@ class Catalog:
         return [self.variants[v] for v in self._variants_by_model.get(model_id, [])]
 
     def generations_of(self, model_id: str) -> list[Generation]:
-        return [g for g in self.generations.values() if g.model_id == model_id]
+        """Oldest first, so a nameplate's โฉม read as a succession."""
+        return sorted((g for g in self.generations.values()
+                       if g.model_id == model_id),
+                      key=lambda g: (g.launched or "", g.code))
+
+    def nameplates(self) -> dict[str, list[str]]:
+        """``{"Toyota Hilux": [model_id, ...]}`` - the reporting roll-up."""
+        out: dict[str, list[str]] = {}
+        for model in self.models.values():
+            brand = self.brands[model.brand_id]
+            key = f"{brand.name_en} {model.nameplate or model.name_en}"
+            out.setdefault(key, []).append(model.id)
+        return dict(sorted(out.items()))
+
+    def succession(self, model_id: str) -> list[tuple[Generation, list[Variant]]]:
+        """Generations of one model, oldest first, with their variants."""
+        return [(gen, [v for v in self.variants.values()
+                       if v.generation_id == gen.id])
+                for gen in self.generations_of(model_id)]
 
     # ------------------------------------------------------------- resolve
     def resolve(self, variant_id: str) -> ResolvedVehicle:
@@ -317,12 +344,18 @@ class Catalog:
         return problems
 
     def coverage(self) -> dict[str, int]:
+        scopes: dict[str, int] = {}
+        for model in self.models.values():
+            key = model.market_scope.value
+            scopes[key] = scopes.get(key, 0) + 1
         return {
             "year": self.year,
             "brands": len(self.brands),
+            "nameplates": len(self.nameplates()),
             "models": len(self.models),
             "generations": len(self.generations),
             "variants": len(self.variants),
+            **{f"models_{k.lower()}": v for k, v in sorted(scopes.items())},
         }
 
     # ------------------------------------------------------------- writing
@@ -341,9 +374,11 @@ class Catalog:
         for model in self.models_of(brand_id):
             model_payload: dict[str, Any] = {
                 "id": model.id.split(".", 1)[1], "name_en": model.name_en,
-                "name_th": model.name_th, "body_type": model.body_type.value,
+                "name_th": model.name_th, "nameplate": model.nameplate,
+                "body_type": model.body_type.value,
                 "cab_type": model.cab_type.value,
                 "registration_type": model.registration_type.value,
+                "market_scope": model.market_scope.value,
                 "aliases": list(model.aliases), "generations": [],
             }
             for gen in self.generations_of(model.id):
@@ -362,6 +397,8 @@ class Catalog:
                         "engine_cc": variant.engine_cc,
                         "battery_kwh": variant.battery_kwh,
                         "price_thb": variant.price_thb,
+                        "price_min_thb": variant.price_min_thb,
+                        "price_max_thb": variant.price_max_thb,
                         "import_type": variant.import_type.value,
                         "origin_country": variant.origin_country,
                         "price_note": variant.price_note,

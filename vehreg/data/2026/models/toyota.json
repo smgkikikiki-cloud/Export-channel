@@ -17,9 +17,11 @@
       "id": "yaris_ativ",
       "name_en": "Yaris Ativ",
       "name_th": "ยาริส เอทีฟ",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ativ",
         "yaris ativ",
@@ -35,56 +37,24 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.2 Sport",
+              "name": "1.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1197,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.2 Sport",
+                "1.2 Smart",
+                "1.2 Premium",
+                "1.2 Premium Luxury"
+              ],
               "overrides": {},
               "price_thb": 559000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "1.2 Smart",
-              "powertrain": "ICE",
-              "drivetrain": "FWD",
-              "engine_cc": 1197,
-              "battery_kwh": null,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 609000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "1.2 Premium",
-              "powertrain": "ICE",
-              "drivetrain": "FWD",
-              "engine_cc": 1197,
-              "battery_kwh": null,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 664000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "1.2 Premium Luxury",
-              "powertrain": "ICE",
-              "drivetrain": "FWD",
-              "engine_cc": 1197,
-              "battery_kwh": null,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 709000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 559000,
+              "price_max_thb": 709000
             }
           ]
         }
@@ -94,9 +64,11 @@
       "id": "yaris",
       "name_en": "Yaris",
       "name_th": "ยาริส",
+      "nameplate": "",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ยาริส"
       ],
@@ -110,30 +82,22 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.2 Sport",
+              "name": "1.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1197,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.2 Sport",
+                "1.2 Premium"
+              ],
               "overrides": {},
               "price_thb": 559000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "1.2 Premium",
-              "powertrain": "ICE",
-              "drivetrain": "FWD",
-              "engine_cc": 1197,
-              "battery_kwh": null,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 664000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 559000,
+              "price_max_thb": 664000
             }
           ]
         }
@@ -143,9 +107,11 @@
       "id": "corolla_altis",
       "name_en": "Corolla Altis",
       "name_th": "โคโรลล่า อัลติส",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "altis",
         "corolla"
@@ -160,43 +126,55 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.8 Sport",
+              "name": "1.8L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1798,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.8 Sport"
+              ],
               "overrides": {},
               "price_thb": 899000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 899000,
+              "price_max_thb": 899000
             },
             {
-              "name": "1.8 HEV Smart",
+              "name": "1.8L HEV (VOLUME)",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1798,
               "battery_kwh": 1.3,
-              "aliases": [],
+              "aliases": [
+                "1.8 HEV Smart"
+              ],
               "overrides": {},
               "price_thb": 979000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 979000,
+              "price_max_thb": 979000
             },
             {
-              "name": "1.8 HEV GR Sport",
+              "name": "1.8L HEV (UPPER)",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1798,
               "battery_kwh": 1.3,
-              "aliases": [],
+              "aliases": [
+                "1.8 HEV GR Sport"
+              ],
               "overrides": {},
               "price_thb": 1094000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1094000,
+              "price_max_thb": 1094000
             }
           ]
         }
@@ -206,14 +184,42 @@
       "id": "camry",
       "name_en": "Camry",
       "name_th": "คัมรี่",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "แคมรี่"
       ],
       "notes": "",
       "generations": [
+        {
+          "code": "XV70",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2018-10-01",
+          "ended": "2024-11-01",
+          "variants": [
+            {
+              "name": "2.5L HEV",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.6,
+              "aliases": [
+                "2.5 HEV"
+              ],
+              "overrides": {},
+              "price_thb": 1749000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "price_min_thb": 1749000,
+              "price_max_thb": 1749000
+            }
+          ]
+        },
         {
           "code": "XV80",
           "segment": "D",
@@ -222,30 +228,22 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.5 HEV Premium",
+              "name": "2.5L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "aliases": [],
+              "aliases": [
+                "2.5 HEV Premium",
+                "2.5 HEV Premium Luxury"
+              ],
               "overrides": {},
               "price_thb": 1899000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "2.5 HEV Premium Luxury",
-              "powertrain": "HEV",
-              "drivetrain": "FWD",
-              "engine_cc": 2487,
-              "battery_kwh": 1.0,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 2099000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1899000,
+              "price_max_thb": 2099000
             }
           ]
         }
@@ -255,9 +253,11 @@
       "id": "corolla_cross",
       "name_en": "Corolla Cross",
       "name_th": "โคโรลล่า ครอส",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "corolla cross"
       ],
@@ -271,56 +271,40 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.8 Smart",
+              "name": "1.8L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1798,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.8 Smart"
+              ],
               "overrides": {},
               "price_thb": 959000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 959000,
+              "price_max_thb": 959000
             },
             {
-              "name": "1.8 HEV Smart",
+              "name": "1.8L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1798,
               "battery_kwh": 1.3,
-              "aliases": [],
+              "aliases": [
+                "1.8 HEV Smart",
+                "1.8 HEV Premium",
+                "1.8 HEV GR Sport"
+              ],
               "overrides": {},
               "price_thb": 1029000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "1.8 HEV Premium",
-              "powertrain": "HEV",
-              "drivetrain": "FWD",
-              "engine_cc": 1798,
-              "battery_kwh": 1.3,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 1149000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "1.8 HEV GR Sport",
-              "powertrain": "HEV",
-              "drivetrain": "FWD",
-              "engine_cc": 1798,
-              "battery_kwh": 1.3,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 1239000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1029000,
+              "price_max_thb": 1239000
             }
           ]
         }
@@ -330,9 +314,11 @@
       "id": "yaris_cross",
       "name_en": "Yaris Cross",
       "name_th": "ยาริส ครอส",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -344,30 +330,22 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 HEV Smart",
+              "name": "1.5L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1490,
               "battery_kwh": 0.8,
-              "aliases": [],
+              "aliases": [
+                "1.5 HEV Smart",
+                "1.5 HEV Premium Luxury"
+              ],
               "overrides": {},
               "price_thb": 799000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "1.5 HEV Premium Luxury",
-              "powertrain": "HEV",
-              "drivetrain": "FWD",
-              "engine_cc": 1490,
-              "battery_kwh": 0.8,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 899000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 799000,
+              "price_max_thb": 899000
             }
           ]
         }
@@ -377,9 +355,11 @@
       "id": "fortuner",
       "name_en": "Fortuner",
       "name_th": "ฟอร์จูนเนอร์",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ฟอร์จูนเนอร์"
       ],
@@ -393,43 +373,55 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 V 4x2",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2393,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 V 4x2"
+              ],
               "overrides": {},
               "price_thb": 1399000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1399000,
+              "price_max_thb": 1399000
             },
             {
-              "name": "2.8 Legender 4x2",
+              "name": "2.8L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2755,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.8 Legender 4x2"
+              ],
               "overrides": {},
               "price_thb": 1699000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1699000,
+              "price_max_thb": 1699000
             },
             {
-              "name": "2.8 GR Sport 4x4",
+              "name": "2.8L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2755,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.8 GR Sport 4x4"
+              ],
               "overrides": {},
               "price_thb": 1999000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1999000,
+              "price_max_thb": 1999000
             }
           ]
         }
@@ -439,9 +431,11 @@
       "id": "hilux_revo_single_cab",
       "name_en": "Hilux Revo Single Cab",
       "name_th": "ไฮลักซ์ รีโว่ ตอนเดียว",
+      "nameplate": "Hilux",
       "body_type": "PICKUP",
       "cab_type": "SINGLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "revo single cab",
         "revo standard cab",
@@ -459,17 +453,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 Entry",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2393,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 Entry"
+              ],
               "overrides": {},
               "price_thb": 599000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 599000,
+              "price_max_thb": 599000
             }
           ]
         }
@@ -479,9 +477,11 @@
       "id": "hilux_revo_smart_cab",
       "name_en": "Hilux Revo Smart Cab",
       "name_th": "ไฮลักซ์ รีโว่ สมาร์ทแค็บ",
+      "nameplate": "Hilux",
       "body_type": "PICKUP",
       "cab_type": "SMART_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "revo smart cab",
         "revo cab",
@@ -499,30 +499,22 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 Mid",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2393,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 Mid",
+                "2.4 Prerunner Z Edition"
+              ],
               "overrides": {},
               "price_thb": 749000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
-            },
-            {
-              "name": "2.4 Prerunner Z Edition",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2393,
-              "battery_kwh": null,
-              "aliases": [],
-              "overrides": {},
-              "price_thb": 899000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 749000,
+              "price_max_thb": 899000
             }
           ]
         }
@@ -532,9 +524,11 @@
       "id": "hilux_revo_double_cab",
       "name_en": "Hilux Revo Double Cab",
       "name_th": "ไฮลักซ์ รีโว่ 4 ประตู",
+      "nameplate": "Hilux",
       "body_type": "PICKUP",
       "cab_type": "DOUBLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "revo double cab",
         "revo 4 ประตู",
@@ -553,30 +547,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 Prerunner",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2393,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 Prerunner"
+              ],
               "overrides": {},
               "price_thb": 949000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 949000,
+              "price_max_thb": 949000
             },
             {
-              "name": "2.8 GR Sport 4x4",
+              "name": "2.8L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2755,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.8 GR Sport 4x4"
+              ],
               "overrides": {},
               "price_thb": 1359000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1359000,
+              "price_max_thb": 1359000
             }
           ]
         }
@@ -586,9 +588,11 @@
       "id": "hilux_champ",
       "name_en": "Hilux Champ",
       "name_th": "ไฮลักซ์ แชมป์",
+      "nameplate": "Hilux",
       "body_type": "PICKUP",
       "cab_type": "SINGLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "champ",
         "hilux champ",
@@ -604,30 +608,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0",
+              "name": "2.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1998,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.0"
+              ],
               "overrides": {},
               "price_thb": 459000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 459000,
+              "price_max_thb": 459000
             },
             {
-              "name": "2.4",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2393,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4"
+              ],
               "overrides": {},
               "price_thb": 577000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 577000,
+              "price_max_thb": 577000
             }
           ]
         }
@@ -637,9 +649,11 @@
       "id": "innova_zenix",
       "name_en": "Innova Zenix",
       "name_th": "อินโนว่า ซีนิกซ์",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "innova",
         "zenix"
@@ -654,17 +668,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 HEV Premium",
+              "name": "2.0L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1987,
               "battery_kwh": 1.0,
-              "aliases": [],
+              "aliases": [
+                "2.0 HEV Premium"
+              ],
               "overrides": {},
               "price_thb": 1349000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1349000,
+              "price_max_thb": 1349000
             }
           ]
         }
@@ -674,9 +692,11 @@
       "id": "veloz",
       "name_en": "Veloz",
       "name_th": "เวลอซ",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -688,17 +708,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 Premium",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1496,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 Premium"
+              ],
               "overrides": {},
               "price_thb": 795000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 795000,
+              "price_max_thb": 795000
             }
           ]
         }
@@ -708,9 +732,11 @@
       "id": "alphard",
       "name_en": "Alphard",
       "name_th": "อัลพาร์ด",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -722,17 +748,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.5 HEV Executive Lounge",
+              "name": "2.5L HEV AWD",
               "powertrain": "HEV",
               "drivetrain": "AWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "aliases": [],
+              "aliases": [
+                "2.5 HEV Executive Lounge"
+              ],
               "overrides": {},
               "price_thb": 4599000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 4599000,
+              "price_max_thb": 4599000
             }
           ]
         }
@@ -742,9 +772,11 @@
       "id": "bz4x",
       "name_en": "bZ4X",
       "name_th": "บีแซดโฟร์เอ็กซ์",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "bz4x"
       ],
@@ -758,17 +790,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Premium",
+              "name": "71 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 71.4,
-              "aliases": [],
+              "aliases": [
+                "Premium"
+              ],
               "overrides": {},
               "price_thb": 1836000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1836000,
+              "price_max_thb": 1836000
             }
           ]
         }
@@ -778,9 +814,11 @@
       "id": "land_cruiser_300",
       "name_en": "Land Cruiser 300",
       "name_th": "แลนด์ครุยเซอร์ 300",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [
         "land cruiser",
         "lc300"
@@ -795,17 +833,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "3.3 D VX",
+              "name": "3.3L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 3346,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "3.3 D VX"
+              ],
               "overrides": {},
               "price_thb": 5990000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 5990000,
+              "price_max_thb": 5990000
             }
           ]
         }

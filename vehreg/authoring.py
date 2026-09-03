@@ -12,6 +12,17 @@ Two rules from the taxonomy show up here as column behaviour:
   let a second body hide inside a trim.
 * ``registration_type`` is left blank in normal use. A double-cab pickup resolves
   to รย.1 and the other cabs to รย.3 on their own.
+* ``nameplate`` is the reporting roll-up. Leave it blank and it is the model name
+  with its body/cab suffix removed; fill it in when the roll-up is not obvious
+  from the name, as with Hilux Revo and Hilux Champ both being "Hilux".
+* ``market_scope`` defaults to CORE. Set NICHE for a supercar or halo model and
+  GREY for anything the official distributor does not sell, and reports leave
+  them out while DLT rows naming them still resolve.
+* One row per *spec line*, not per trim. DLT does not publish trim-level volume,
+  so listing every trim buys nothing; fold them and record the spread in
+  ``price_min_thb``/``price_max_thb``. Split a line only where a facet differs -
+  a different powertrain, drivetrain, import route, or a price that lands in
+  another band. Folding trims across a band boundary is a validation error.
 
 Re-importing is safe: a row that names an existing variant updates it in place
 rather than duplicating it.
@@ -27,8 +38,8 @@ from typing import Any, Iterable, Optional
 from .catalog import DATA_DIR, DEFAULT_YEAR, Catalog, CatalogError, year_dir
 from .normalize import slug
 from .taxonomy import (
-    BodyType, BrandSegment, CabType, Drivetrain, ImportType, Powertrain,
-    RegistrationType, Segment,
+    BodyType, BrandSegment, CabType, Drivetrain, ImportType, MarketScope,
+    Powertrain, RegistrationType, Segment,
 )
 
 COLUMNS: tuple[str, ...] = (
@@ -37,13 +48,15 @@ COLUMNS: tuple[str, ...] = (
     # brand facets
     "brand_th", "brand_segment", "oem_group", "brand_origin",
     # model facets (one model = one body; pickups split by cab)
-    "model_th", "body_type", "cab_type", "registration_type", "model_aliases",
-    # generation facets
+    "nameplate", "model_th", "body_type", "cab_type", "registration_type",
+    "market_scope", "model_aliases",
+    # generation facets - list them oldest first and they read as a succession
     "segment", "seats", "launched", "ended",
     # variant facets
     "powertrain", "drivetrain", "engine_cc", "battery_kwh", "variant_aliases",
     # commercial facets for this catalog year
-    "price_thb", "import_type", "origin_country", "price_note",
+    "price_thb", "price_min_thb", "price_max_thb", "import_type",
+    "origin_country", "price_note",
 )
 
 REQUIRED: tuple[str, ...] = ("brand", "model", "variant")
@@ -57,19 +70,31 @@ EXAMPLE_ROWS: tuple[dict[str, str], ...] = (
         "registration_type": "", "model_aliases": "ativ|ยาริสเอทีฟ",
         "segment": "B", "seats": "5", "launched": "2022-08-09", "ended": "",
         "powertrain": "ICE", "drivetrain": "FWD", "engine_cc": "1197",
-        "battery_kwh": "", "variant_aliases": "1.2 smart cvt",
-        "price_thb": "609000", "import_type": "CKD", "origin_country": "TH",
+        "battery_kwh": "", "variant_aliases": "",
+        # Four trims folded into one line: same powertrain, same band.
+        "price_thb": "609000", "price_min_thb": "559000",
+        "price_max_thb": "709000", "import_type": "CKD", "origin_country": "TH",
         "price_note": "",
     },
     {
-        # A pickup: one model per cab, and the รย. class follows from the cab.
-        "brand": "Toyota", "model": "Hilux Revo Double Cab", "generation": "AN120",
-        "variant": "2.8 GR Sport 4x4", "body_type": "PICKUP",
+        # A pickup: one model per cab, the รย. class follows from the cab, and
+        # nameplate puts every Hilux back together for reporting.
+        "brand": "Toyota", "model": "Hilux Revo Double Cab",
+        "nameplate": "Hilux", "generation": "AN120",
+        "variant": "2.8 4x4", "body_type": "PICKUP",
         "cab_type": "DOUBLE_CAB", "registration_type": "",
         "model_aliases": "revo double cab|revo 4 ประตู", "segment": "F",
         "seats": "5", "powertrain": "ICE", "drivetrain": "4WD",
         "engine_cc": "2755", "price_thb": "1359000", "import_type": "CKD",
         "origin_country": "TH",
+    },
+    {
+        # Out of scope: kept so DLT rows resolve, left out of the numbers.
+        "brand": "Porsche", "model": "911", "generation": "992",
+        "variant": "Carrera", "market_scope": "NICHE", "body_type": "COUPE",
+        "segment": "D", "seats": "4", "brand_segment": "PERFORMANCE",
+        "powertrain": "ICE", "drivetrain": "RWD", "engine_cc": "2981",
+        "price_thb": "12500000", "import_type": "CBU", "origin_country": "DE",
     },
 )
 
@@ -157,13 +182,18 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
             model = _find(payload["models"], "name_en", model_name)
             if model is None:
                 model = {"id": slug(model_name), "name_en": model_name,
-                         "name_th": "", "body_type": "OTHER",
+                         "name_th": "", "nameplate": "", "body_type": "OTHER",
                          "cab_type": "NOT_APPLICABLE",
-                         "registration_type": "", "aliases": [],
-                         "generations": []}
+                         "registration_type": "", "market_scope": "CORE",
+                         "aliases": [], "generations": []}
                 payload["models"].append(model)
             if _clean(row.get("model_th")):
                 model["name_th"] = _clean(row["model_th"])
+            if _clean(row.get("nameplate")):
+                model["nameplate"] = _clean(row["nameplate"])
+            if _clean(row.get("market_scope")):
+                model["market_scope"] = MarketScope.parse(
+                    row["market_scope"]).value
             if _clean(row.get("body_type")):
                 body = BodyType.parse(row["body_type"]).value
                 if model["body_type"] not in {"OTHER", body}:
@@ -202,6 +232,7 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
                 variant = {"name": variant_name, "powertrain": "UNKNOWN",
                            "drivetrain": "UNKNOWN", "engine_cc": None,
                            "battery_kwh": None, "price_thb": None,
+                           "price_min_thb": None, "price_max_thb": None,
                            "import_type": "UNKNOWN", "origin_country": "UNKNOWN",
                            "price_note": "", "aliases": []}
                 gen["variants"].append(variant)
@@ -215,6 +246,10 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
                 variant["battery_kwh"] = _num(row["battery_kwh"])
             if _clean(row.get("price_thb")):
                 variant["price_thb"] = _num(row["price_thb"])
+            if _clean(row.get("price_min_thb")):
+                variant["price_min_thb"] = _num(row["price_min_thb"])
+            if _clean(row.get("price_max_thb")):
+                variant["price_max_thb"] = _num(row["price_max_thb"])
             if _clean(row.get("import_type")):
                 variant["import_type"] = ImportType.parse(row["import_type"]).value
             if _clean(row.get("origin_country")):
@@ -282,7 +317,14 @@ def export_csv(catalog: Catalog, path: Path | str) -> int:
     with open(path, "w", newline="", encoding="utf-8-sig") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(COLUMNS))
         writer.writeheader()
-        for variant in catalog.variants.values():
+        # Ordered brand -> model -> generation (oldest first) so a nameplate's
+        # โฉม sit next to each other in the spreadsheet.
+        ordered = [v for brand_id in catalog.brands
+                   for model in catalog.models_of(brand_id)
+                   for gen in catalog.generations_of(model.id)
+                   for v in catalog.variants.values()
+                   if v.generation_id == gen.id]
+        for variant in ordered:
             gen = catalog.generation_for_variant(variant.id)
             model = catalog.model_for_variant(variant.id)
             brand = catalog.brand_for_variant(variant.id)
@@ -293,10 +335,11 @@ def export_csv(catalog: Catalog, path: Path | str) -> int:
                 "brand_segment": brand.brand_segment.value,
                 "oem_group": brand.oem_group,
                 "brand_origin": brand.brand_origin,
-                "model_th": model.name_th,
+                "nameplate": model.nameplate, "model_th": model.name_th,
                 "body_type": model.body_type.value,
                 "cab_type": model.cab_type.value,
                 "registration_type": model.registration_type.value,
+                "market_scope": model.market_scope.value,
                 "model_aliases": "|".join(model.aliases),
                 "segment": gen.segment.value, "seats": gen.seats,
                 "launched": gen.launched, "ended": gen.ended,
@@ -306,6 +349,8 @@ def export_csv(catalog: Catalog, path: Path | str) -> int:
                 "battery_kwh": variant.battery_kwh,
                 "variant_aliases": "|".join(variant.aliases),
                 "price_thb": variant.price_thb,
+                "price_min_thb": variant.price_min_thb,
+                "price_max_thb": variant.price_max_thb,
                 "import_type": variant.import_type.value,
                 "origin_country": variant.origin_country,
                 "price_note": variant.price_note,

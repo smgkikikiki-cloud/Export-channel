@@ -15,9 +15,11 @@
       "id": "mini_cooper",
       "name_en": "Cooper",
       "name_th": "คูเปอร์",
+      "nameplate": "",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "mini cooper"
       ],
@@ -31,17 +33,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Cooper SE",
+              "name": "54 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 54.2,
-              "aliases": [],
+              "aliases": [
+                "Cooper SE"
+              ],
               "overrides": {},
               "price_thb": 2299000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2299000,
+              "price_max_thb": 2299000
             }
           ]
         }
@@ -51,9 +57,11 @@
       "id": "countryman",
       "name_en": "Countryman",
       "name_th": "คันทรีแมน",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -65,17 +73,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Countryman E",
+              "name": "66 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 66.5,
-              "aliases": [],
+              "aliases": [
+                "Countryman E"
+              ],
               "overrides": {},
               "price_thb": 2799000,
               "import_type": "CBU",
               "origin_country": "DE",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2799000,
+              "price_max_thb": 2799000
             }
           ]
         }

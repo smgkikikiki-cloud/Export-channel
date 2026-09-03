@@ -15,9 +15,11 @@
       "id": "ranger_single_cab",
       "name_en": "Ranger Single Cab",
       "name_th": "เรนเจอร์ ตอนเดียว",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SINGLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ranger single cab",
         "เรนเจอร์ ตอนเดียว",
@@ -34,17 +36,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 XL",
+              "name": "2.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1996,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.0 XL"
+              ],
               "overrides": {},
               "price_thb": 649000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 649000,
+              "price_max_thb": 649000
             }
           ]
         }
@@ -54,9 +60,11 @@
       "id": "ranger_open_cab",
       "name_en": "Ranger Open Cab",
       "name_th": "เรนเจอร์ โอเพ่นแค็บ",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SMART_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ranger open cab",
         "open cab",
@@ -74,17 +82,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 XLT",
+              "name": "2.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1996,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.0 XLT"
+              ],
               "overrides": {},
               "price_thb": 849000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 849000,
+              "price_max_thb": 849000
             }
           ]
         }
@@ -94,9 +106,11 @@
       "id": "ranger_double_cab",
       "name_en": "Ranger Double Cab",
       "name_th": "เรนเจอร์ 4 ประตู",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "DOUBLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ranger double cab",
         "ranger raptor",
@@ -115,30 +129,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 Wildtrak 4x4",
+              "name": "2.0L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 1996,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.0 Wildtrak 4x4"
+              ],
               "overrides": {},
               "price_thb": 1329000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1329000,
+              "price_max_thb": 1329000
             },
             {
-              "name": "3.0 Raptor",
+              "name": "3.0L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2956,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "3.0 Raptor"
+              ],
               "overrides": {},
               "price_thb": 1999000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1999000,
+              "price_max_thb": 1999000
             }
           ]
         }
@@ -148,9 +170,11 @@
       "id": "everest",
       "name_en": "Everest",
       "name_th": "เอเวอเรสต์",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "เอเวอเรสต์"
       ],
@@ -164,30 +188,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 Titanium+ 4x2",
+              "name": "2.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1996,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.0 Titanium+ 4x2"
+              ],
               "overrides": {},
               "price_thb": 1699000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1699000,
+              "price_max_thb": 1699000
             },
             {
-              "name": "2.0 Platinum 4x4",
+              "name": "2.0L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 1996,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.0 Platinum 4x4"
+              ],
               "overrides": {},
               "price_thb": 2199000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2199000,
+              "price_max_thb": 2199000
             }
           ]
         }
@@ -197,9 +229,11 @@
       "id": "mustang",
       "name_en": "Mustang",
       "name_th": "มัสแตง",
+      "nameplate": "",
       "body_type": "COUPE",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -211,17 +245,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "5.0 GT",
+              "name": "5.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 5038,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "5.0 GT"
+              ],
               "overrides": {},
               "price_thb": 5999000,
               "import_type": "CBU",
               "origin_country": "US",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 5999000,
+              "price_max_thb": 5999000
             }
           ]
         }

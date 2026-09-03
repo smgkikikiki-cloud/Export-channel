@@ -15,9 +15,11 @@
       "id": "macan",
       "name_en": "Macan",
       "name_th": "มาคัน",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -29,17 +31,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Macan",
+              "name": "2.0L ICE AWD",
               "powertrain": "ICE",
               "drivetrain": "AWD",
               "engine_cc": 1984,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "Macan"
+              ],
               "overrides": {},
               "price_thb": 5300000,
               "import_type": "CBU",
               "origin_country": "DE",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 5300000,
+              "price_max_thb": 5300000
             }
           ]
         }
@@ -49,9 +55,11 @@
       "id": "cayenne",
       "name_en": "Cayenne",
       "name_th": "คาเยน",
+      "nameplate": "",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -63,17 +71,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Cayenne E-Hybrid",
+              "name": "3.0L PHEV AWD",
               "powertrain": "PHEV",
               "drivetrain": "AWD",
               "engine_cc": 2995,
               "battery_kwh": 25.9,
-              "aliases": [],
+              "aliases": [
+                "Cayenne E-Hybrid"
+              ],
               "overrides": {},
               "price_thb": 9500000,
               "import_type": "CBU",
               "origin_country": "SK",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 9500000,
+              "price_max_thb": 9500000
             }
           ]
         }
@@ -83,9 +95,11 @@
       "id": "porsche_911",
       "name_en": "911",
       "name_th": "911",
+      "nameplate": "",
       "body_type": "COUPE",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [
         "nine eleven"
       ],
@@ -99,17 +113,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Carrera",
+              "name": "3.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2981,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "Carrera"
+              ],
               "overrides": {},
               "price_thb": 12500000,
               "import_type": "CBU",
               "origin_country": "DE",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 12500000,
+              "price_max_thb": 12500000
             }
           ]
         }

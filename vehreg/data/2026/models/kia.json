@@ -15,9 +15,11 @@
       "id": "carnival",
       "name_en": "Carnival",
       "name_th": "คาร์นิวัล",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "RY2",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -29,17 +31,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.2 D SXL",
+              "name": "2.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 2151,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.2 D SXL"
+              ],
               "overrides": {},
               "price_thb": 2399000,
               "import_type": "CBU",
               "origin_country": "KR",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2399000,
+              "price_max_thb": 2399000
             }
           ]
         }
@@ -49,9 +55,11 @@
       "id": "ev6",
       "name_en": "EV6",
       "name_th": "อีวี6",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ev 6"
       ],
@@ -65,17 +73,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "GT-Line",
+              "name": "77 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 77.4,
-              "aliases": [],
+              "aliases": [
+                "GT-Line"
+              ],
               "overrides": {},
               "price_thb": 2199000,
               "import_type": "CBU",
               "origin_country": "KR",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2199000,
+              "price_max_thb": 2199000
             }
           ]
         }
@@ -85,9 +97,11 @@
       "id": "ev9",
       "name_en": "EV9",
       "name_th": "อีวี9",
+      "nameplate": "",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [
         "ev 9"
       ],
@@ -101,17 +115,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "GT-Line AWD",
+              "name": "100 kWh BEV AWD",
               "powertrain": "BEV",
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 99.8,
-              "aliases": [],
+              "aliases": [
+                "GT-Line AWD"
+              ],
               "overrides": {},
               "price_thb": 3490000,
               "import_type": "CBU",
               "origin_country": "KR",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3490000,
+              "price_max_thb": 3490000
             }
           ]
         }

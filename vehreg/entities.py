@@ -21,12 +21,20 @@ Why the layers exist:
                     pickups, cab type live here, and they are not overridable:
                     one nameplate sold in two bodies is two models, and each
                     pickup cab is its own model, because that is how the
-                    registration class splits.
+                    registration class splits. ``nameplate`` puts the pieces
+                    back together for reporting - every Hilux model, Revo and
+                    Champ and every cab, rolls up to "Hilux". ``market_scope``
+                    says whether the model belongs in the owner's numbers at
+                    all (CORE) or is a halo/grey row kept only so DLT lines
+                    still resolve.
 * ``Generation``  - the "โฉม". Segment and seat count sit here so a mid-year
                     changeover can be recorded without editing the old row.
-* ``Variant``     - the รุ่นย่อย. Powertrain, drivetrain, engine, battery, and
-                    the commercial facts for the year: price (hence market
-                    position), import route, assembly country.
+* ``Variant``     - the spec line. DLT does not publish by trim, so this is
+                    deliberately *not* a full trim list: split a model only
+                    where a trim differs on a facet that is reported on -
+                    powertrain, drivetrain, import route, or a price that lands
+                    in a different band. ``price_min_thb``/``price_max_thb``
+                    record the real spread of the trims folded into one line.
 """
 
 from __future__ import annotations
@@ -36,7 +44,7 @@ from typing import Any, Optional
 
 from .taxonomy import (
     BodyType, BrandSegment, CabType, Drivetrain, ImportType, MarketPosition,
-    Powertrain, RegistrationType, Segment,
+    MarketScope, Powertrain, RegistrationType, Segment,
     check_body_segment, check_origin, check_powertrain, check_registration,
     is_electrified, is_locally_assembled, is_plug_in, market_position_for_price,
     normalize_country, powertrain_group, registration_type_for,
@@ -48,6 +56,8 @@ FACET_HOME_LAYER: dict[str, str] = {
     "brand_segment": "brand",
     "oem_group": "brand",
     "brand_origin": "brand",
+    "nameplate": "model",
+    "market_scope": "model",
     "body_type": "model",
     "cab_type": "model",
     "registration_type": "model",
@@ -111,9 +121,11 @@ class Model:
     brand_id: str
     name_en: str
     name_th: str = ""
+    nameplate: str = ""                       # reporting roll-up, e.g. "Hilux"
     body_type: BodyType = BodyType.OTHER
     cab_type: CabType = CabType.NOT_APPLICABLE
     registration_type: RegistrationType = RegistrationType.RY1
+    market_scope: MarketScope = MarketScope.CORE
     aliases: tuple[str, ...] = ()
     notes: str = ""
     overrides: dict[str, Any] = field(default_factory=dict)
@@ -121,9 +133,11 @@ class Model:
     def facets(self) -> dict[str, Any]:
         out = {
             "model": self.name_en,
+            "nameplate": self.nameplate or self.name_en,
             "body_type": self.body_type,
             "cab_type": self.cab_type,
             "registration_type": self.registration_type,
+            "market_scope": self.market_scope,
         }
         out.update(self.overrides)
         return out
@@ -173,7 +187,9 @@ class Variant:
     drivetrain: Drivetrain = Drivetrain.UNKNOWN
     engine_cc: Optional[int] = None
     battery_kwh: Optional[float] = None
-    price_thb: Optional[float] = None
+    price_thb: Optional[float] = None         # representative list price
+    price_min_thb: Optional[float] = None     # spread of the folded trims
+    price_max_thb: Optional[float] = None
     import_type: ImportType = ImportType.UNKNOWN
     origin_country: str = "UNKNOWN"
     price_note: str = ""
@@ -190,6 +206,10 @@ class Variant:
             "import_type": self.import_type,
             "origin_country": normalize_country(self.origin_country),
         }
+        if self.price_min_thb:
+            out["price_min_thb"] = self.price_min_thb
+        if self.price_max_thb:
+            out["price_max_thb"] = self.price_max_thb
         if self.engine_cc:
             out["engine_cc"] = self.engine_cc
         if self.battery_kwh:
@@ -206,6 +226,20 @@ class Variant:
             problems.append(
                 f"cannot override {', '.join(sorted(locked))} on a variant - "
                 "a nameplate sold in two bodies is two models")
+        low, high = self.price_min_thb, self.price_max_thb
+        if low and high and low > high:
+            problems.append(f"price_min_thb {low:,.0f} > price_max_thb {high:,.0f}")
+        if low and high and market_position_for_price(low) is not \
+                market_position_for_price(high):
+            problems.append(
+                f"folded trims span {market_position_for_price(low).value} to "
+                f"{market_position_for_price(high).value}; split this line so "
+                "each one sits in a single price band")
+        for bound in (low, high):
+            if bound and self.price_thb and not (
+                    (low or 0) <= self.price_thb <= (high or self.price_thb)):
+                problems.append("price_thb is outside price_min_thb..price_max_thb")
+                break
         return [f"variant {self.id}: {p}" for p in problems]
 
 
@@ -272,6 +306,7 @@ def resolve(brand: Brand, model: Model, generation: Generation, variant: Variant
     facets.setdefault("cab_type", CabType.NOT_APPLICABLE)
     facets.setdefault("import_type", ImportType.UNKNOWN)
     facets.setdefault("origin_country", "UNKNOWN")
+    facets.setdefault("market_scope", MarketScope.UNKNOWN)
     facets["is_locally_assembled"] = is_locally_assembled(
         facets["import_type"], facets["origin_country"])
     for derived in ("powertrain_group", "is_electrified", "is_plug_in",

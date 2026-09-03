@@ -15,9 +15,11 @@
       "id": "creta",
       "name_en": "Creta",
       "name_th": "เครต้า",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -29,17 +31,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 SEL",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 SEL"
+              ],
               "overrides": {},
               "price_thb": 999000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 999000,
+              "price_max_thb": 999000
             }
           ]
         }
@@ -49,9 +55,11 @@
       "id": "stargazer",
       "name_en": "Stargazer",
       "name_th": "สตาร์เกเซอร์",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -63,17 +71,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 Smart",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 Smart"
+              ],
               "overrides": {},
               "price_thb": 799000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 799000,
+              "price_max_thb": 799000
             }
           ]
         }
@@ -83,9 +95,11 @@
       "id": "ioniq5",
       "name_en": "Ioniq 5",
       "name_th": "ไอออนิค 5",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ioniq 5"
       ],
@@ -99,17 +113,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Exclusive",
+              "name": "73 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 72.6,
-              "aliases": [],
+              "aliases": [
+                "Exclusive"
+              ],
               "overrides": {},
               "price_thb": 1849000,
               "import_type": "CBU",
               "origin_country": "KR",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1849000,
+              "price_max_thb": 1849000
             }
           ]
         }
@@ -119,9 +137,11 @@
       "id": "ioniq6",
       "name_en": "Ioniq 6",
       "name_th": "ไอออนิค 6",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ioniq 6"
       ],
@@ -135,17 +155,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Exclusive",
+              "name": "77 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 77.4,
-              "aliases": [],
+              "aliases": [
+                "Exclusive"
+              ],
               "overrides": {},
               "price_thb": 2299000,
               "import_type": "CBU",
               "origin_country": "KR",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2299000,
+              "price_max_thb": 2299000
             }
           ]
         }
@@ -155,9 +179,11 @@
       "id": "staria",
       "name_en": "Staria",
       "name_th": "สตาเรีย",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "RY2",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -169,17 +195,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.2 D Premium",
+              "name": "2.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 2199,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.2 D Premium"
+              ],
               "overrides": {},
               "price_thb": 1899000,
               "import_type": "CBU",
               "origin_country": "KR",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1899000,
+              "price_max_thb": 1899000
             }
           ]
         }

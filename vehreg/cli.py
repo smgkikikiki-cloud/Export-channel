@@ -154,6 +154,44 @@ def cmd_catalog(args) -> int:
         count = authoring.export_csv(catalog, args.path)
         print(f"wrote {count} rows to {args.path}")
         return 0
+    if args.catalog_cmd == "nameplate":
+        plates = catalog.nameplates()
+        query = (args.query or "").lower()
+        hits = {k: v for k, v in plates.items() if query in k.lower()}
+        if not hits:
+            print(f"no nameplate matches {args.query!r}")
+            return 1
+        for plate, model_ids in list(hits.items())[:args.limit]:
+            print(f"\n{plate}")
+            for model_id in model_ids:
+                model = catalog.models[model_id]
+                scope = "" if model.market_scope.value == "CORE" \
+                    else f"  [{model.market_scope.value}]"
+                print(f"  {model.name_en}  ({model.body_type.value}"
+                      + (f"/{model.cab_type.value}"
+                         if model.cab_type.value != "NOT_APPLICABLE" else "")
+                      + f", {model.registration_type.value}){scope}")
+                for gen, variants in catalog.succession(model_id):
+                    window = f"{(gen.launched or '?')[:7]} -> " \
+                             f"{(gen.ended or 'current')[:7]}"
+                    print(f"    {gen.code or '-':<8} {window}")
+                    for variant in variants:
+                        span = ""
+                        if variant.price_min_thb and variant.price_max_thb and \
+                                variant.price_min_thb != variant.price_max_thb:
+                            span = (f"  ({variant.price_min_thb:,.0f}"
+                                    f"-{variant.price_max_thb:,.0f})")
+                        print(f"      {variant.name:<24} "
+                              f"{(variant.price_thb or 0):>10,.0f}{span}")
+        return 0
+    if args.catalog_cmd == "scope":
+        rows = [m for m in catalog.models.values()
+                if args.value is None
+                or m.market_scope.value == args.value.upper()]
+        for model in sorted(rows, key=lambda m: (m.market_scope.value, m.id)):
+            print(f"  {model.market_scope.value:<8} {model.id}")
+        print(f"{len(rows)} models")
+        return 0
     if args.catalog_cmd == "show":
         matches = [vid for vid in catalog.variants if args.query.lower() in vid]
         if not matches:
@@ -217,13 +255,19 @@ def cmd_review(args) -> int:
     return 0
 
 
+def _scopes(raw):
+    if not raw:
+        return None
+    return [s.strip() for s in raw.split(",") if s.strip()]
+
+
 def cmd_cube(args) -> int:
     conn = _conn(args)
     result = cube_mod.run(
         conn, [d.strip() for d in args.by.split(",") if d.strip()],
         filters=_parse_filters(args.filter), period_from=getattr(args, "from"),
-        period_to=args.to, grains=args.grain, allocate=args.allocate,
-        limit=args.limit)
+        period_to=args.to, grains=args.grain, scopes=_scopes(args.scope),
+        allocate=args.allocate, limit=args.limit)
     if args.json:
         print(json.dumps(result.rows, ensure_ascii=False, indent=2))
     elif args.csv:
@@ -238,7 +282,7 @@ def cmd_growth(args) -> int:
     conn = _conn(args)
     rows = cube_mod.growth(conn, args.by, base=args.base, compare=args.compare,
                            filters=_parse_filters(args.filter),
-                           allocate=args.allocate)
+                           scopes=_scopes(args.scope), allocate=args.allocate)
     header = f"{args.by:<26} {args.base:>12} {args.compare:>12} {'chg':>10} " \
              f"{'growth':>9} {'share pp':>9}"
     print(header)
@@ -302,6 +346,16 @@ def build_parser() -> argparse.ArgumentParser:
     c.set_defaults(func=cmd_catalog)
     csub.add_parser("years", help="list catalog years on disk").set_defaults(
         func=cmd_catalog)
+    c = csub.add_parser("nameplate",
+                        help="roll a nameplate back up: its models, cabs and "
+                             "generations in order")
+    c.add_argument("query")
+    c.add_argument("--limit", type=int, default=5)
+    c.set_defaults(func=cmd_catalog)
+    c = csub.add_parser("scope", help="list models by market scope")
+    c.add_argument("value", nargs="?", choices=["CORE", "NICHE", "GREY",
+                                                "UNKNOWN"])
+    c.set_defaults(func=cmd_catalog)
     c = csub.add_parser("fork", help="start another year as a copy of --year")
     c.add_argument("--to", type=int, required=True)
     c.add_argument("--overwrite", action="store_true")
@@ -348,6 +402,9 @@ def build_parser() -> argparse.ArgumentParser:
                    choices=["BRAND", "MODEL", "VARIANT"])
     p.add_argument("--allocate", action="store_true",
                    help="split model-grain volume with the loaded weights")
+    p.add_argument("--scope", default=None,
+                   help="market scopes to count: CORE (default), NICHE, GREY, "
+                        "a comma-separated list, or 'all'")
     p.add_argument("--limit", type=int)
     p.add_argument("--csv")
     p.add_argument("--json", action="store_true")
@@ -359,6 +416,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--compare", required=True)
     p.add_argument("--filter", action="append", default=[])
     p.add_argument("--allocate", action="store_true")
+    p.add_argument("--scope", default=None)
     p.add_argument("--limit", type=int, default=30)
     p.set_defaults(func=cmd_growth)
 

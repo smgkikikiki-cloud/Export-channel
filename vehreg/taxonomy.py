@@ -269,6 +269,25 @@ def registration_type_for(body: BodyType, cab: CabType) -> RegistrationType:
     return RegistrationType.RY1
 
 
+class MarketScope(Facet):
+    """Whether a model belongs in the numbers the owner actually reads.
+
+    The owner's brief: no grey imports, no supercars, nothing that is not sold
+    by the official Thai distributor, nothing insignificant. Rather than delete
+    those rows - which would push every stray DLT line into the review queue
+    forever - each model declares its scope, and reports default to CORE.
+    """
+
+    CORE = "CORE"        # official distributor, meaningful volume
+    NICHE = "NICHE"      # official but halo / exotic / very low volume
+    GREY = "GREY"        # not sold by the official Thai distributor
+    UNKNOWN = "UNKNOWN"
+
+
+#: What `cube` counts unless the caller asks for more.
+DEFAULT_SCOPES: tuple[str, ...] = (MarketScope.CORE.value,)
+
+
 class Drivetrain(Facet):
     FWD = "FWD"
     RWD = "RWD"
@@ -401,6 +420,12 @@ THAI_LABELS: dict[str, dict[str, str]] = {
         "4WD": "ขับสี่พาร์ทไทม์", "UNKNOWN": "ไม่ระบุ",
     },
     "Grain": {"BRAND": "ระดับยี่ห้อ", "MODEL": "ระดับรุ่น", "VARIANT": "ระดับรุ่นย่อย"},
+    "MarketScope": {
+        "CORE": "ตลาดหลัก (ตัวแทนจำหน่ายทางการ)",
+        "NICHE": "เฉพาะกลุ่ม / ซูเปอร์คาร์ / ยอดน้อยมาก",
+        "GREY": "เกรย์มาร์เก็ต ไม่ใช่ตัวแทนทางการ",
+        "UNKNOWN": "ยังไม่จัด",
+    },
 }
 
 FACET_ALIASES: dict[str, dict[str, str]] = {
@@ -430,6 +455,9 @@ FACET_ALIASES: dict[str, dict[str, str]] = {
         "RY_2": "RY2", "2": "RY2", "รย.2": "RY2",
         "RY_3": "RY3", "3": "RY3", "รย.3": "RY3",
     },
+    "MarketScope": {"MAIN": "CORE", "OFFICIAL": "CORE", "EXOTIC": "NICHE",
+                    "SUPERCAR": "NICHE", "IMPORT": "GREY",
+                    "GREY_MARKET": "GREY", "เกรย์": "GREY"},
     "BrandSegment": {"LUXURY": "PREMIUM_LUXURY", "PREMIUM": "PREMIUM_LUXURY",
                      "TECH": "PREMIUM_TECH", "SPORT": "PERFORMANCE",
                      "ECONOMY": "BUDGET", "VALUE": "BUDGET"},

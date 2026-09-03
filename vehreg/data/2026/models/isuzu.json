@@ -16,9 +16,11 @@
       "id": "dmax_spark",
       "name_en": "D-Max Spark",
       "name_th": "ดีแมคซ์ สปาร์ค",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SINGLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "dmax spark",
         "spark",
@@ -37,17 +39,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.9 S",
+              "name": "1.9L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1898,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.9 S"
+              ],
               "overrides": {},
               "price_thb": 569000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 569000,
+              "price_max_thb": 569000
             }
           ]
         }
@@ -57,9 +63,11 @@
       "id": "dmax_cab4",
       "name_en": "D-Max Cab4",
       "name_th": "ดีแมคซ์ แค็บโฟร์",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SMART_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "dmax cab4",
         "cab4",
@@ -78,17 +86,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.9 Hi-Lander",
+              "name": "1.9L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1898,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.9 Hi-Lander"
+              ],
               "overrides": {},
               "price_thb": 829000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 829000,
+              "price_max_thb": 829000
             }
           ]
         }
@@ -98,9 +110,11 @@
       "id": "dmax_double_cab",
       "name_en": "D-Max Double Cab",
       "name_th": "ดีแมคซ์ 4 ประตู",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "DOUBLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "dmax double cab",
         "v-cross",
@@ -120,30 +134,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.9 Hi-Lander",
+              "name": "1.9L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1898,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.9 Hi-Lander"
+              ],
               "overrides": {},
               "price_thb": 899000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 899000,
+              "price_max_thb": 899000
             },
             {
-              "name": "3.0 V-Cross 4x4",
+              "name": "3.0L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2999,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "3.0 V-Cross 4x4"
+              ],
               "overrides": {},
               "price_thb": 1329000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1329000,
+              "price_max_thb": 1329000
             }
           ]
         }
@@ -153,9 +175,11 @@
       "id": "mux",
       "name_en": "MU-X",
       "name_th": "มิว-เอ็กซ์",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "mux",
         "mu x",
@@ -171,30 +195,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.9 Active",
+              "name": "1.9L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1898,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.9 Active"
+              ],
               "overrides": {},
               "price_thb": 1199000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1199000,
+              "price_max_thb": 1199000
             },
             {
-              "name": "3.0 Ultimate 4x4",
+              "name": "3.0L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2999,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "3.0 Ultimate 4x4"
+              ],
               "overrides": {},
               "price_thb": 1699000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1699000,
+              "price_max_thb": 1699000
             }
           ]
         }

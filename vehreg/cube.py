@@ -1,10 +1,15 @@
 """Cross-tab queries over the classified facts.
 
 Any facet may be grouped by, filtered on, or crossed with any other - that is
-the whole point of keeping the dimensions orthogonal. The only rule the cube
-enforces is honesty about grain: a query grouped by ``powertrain`` will show a
-``MIXED`` bucket if some of the volume only arrived at model level for a model
-that sells several powertrains, unless an allocation profile has been supplied.
+the whole point of keeping the dimensions orthogonal. Two rules the cube
+enforces on top of that:
+
+* **Honesty about grain.** A query grouped by ``powertrain`` shows a ``MIXED``
+  bucket where volume only arrived at model level for a model that sells
+  several powertrains, unless an allocation profile has been supplied.
+* **Scope is explicit.** By default only ``CORE`` models are counted - no grey
+  imports, no supercars, nothing outside the official distributor. Anything
+  left out is reported on every result rather than silently dropped.
 """
 
 from __future__ import annotations
@@ -14,6 +19,7 @@ from dataclasses import dataclass, field
 from typing import Any, Iterable, Optional, Sequence
 
 from .db import DIM_FACETS, DIM_FLAGS, DIM_NUMERIC, MIXED
+from .taxonomy import DEFAULT_SCOPES
 
 #: Columns a caller may group by or filter on. Anything else is rejected, which
 #: is also what keeps the generated SQL injection-free.
@@ -46,7 +52,12 @@ class CubeResult:
     total_units: float
     mixed_units: float = 0.0
     estimated_units: float = 0.0
+    excluded_by_scope: dict[str, float] = field(default_factory=dict)
     notes: list[str] = field(default_factory=list)
+
+    @property
+    def excluded_units(self) -> float:
+        return sum(self.excluded_by_scope.values())
 
     def render(self, limit: int = 40, width: int = 26) -> str:
         if not self.rows:
@@ -64,6 +75,11 @@ class CubeResult:
         if len(self.rows) > limit:
             lines.append(f"... {len(self.rows) - limit} more rows")
         lines.append(f"total: {self.total_units:,.0f} units")
+        if self.excluded_by_scope:
+            detail = ", ".join(f"{k} {v:,.0f}" for k, v in
+                               sorted(self.excluded_by_scope.items()))
+            lines.append(f"excluded by scope: {detail} "
+                         "(pass --scope all to include them)")
         if self.mixed_units:
             lines.append(
                 f"of which {self.mixed_units:,.0f} sit in a MIXED bucket because "
@@ -76,11 +92,33 @@ class CubeResult:
         return "\n".join(lines)
 
 
+#: Pass this as ``scopes`` to count everything, grey imports included.
+ALL_SCOPES = "all"
+
+
+def _normalise_scopes(scopes: Optional[Sequence[str] | str]
+                      ) -> Optional[list[str]]:
+    if scopes is None:
+        return list(DEFAULT_SCOPES)
+    if isinstance(scopes, str):
+        return None if scopes.lower() == ALL_SCOPES else [scopes.upper()]
+    values = [str(s).upper() for s in scopes]
+    return None if not values or ALL_SCOPES.upper() in values else values
+
+
 def _build_where(filters: Optional[dict[str, Any]],
                  period_from: Optional[str], period_to: Optional[str],
-                 grains: Optional[Sequence[str]]) -> tuple[str, list[Any]]:
+                 grains: Optional[Sequence[str]],
+                 scopes: Optional[Sequence[str]] = None) -> tuple[str, list[Any]]:
     clauses: list[str] = []
     params: list[Any] = []
+    if scopes:
+        # A brand-grain row has no single scope; keep it rather than lose the
+        # volume, and let the MIXED marker say what happened.
+        clauses.append(
+            f"(market_scope IN ({', '.join('?' for _ in scopes)}) "
+            "OR market_scope IS NULL OR market_scope = 'MIXED')")
+        params.extend(scopes)
     for key, value in (filters or {}).items():
         column, _, op = key.partition("__")
         if column not in FILTERABLE:
@@ -149,6 +187,7 @@ def run(conn: sqlite3.Connection, group_by: Sequence[str], *,
         filters: Optional[dict[str, Any]] = None,
         period_from: Optional[str] = None, period_to: Optional[str] = None,
         grains: Optional[Sequence[str]] = None,
+        scopes: Optional[Sequence[str] | str] = None,
         allocate: bool = False, order_by: str = "units",
         descending: bool = True, limit: Optional[int] = None) -> CubeResult:
     dims = list(group_by)
@@ -160,7 +199,8 @@ def run(conn: sqlite3.Connection, group_by: Sequence[str], *,
     if order_by not in {"units", *dims}:
         raise ValueError(f"cannot order by {order_by!r}")
 
-    where, params = _build_where(filters, period_from, period_to, grains)
+    kept = _normalise_scopes(scopes)
+    where, params = _build_where(filters, period_from, period_to, grains, kept)
     select_dims = ", ".join(f"{_column(d)} AS {d}" for d in dims)
     group_expr = ", ".join(_column(d) for d in dims)
     source = _source_sql(allocate)
@@ -185,13 +225,27 @@ def run(conn: sqlite3.Connection, group_by: Sequence[str], *,
         row["units"] = row["units"] or 0.0
         row["share"] = (row["units"] / total) if total else 0.0
 
+    excluded: dict[str, float] = {}
+    if kept:
+        skip_where, skip_params = _build_where(filters, period_from, period_to,
+                                               grains, None)
+        excluded = {
+            r["market_scope"]: r["units"] or 0.0
+            for r in conn.execute(
+                f"SELECT market_scope, SUM(units) AS units FROM ({source}) "
+                f"{skip_where} " + ("AND" if skip_where else "WHERE") +
+                f" market_scope NOT IN ({', '.join('?' for _ in kept)}) "
+                "GROUP BY market_scope", skip_params + list(kept))
+            if (r["units"] or 0) > 0
+        }
+
     notes: list[str] = []
     if mixed:
         notes.append(
             "MIXED means the source reported at model level for a model that "
             "spans more than one value of this facet - load an allocation "
             "profile to split it")
-    return CubeResult(dims, rows, total, mixed, estimated, notes)
+    return CubeResult(dims, rows, total, mixed, estimated, excluded, notes)
 
 
 def timeseries(conn: sqlite3.Connection, group_by: Sequence[str], *,
@@ -267,9 +321,13 @@ def coverage_report(conn: sqlite3.Connection) -> dict[str, Any]:
     years = [int(r["y"]) for r in conn.execute(
         "SELECT DISTINCT CAST(substr(period, 1, 4) AS INTEGER) AS y "
         "FROM fact_registration ORDER BY y")]
+    by_scope = {r["market_scope"] or "UNJOINED": r["units"] for r in conn.execute(
+        "SELECT market_scope, SUM(units) AS units FROM fact_classified "
+        "GROUP BY market_scope")}
     total = sum(by_grain.values())
     return {
         "fact_years": years,
+        "units_by_scope": by_scope,
         "units_by_grain": by_grain,
         "units_total": total,
         "units_variant_grain_pct": (by_grain.get("VARIANT", 0) / total

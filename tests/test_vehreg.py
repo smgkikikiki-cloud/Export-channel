@@ -12,23 +12,25 @@ from vehreg.catalog import (
 )
 from vehreg.ingest import Resolver, ingest_csv, teach_alias
 from vehreg.taxonomy import (
-    BodyType, BrandSegment, CabType, ImportType, MarketPosition, Powertrain,
-    RegistrationType, Segment,
+    BodyType, BrandSegment, CabType, ImportType, MarketPosition, MarketScope,
+    Powertrain, RegistrationType, Segment,
 )
 
 YEAR = DEFAULT_YEAR
 
 
 def tiny_payload():
-    """One brand covering both structural rules: a nameplate split by body and
-    a pickup split by cab."""
+    """One brand covering the structural rules: a pickup split by cab but rolled
+    up under one nameplate, a two-generation succession, a folded spec line, and
+    a halo model kept out of the default numbers."""
     return {
         "brand": {"id": "acme", "name_en": "Acme", "name_th": "แอคมี่",
                   "brand_segment": "MASS", "oem_group": "Acme Group",
                   "brand_origin": "TH", "aliases": ["แอคมี่"]},
         "models": [
             {"id": "runner_single_cab", "name_en": "Runner Single Cab",
-             "name_th": "รันเนอร์ ตอนเดียว", "body_type": "PICKUP",
+             "name_th": "รันเนอร์ ตอนเดียว", "nameplate": "Runner",
+             "body_type": "PICKUP",
              "cab_type": "SINGLE_CAB", "aliases": ["Runner"],
              "generations": [{
                  "code": "R1", "segment": "F", "seats": 3,
@@ -39,7 +41,8 @@ def tiny_payload():
                       "import_type": "CKD", "origin_country": "TH"},
                  ]}]},
             {"id": "runner_smart_cab", "name_en": "Runner Smart Cab",
-             "name_th": "รันเนอร์ แค็บ", "body_type": "PICKUP",
+             "name_th": "รันเนอร์ แค็บ", "nameplate": "Runner",
+             "body_type": "PICKUP",
              "cab_type": "SMART_CAB", "aliases": ["Runner"],
              "generations": [{
                  "code": "R1", "segment": "F", "seats": 4,
@@ -50,7 +53,8 @@ def tiny_payload():
                       "import_type": "CKD", "origin_country": "TH"},
                  ]}]},
             {"id": "runner_double_cab", "name_en": "Runner Double Cab",
-             "name_th": "รันเนอร์ 4 ประตู", "body_type": "PICKUP",
+             "name_th": "รันเนอร์ 4 ประตู", "nameplate": "Runner",
+             "body_type": "PICKUP",
              "cab_type": "DOUBLE_CAB", "aliases": ["Runner"],
              "generations": [{
                  "code": "R1", "segment": "F", "seats": 5,
@@ -62,18 +66,41 @@ def tiny_payload():
                  ]}]},
             {"id": "volt", "name_en": "Volt", "name_th": "โวลต์",
              "body_type": "CROSSOVER",
+             "generations": [
+                 {"code": "V1", "segment": "B", "seats": 5,
+                  "launched": "2020-03-01", "ended": "2023-03-01",
+                  "variants": [
+                      {"name": "1.5 Petrol", "powertrain": "ICE",
+                       "drivetrain": "FWD", "engine_cc": 1500,
+                       "price_thb": 690000, "import_type": "CKD",
+                       "origin_country": "TH"},
+                  ]},
+                 {"code": "V2", "segment": "B", "seats": 5,
+                  "launched": "2023-03-01",
+                  "variants": [
+                      {"name": "50 kWh BEV", "powertrain": "BEV",
+                       "drivetrain": "FWD", "battery_kwh": 50.0,
+                       "price_thb": 899000, "import_type": "CKD",
+                       "origin_country": "TH"},
+                      # Four trims folded into one spec line.
+                      {"name": "1.5L ICE", "powertrain": "ICE",
+                       "drivetrain": "FWD", "engine_cc": 1500,
+                       "price_thb": 749000, "price_min_thb": 749000,
+                       "price_max_thb": 829000, "import_type": "CKD",
+                       "origin_country": "TH",
+                       "aliases": ["1.5 E", "1.5 EL", "1.5 RS"]},
+                  ]},
+             ]},
+            {"id": "meteor", "name_en": "Meteor", "name_th": "มีเทีย",
+             "body_type": "COUPE", "market_scope": "NICHE",
              "generations": [{
-                 "code": "V1", "segment": "B", "seats": 5,
-                 "launched": "2023-03-01",
+                 "code": "M1", "segment": "D", "seats": 2,
+                 "launched": "2024-01-01",
                  "variants": [
-                     {"name": "EV Standard", "powertrain": "BEV",
-                      "drivetrain": "FWD", "battery_kwh": 50.0,
-                      "price_thb": 899000, "import_type": "CKD",
-                      "origin_country": "TH"},
-                     {"name": "1.5 Petrol", "powertrain": "ICE",
-                      "drivetrain": "FWD", "engine_cc": 1500,
-                      "price_thb": 749000, "import_type": "CKD",
-                      "origin_country": "TH"},
+                     {"name": "5.0L ICE", "powertrain": "ICE",
+                      "drivetrain": "RWD", "engine_cc": 5000,
+                      "price_thb": 9900000, "import_type": "CBU",
+                      "origin_country": "DE"},
                  ]}]},
         ],
     }
@@ -173,18 +200,18 @@ class ResolutionTests(unittest.TestCase):
 
     def test_lower_layer_overrides_higher_layer(self):
         payload = tiny_payload()
-        payload["models"][3]["generations"][0]["variants"][0]["overrides"] = {
+        payload["models"][3]["generations"][1]["variants"][0]["overrides"] = {
             "brand_segment": "PREMIUM_TECH"}
         catalog = Catalog(YEAR)
         catalog.add_brand_payload(payload)
         catalog.build_indexes()
-        resolved = catalog.resolve("acme.volt.v1.ev_standard")
+        resolved = catalog.resolve("acme.volt.v2.50_kwh_bev")
         self.assertIs(resolved["brand_segment"], BrandSegment.PREMIUM_TECH)
         self.assertEqual(resolved.provenance["brand_segment"], "variant")
 
     def test_body_and_cab_cannot_be_overridden_below_the_model(self):
         payload = tiny_payload()
-        payload["models"][3]["generations"][0]["variants"][0]["overrides"] = {
+        payload["models"][3]["generations"][1]["variants"][0]["overrides"] = {
             "body_type": "HATCHBACK"}
         catalog = Catalog(YEAR)
         catalog.add_brand_payload(payload)
@@ -192,7 +219,7 @@ class ResolutionTests(unittest.TestCase):
         problems = catalog.validate()
         self.assertTrue(any("cannot override body_type" in p for p in problems))
         # And the override is ignored rather than silently applied.
-        self.assertIs(catalog.resolve("acme.volt.v1.ev_standard")["body_type"],
+        self.assertIs(catalog.resolve("acme.volt.v2.50_kwh_bev")["body_type"],
                       BodyType.CROSSOVER)
 
     def test_registration_type_defaults_from_body_and_cab(self):
@@ -222,6 +249,51 @@ class ResolutionTests(unittest.TestCase):
         catalog.build_indexes()
         self.assertTrue(any("same name and body" in p
                             for p in catalog.validate()))
+
+    def test_split_models_roll_back_up_under_one_nameplate(self):
+        plates = self.catalog.nameplates()
+        self.assertEqual(
+            sorted(plates["Acme Runner"]),
+            ["acme.runner_double_cab", "acme.runner_single_cab",
+             "acme.runner_smart_cab"])
+        # A model that was never split is its own nameplate.
+        self.assertEqual(plates["Acme Volt"], ["acme.volt"])
+        for model_id in plates["Acme Runner"]:
+            self.assertEqual(self.catalog.resolve(
+                self.catalog.variants_of(model_id)[0].id)["nameplate"], "Runner")
+
+    def test_a_blank_nameplate_falls_back_to_the_base_name(self):
+        payload = tiny_payload()
+        for model in payload["models"]:
+            model.pop("nameplate", None)
+        catalog = Catalog(YEAR)
+        catalog.add_brand_payload(payload)
+        catalog.build_indexes()
+        # "Runner Single Cab" -> "Runner" without the owner typing anything.
+        self.assertIn("Acme Runner", catalog.nameplates())
+
+    def test_generations_read_as_a_succession(self):
+        codes = [gen.code for gen, _ in self.catalog.succession("acme.volt")]
+        self.assertEqual(codes, ["V1", "V2"])          # oldest first
+        older, newer = self.catalog.generations_of("acme.volt")
+        self.assertEqual(older.ended, newer.launched)
+
+    def test_out_of_scope_models_stay_in_the_catalog(self):
+        meteor = self.catalog.models["acme.meteor"]
+        self.assertIs(meteor.market_scope, MarketScope.NICHE)
+        # Still resolvable, so a DLT row naming it does not go to review.
+        self.assertIs(self.catalog.resolve("acme.meteor.m1.5_0l_ice")
+                      ["market_scope"], MarketScope.NICHE)
+        self.assertEqual(self.catalog.coverage()["models_niche"], 1)
+
+    def test_a_folded_line_may_not_straddle_a_price_band(self):
+        payload = tiny_payload()
+        line = payload["models"][3]["generations"][1]["variants"][1]
+        line["price_max_thb"] = 1_200_000        # was 829,000: VOLUME -> UPPER
+        catalog = Catalog(YEAR)
+        catalog.add_brand_payload(payload)
+        catalog.build_indexes()
+        self.assertTrue(any("split this line" in p for p in catalog.validate()))
 
     def test_seeded_catalog_is_internally_consistent(self):
         catalog = Catalog.load()
@@ -277,15 +349,15 @@ class YearTests(unittest.TestCase):
                                     extrasaction="ignore")
             writer.writeheader()
             writer.writerow({"brand": "Acme", "model": "Volt",
-                             "generation": "V1", "variant": "EV Standard",
+                             "generation": "V2", "variant": "50 kWh BEV",
                              "price_thb": "1150000"})
         authoring.import_csv(path, self.dir, year=YEAR + 1)
 
         this_year = Catalog.load(self.dir, YEAR)
         next_year = Catalog.load(self.dir, YEAR + 1)
-        self.assertIs(this_year.resolve("acme.volt.v1.ev_standard")
+        self.assertIs(this_year.resolve("acme.volt.v2.50_kwh_bev")
                       ["market_position"], MarketPosition.VOLUME)
-        self.assertIs(next_year.resolve("acme.volt.v1.ev_standard")
+        self.assertIs(next_year.resolve("acme.volt.v2.50_kwh_bev")
                       ["market_position"], MarketPosition.UPPER)
 
 
@@ -365,7 +437,7 @@ class WarehouseTests(unittest.TestCase):
         path = self.write_csv([
             (f"{YEAR}-02", "Acme", "Runner Double Cab", "2.4 4x4", "120"),
             (f"{YEAR}-02", "แอคมี่", "Volt", "", "300"),
-            (f"ก.พ. {YEAR + 543}", "Acme", "Volt", "EV Standard", "80"),
+            (f"ก.พ. {YEAR + 543}", "Acme", "Volt", "50 kWh BEV", "80"),
             (f"{YEAR}-02", "Nonexist", "Ghost", "", "45"),
         ])
         report = ingest_csv(self.conn, self.catalog, path, "test")
@@ -439,6 +511,19 @@ class WarehouseTests(unittest.TestCase):
         self.assertEqual(resolver.resolve("Acme", "Runner", reg="RY1")[0],
                          "acme.runner_double_cab")
 
+    def test_a_bare_model_label_never_claims_trim_grain(self):
+        # DLT publishes no trim-level volume. A label that only names the model
+        # must not match a folded line just because one of its aliases matches.
+        path = self.write_csv([(f"{YEAR}-03", "Acme", "Volt", "", "260")],
+                              name="bare.csv")
+        report = ingest_csv(self.conn, self.catalog, path, "bare")
+        self.assertEqual(report.by_grain, {"MODEL": 1})
+        # A label that does say more still resolves to the spec line.
+        path = self.write_csv([(f"{YEAR}-03", "Acme", "Volt", "1.5 EL", "40")],
+                              name="trim.csv")
+        report = ingest_csv(self.conn, self.catalog, path, "trim")
+        self.assertEqual(report.by_grain, {"VARIANT": 1})
+
     def test_brand_scoping_stops_a_cross_brand_match(self):
         resolver = Resolver(self.catalog, self.conn)
         self.assertEqual(resolver.resolve("Acme", "Volt")[0], "acme.volt")
@@ -474,8 +559,9 @@ class CubeTests(unittest.TestCase):
                 (f"{YEAR}-05", "Acme", "Runner Double Cab", "2.4 4x4", "100"),
                 (f"{YEAR}-05", "Acme", "Volt", "", "200"),
                 (f"{YEAR}-09", "Acme", "Runner Single Cab", "2.4 Base", "400"),
-                (f"{YEAR}-09", "Acme", "Volt", "EV Standard", "150"),
-                (f"{YEAR}-09", "Acme", "Volt", "1.5 Petrol", "50"),
+                (f"{YEAR}-09", "Acme", "Volt", "50 kWh BEV", "150"),
+                (f"{YEAR}-09", "Acme", "Volt", "1.5 EL", "50"),
+                (f"{YEAR}-09", "Acme", "Meteor", "", "30"),
             ])
         ingest_csv(self.conn, self.catalog, path, "facts")
 
@@ -510,6 +596,23 @@ class CubeTests(unittest.TestCase):
         bev = next(r for r in split.rows if r["powertrain"] == "BEV")
         # 150 reported + 3/4 of the 200 model-grain row (150 BEV : 50 ICE).
         self.assertAlmostEqual(bev["units"], 300.0)
+
+    def test_reports_default_to_core_and_say_what_they_left_out(self):
+        core = cube.run(self.conn, ["brand"])
+        everything = cube.run(self.conn, ["brand"], scopes="all")
+        self.assertLess(core.total_units, everything.total_units)
+        self.assertEqual(core.excluded_by_scope, {"NICHE": 30.0})
+        self.assertAlmostEqual(core.total_units + core.excluded_units,
+                               everything.total_units)
+        self.assertEqual(everything.excluded_by_scope, {})
+        widened = cube.run(self.conn, ["brand"], scopes=["CORE", "NICHE"])
+        self.assertAlmostEqual(widened.total_units, everything.total_units)
+
+    def test_nameplate_rolls_the_split_pickup_models_together(self):
+        result = cube.run(self.conn, ["nameplate"],
+                          filters={"body_type": "PICKUP"})
+        rows = {r["nameplate"]: r["units"] for r in result.rows}
+        self.assertEqual(rows["Runner"], 800.0)     # 300 + 100 + 400
 
     def test_unknown_group_by_is_rejected(self):
         with self.assertRaises(ValueError):
@@ -598,7 +701,7 @@ class AuthoringTests(unittest.TestCase):
 
     def test_a_row_that_would_break_the_catalog_is_not_written(self):
         path = self.write_rows([{
-            "brand": "Acme", "model": "Volt", "generation": "V1",
+            "brand": "Acme", "model": "Volt", "generation": "V2",
             "variant": "Broken", "powertrain": "BEV", "engine_cc": "1500",
             "price_thb": "900000", "import_type": "CKD", "origin_country": "TH",
         }])
@@ -607,7 +710,7 @@ class AuthoringTests(unittest.TestCase):
         self.assertTrue(any("must not declare engine_cc" in p for p in problems))
         self.assertEqual(written, [])
         catalog = Catalog.load(self.dir, YEAR)
-        self.assertNotIn("acme.volt.v1.broken", catalog.variants)
+        self.assertNotIn("acme.volt.v2.broken", catalog.variants)
 
     def test_round_trip_export_import_is_stable(self):
         catalog = Catalog.load(self.dir, YEAR)

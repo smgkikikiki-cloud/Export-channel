@@ -15,9 +15,11 @@
       "id": "almera",
       "name_en": "Almera",
       "name_th": "อัลเมร่า",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "อัลเมร่า"
       ],
@@ -31,17 +33,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.0 Turbo VL",
+              "name": "1.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 999,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.0 Turbo VL"
+              ],
               "overrides": {},
               "price_thb": 679000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 679000,
+              "price_max_thb": 679000
             }
           ]
         }
@@ -51,9 +57,11 @@
       "id": "kicks",
       "name_en": "Kicks e-Power",
       "name_th": "คิกส์ อี-พาวเวอร์",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "kicks",
         "คิกส์"
@@ -68,17 +76,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "e-Power VL",
+              "name": "1.2L REEV",
               "powertrain": "REEV",
               "drivetrain": "FWD",
               "engine_cc": 1198,
               "battery_kwh": 2.1,
-              "aliases": [],
+              "aliases": [
+                "e-Power VL"
+              ],
               "overrides": {},
               "price_thb": 1029000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1029000,
+              "price_max_thb": 1029000
             }
           ]
         }
@@ -88,9 +100,11 @@
       "id": "navara_single_cab",
       "name_en": "Navara Single Cab",
       "name_th": "นาวาร่า ตอนเดียว",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SINGLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "navara single cab",
         "นาวาร่า ตอนเดียว",
@@ -107,17 +121,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.5 S",
+              "name": "2.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2488,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.5 S"
+              ],
               "overrides": {},
               "price_thb": 569000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 569000,
+              "price_max_thb": 569000
             }
           ]
         }
@@ -127,9 +145,11 @@
       "id": "navara_king_cab",
       "name_en": "Navara King Cab",
       "name_th": "นาวาร่า คิงแค็บ",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SMART_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "navara king cab",
         "king cab",
@@ -147,17 +167,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.5 E",
+              "name": "2.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2488,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.5 E"
+              ],
               "overrides": {},
               "price_thb": 729000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 729000,
+              "price_max_thb": 729000
             }
           ]
         }
@@ -167,9 +191,11 @@
       "id": "navara_double_cab",
       "name_en": "Navara Double Cab",
       "name_th": "นาวาร่า 4 ประตู",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "DOUBLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "navara double cab",
         "pro-4x",
@@ -188,17 +214,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.5 Pro-4X 4WD",
+              "name": "2.5L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2488,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.5 Pro-4X 4WD"
+              ],
               "overrides": {},
               "price_thb": 1199000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1199000,
+              "price_max_thb": 1199000
             }
           ]
         }
@@ -208,9 +238,11 @@
       "id": "terra",
       "name_en": "Terra",
       "name_th": "เทอร์ร่า",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -222,17 +254,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.3 VL 4WD",
+              "name": "2.3L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2298,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.3 VL 4WD"
+              ],
               "overrides": {},
               "price_thb": 1599000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1599000,
+              "price_max_thb": 1599000
             }
           ]
         }

@@ -20,9 +20,11 @@
       "id": "haval_h6",
       "name_en": "Haval H6",
       "name_th": "ฮาวาล เอช6",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "h6",
         "haval h6"
@@ -37,30 +39,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "HEV Ultra",
+              "name": "1.5L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": 1.8,
-              "aliases": [],
+              "aliases": [
+                "HEV Ultra"
+              ],
               "overrides": {},
               "price_thb": 1199000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1199000,
+              "price_max_thb": 1199000
             },
             {
-              "name": "PHEV Ultra",
+              "name": "1.5L PHEV",
               "powertrain": "PHEV",
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": 34.0,
-              "aliases": [],
+              "aliases": [
+                "PHEV Ultra"
+              ],
               "overrides": {},
               "price_thb": 1449000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1449000,
+              "price_max_thb": 1449000
             }
           ]
         }
@@ -70,9 +80,11 @@
       "id": "haval_jolion",
       "name_en": "Haval Jolion",
       "name_th": "ฮาวาล โจเลี่ยน",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "jolion"
       ],
@@ -86,17 +98,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "HEV Ultra",
+              "name": "1.5L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": 1.7,
-              "aliases": [],
+              "aliases": [
+                "HEV Ultra"
+              ],
               "overrides": {},
               "price_thb": 879000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 879000,
+              "price_max_thb": 879000
             }
           ]
         }
@@ -106,9 +122,11 @@
       "id": "ora_good_cat",
       "name_en": "Ora Good Cat",
       "name_th": "โอร่า กู๊ดแคท",
+      "nameplate": "",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "good cat",
         "ora"
@@ -123,17 +141,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "500 Ultra",
+              "name": "63 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 63.1,
-              "aliases": [],
+              "aliases": [
+                "500 Ultra"
+              ],
               "overrides": {},
               "price_thb": 899000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 899000,
+              "price_max_thb": 899000
             }
           ]
         }
@@ -143,9 +165,11 @@
       "id": "ora_03",
       "name_en": "Ora 03",
       "name_th": "โอร่า 03",
+      "nameplate": "",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ora 03"
       ],
@@ -159,17 +183,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "500 Ultra",
+              "name": "63 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 63.1,
-              "aliases": [],
+              "aliases": [
+                "500 Ultra"
+              ],
               "overrides": {},
               "price_thb": 829000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 829000,
+              "price_max_thb": 829000
             }
           ]
         }
@@ -179,9 +207,11 @@
       "id": "tank300",
       "name_en": "Tank 300",
       "name_th": "แทงค์ 300",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "tank 300"
       ],
@@ -195,17 +225,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "HEV Ultra 4WD",
+              "name": "2.0L HEV 4WD",
               "powertrain": "HEV",
               "drivetrain": "4WD",
               "engine_cc": 1998,
               "battery_kwh": 1.8,
-              "aliases": [],
+              "aliases": [
+                "HEV Ultra 4WD"
+              ],
               "overrides": {},
               "price_thb": 1749000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1749000,
+              "price_max_thb": 1749000
             }
           ]
         }
@@ -215,9 +249,11 @@
       "id": "tank500",
       "name_en": "Tank 500",
       "name_th": "แทงค์ 500",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "tank 500"
       ],
@@ -231,17 +267,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "HEV Ultra 4WD",
+              "name": "2.0L HEV 4WD",
               "powertrain": "HEV",
               "drivetrain": "4WD",
               "engine_cc": 1998,
               "battery_kwh": 1.8,
-              "aliases": [],
+              "aliases": [
+                "HEV Ultra 4WD"
+              ],
               "overrides": {},
               "price_thb": 2999000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2999000,
+              "price_max_thb": 2999000
             }
           ]
         }

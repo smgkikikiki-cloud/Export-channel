@@ -15,9 +15,11 @@
       "id": "forester",
       "name_en": "Forester",
       "name_th": "ฟอเรสเตอร์",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -29,17 +31,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 i-S EyeSight",
+              "name": "2.0L ICE AWD",
               "powertrain": "ICE",
               "drivetrain": "AWD",
               "engine_cc": 1995,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.0 i-S EyeSight"
+              ],
               "overrides": {},
               "price_thb": 1590000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1590000,
+              "price_max_thb": 1590000
             }
           ]
         }
@@ -49,9 +55,11 @@
       "id": "crosstrek",
       "name_en": "Crosstrek",
       "name_th": "ครอสส์เทรค",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "xv"
       ],
@@ -65,17 +73,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 e-Boxer",
+              "name": "2.0L MHEV AWD",
               "powertrain": "MHEV",
               "drivetrain": "AWD",
               "engine_cc": 1995,
               "battery_kwh": 0.6,
-              "aliases": [],
+              "aliases": [
+                "2.0 e-Boxer"
+              ],
               "overrides": {},
               "price_thb": 1290000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1290000,
+              "price_max_thb": 1290000
             }
           ]
         }

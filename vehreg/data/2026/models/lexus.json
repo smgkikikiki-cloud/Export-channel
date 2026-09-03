@@ -15,9 +15,11 @@
       "id": "lexus_es",
       "name_en": "ES",
       "name_th": "อีเอส",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "es300h"
       ],
@@ -31,17 +33,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "ES300h Grand Luxury",
+              "name": "2.5L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "aliases": [],
+              "aliases": [
+                "ES300h Grand Luxury"
+              ],
               "overrides": {},
               "price_thb": 3690000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3690000,
+              "price_max_thb": 3690000
             }
           ]
         }
@@ -51,9 +57,11 @@
       "id": "lexus_nx",
       "name_en": "NX",
       "name_th": "เอ็นเอ็กซ์",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "nx350h",
         "nx450h"
@@ -68,17 +76,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "NX350h Premium",
+              "name": "2.5L HEV AWD",
               "powertrain": "HEV",
               "drivetrain": "AWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "aliases": [],
+              "aliases": [
+                "NX350h Premium"
+              ],
               "overrides": {},
               "price_thb": 3690000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3690000,
+              "price_max_thb": 3690000
             }
           ]
         }
@@ -88,9 +100,11 @@
       "id": "lexus_rx",
       "name_en": "RX",
       "name_th": "อาร์เอ็กซ์",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "rx350h"
       ],
@@ -104,17 +118,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "RX350h Premium",
+              "name": "2.5L HEV AWD",
               "powertrain": "HEV",
               "drivetrain": "AWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "aliases": [],
+              "aliases": [
+                "RX350h Premium"
+              ],
               "overrides": {},
               "price_thb": 4790000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 4790000,
+              "price_max_thb": 4790000
             }
           ]
         }
@@ -124,9 +142,11 @@
       "id": "lexus_lm",
       "name_en": "LM",
       "name_th": "แอลเอ็ม",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [
         "lm350h",
         "lm500h"
@@ -141,17 +161,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "LM350h Executive",
+              "name": "2.5L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "aliases": [],
+              "aliases": [
+                "LM350h Executive"
+              ],
               "overrides": {},
               "price_thb": 7990000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 7990000,
+              "price_max_thb": 7990000
             }
           ]
         }

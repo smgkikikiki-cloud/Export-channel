@@ -263,6 +263,20 @@ def year_key(value: str) -> str:
     return f"{_to_gregorian(int(m.group(1))):04d}"
 
 
+#: Suffixes this project appends when it splits a nameplate into models: one
+#: per body, and one per pickup cab. Stripping them recovers the nameplate.
+SPLIT_SUFFIX = re.compile(
+    r"\s+(single cab|double cab|smart cab|club cab|king cab|open cab|"
+    r"freestyle cab|giant cab|cab4|spark|sedan|hatchback|coupe|"
+    r"ตอนเดียว|4 ประตู|สมาร์ทแค็บ|คลับแค็บ|คิงแค็บ|โอเพ่นแค็บ|ฟรีสไตล์แค็บ|"
+    r"ไจแอนท์แค็บ|แค็บโฟร์|สปาร์ค|ซีดาน|แฮทช์แบ็ก|แค็บ)$", re.IGNORECASE)
+
+
+def base_nameplate(name: str) -> str:
+    """``Hilux Revo Double Cab`` -> ``Hilux Revo``. Idempotent on plain names."""
+    return SPLIT_SUFFIX.sub("", str(name or "")).strip() or str(name or "")
+
+
 def slug(text: str) -> str:
     s = fold(text).replace(" ", "_")
     return re.sub(r"_+", "_", s).strip("_") or "unnamed"

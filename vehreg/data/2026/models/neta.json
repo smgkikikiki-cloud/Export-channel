@@ -16,9 +16,11 @@
       "id": "neta_v",
       "name_en": "Neta V",
       "name_th": "เนต้า วี",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "neta v",
         "v-ii"
@@ -33,17 +35,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Standard",
+              "name": "41 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 40.7,
-              "aliases": [],
+              "aliases": [
+                "Standard"
+              ],
               "overrides": {},
               "price_thb": 549000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 549000,
+              "price_max_thb": 549000
             }
           ]
         }
@@ -53,9 +59,11 @@
       "id": "neta_x",
       "name_en": "Neta X",
       "name_th": "เนต้า เอ็กซ์",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "neta x"
       ],
@@ -69,17 +77,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Smart",
+              "name": "52 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 52.5,
-              "aliases": [],
+              "aliases": [
+                "Smart"
+              ],
               "overrides": {},
               "price_thb": 799000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 799000,
+              "price_max_thb": 799000
             }
           ]
         }

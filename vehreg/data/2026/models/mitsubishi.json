@@ -16,9 +16,11 @@
       "id": "triton_single_cab",
       "name_en": "Triton Single Cab",
       "name_th": "ไทรทัน ตอนเดียว",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SINGLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "triton single cab",
         "ไทรทัน ตอนเดียว",
@@ -35,17 +37,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 GL",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 GL"
+              ],
               "overrides": {},
               "price_thb": 569000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 569000,
+              "price_max_thb": 569000
             }
           ]
         }
@@ -55,9 +61,11 @@
       "id": "triton_club_cab",
       "name_en": "Triton Club Cab",
       "name_th": "ไทรทัน คลับแค็บ",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "SMART_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "triton club cab",
         "club cab",
@@ -75,17 +83,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 GLX",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 GLX"
+              ],
               "overrides": {},
               "price_thb": 719000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 719000,
+              "price_max_thb": 719000
             }
           ]
         }
@@ -95,9 +107,11 @@
       "id": "triton_double_cab",
       "name_en": "Triton Double Cab",
       "name_th": "ไทรทัน 4 ประตู",
+      "nameplate": "",
       "body_type": "PICKUP",
       "cab_type": "DOUBLE_CAB",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "triton double cab",
         "triton athlete",
@@ -115,30 +129,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 Athlete",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 Athlete"
+              ],
               "overrides": {},
               "price_thb": 999000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 999000,
+              "price_max_thb": 999000
             },
             {
-              "name": "2.4 Ultimate 4WD",
+              "name": "2.4L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 Ultimate 4WD"
+              ],
               "overrides": {},
               "price_thb": 1249000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1249000,
+              "price_max_thb": 1249000
             }
           ]
         }
@@ -148,9 +170,11 @@
       "id": "pajero_sport",
       "name_en": "Pajero Sport",
       "name_th": "ปาเจโร สปอร์ต",
+      "nameplate": "",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "pajero",
         "ปาเจโร"
@@ -165,30 +189,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 GT",
+              "name": "2.4L ICE",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 GT"
+              ],
               "overrides": {},
               "price_thb": 1399000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1399000,
+              "price_max_thb": 1399000
             },
             {
-              "name": "2.4 GT Premium 4WD",
+              "name": "2.4L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "2.4 GT Premium 4WD"
+              ],
               "overrides": {},
               "price_thb": 1729000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1729000,
+              "price_max_thb": 1729000
             }
           ]
         }
@@ -198,9 +230,11 @@
       "id": "xpander",
       "name_en": "Xpander",
       "name_th": "เอ็กซ์แพนเดอร์",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "เอ็กซ์แพนเดอร์"
       ],
@@ -214,30 +248,38 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 GT",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 GT"
+              ],
               "overrides": {},
               "price_thb": 899000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 899000,
+              "price_max_thb": 899000
             },
             {
-              "name": "1.6 HEV GT",
+              "name": "1.6L HEV",
               "powertrain": "HEV",
               "drivetrain": "FWD",
               "engine_cc": 1600,
               "battery_kwh": 0.8,
-              "aliases": [],
+              "aliases": [
+                "1.6 HEV GT"
+              ],
               "overrides": {},
               "price_thb": 1099000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1099000,
+              "price_max_thb": 1099000
             }
           ]
         }
@@ -247,9 +289,11 @@
       "id": "xpander_cross",
       "name_en": "Xpander Cross",
       "name_th": "เอ็กซ์แพนเดอร์ ครอส",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -261,17 +305,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 GT",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 GT"
+              ],
               "overrides": {},
               "price_thb": 949000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 949000,
+              "price_max_thb": 949000
             }
           ]
         }
@@ -281,9 +329,11 @@
       "id": "attrage",
       "name_en": "Attrage",
       "name_th": "แอททราจ",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "แอททราจ"
       ],
@@ -297,17 +347,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.2 GLS",
+              "name": "1.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1193,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.2 GLS"
+              ],
               "overrides": {},
               "price_thb": 559000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 559000,
+              "price_max_thb": 559000
             }
           ]
         }
@@ -317,9 +371,11 @@
       "id": "mirage",
       "name_en": "Mirage",
       "name_th": "มิราจ",
+      "nameplate": "",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "มิราจ"
       ],
@@ -333,17 +389,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.2 GLS",
+              "name": "1.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1193,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.2 GLS"
+              ],
               "overrides": {},
               "price_thb": 519000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 519000,
+              "price_max_thb": 519000
             }
           ]
         }
@@ -353,9 +413,11 @@
       "id": "xforce",
       "name_en": "Xforce",
       "name_th": "เอ็กซ์ฟอร์ซ",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -367,17 +429,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 Ultimate",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 Ultimate"
+              ],
               "overrides": {},
               "price_thb": 949000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 949000,
+              "price_max_thb": 949000
             }
           ]
         }

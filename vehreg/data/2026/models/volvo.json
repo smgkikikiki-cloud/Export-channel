@@ -15,9 +15,11 @@
       "id": "xc40",
       "name_en": "XC40",
       "name_th": "เอ็กซ์ซี40",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "xc 40",
         "xc40 recharge"
@@ -32,17 +34,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Recharge Pure Electric",
+              "name": "78 kWh BEV AWD",
               "powertrain": "BEV",
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 78.0,
-              "aliases": [],
+              "aliases": [
+                "Recharge Pure Electric"
+              ],
               "overrides": {},
               "price_thb": 2590000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2590000,
+              "price_max_thb": 2590000
             }
           ]
         }
@@ -52,9 +58,11 @@
       "id": "xc60",
       "name_en": "XC60",
       "name_th": "เอ็กซ์ซี60",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "xc 60"
       ],
@@ -68,17 +76,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "T8 Recharge Ultimate",
+              "name": "2.0L PHEV AWD",
               "powertrain": "PHEV",
               "drivetrain": "AWD",
               "engine_cc": 1969,
               "battery_kwh": 18.8,
-              "aliases": [],
+              "aliases": [
+                "T8 Recharge Ultimate"
+              ],
               "overrides": {},
               "price_thb": 3390000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3390000,
+              "price_max_thb": 3390000
             }
           ]
         }
@@ -88,9 +100,11 @@
       "id": "xc90",
       "name_en": "XC90",
       "name_th": "เอ็กซ์ซี90",
+      "nameplate": "",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "xc 90"
       ],
@@ -104,17 +118,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "T8 Recharge Ultimate",
+              "name": "2.0L PHEV AWD",
               "powertrain": "PHEV",
               "drivetrain": "AWD",
               "engine_cc": 1969,
               "battery_kwh": 18.8,
-              "aliases": [],
+              "aliases": [
+                "T8 Recharge Ultimate"
+              ],
               "overrides": {},
               "price_thb": 4990000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 4990000,
+              "price_max_thb": 4990000
             }
           ]
         }
@@ -124,9 +142,11 @@
       "id": "ex30",
       "name_en": "EX30",
       "name_th": "อีเอ็กซ์30",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ex 30"
       ],
@@ -140,17 +160,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Ultra Single Motor",
+              "name": "69 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 69.0,
-              "aliases": [],
+              "aliases": [
+                "Ultra Single Motor"
+              ],
               "overrides": {},
               "price_thb": 1590000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1590000,
+              "price_max_thb": 1590000
             }
           ]
         }

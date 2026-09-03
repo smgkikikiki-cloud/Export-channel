@@ -5,12 +5,19 @@ After the first run the JSON files are the source of truth - edit those, or use
 ``python -m vehreg catalog import``. This script exists so the initial Thai
 market backbone is reviewable as code rather than hand-typed JSON.
 
-Two structural rules are applied here, not just documented:
+Four structural rules are applied here, not just documented:
 
 * one nameplate in one body per model - Mazda2 Sedan and Mazda2 Hatchback are
   two models;
 * one pickup cab per model - a double cab is รย.1 and the other cabs are รย.3,
-  so they cannot share a row.
+  so they cannot share a row;
+* ``nameplate`` puts those splits back together for reporting - every Hilux
+  model rolls up to "Hilux", and a model's generations are listed oldest first
+  so a succession like Camry XV70 -> XV80 reads in order;
+* trims are folded. DLT publishes no trim-level volume, so a generation carries
+  one line per distinct spec - powertrain, drivetrain, import route, price band
+  - with the folded trim names kept as aliases and the real price spread in
+  price_min_thb/price_max_thb.
 
 PRICES ARE UNVERIFIED SEED VALUES for the 2026 catalog year. Every variant is
 written with price_note="seed-unverified" so `python -m vehreg catalog audit`
@@ -50,11 +57,11 @@ def B(bid, name_en, name_th, brand_segment, oem_group, origin, aliases=()):
 
 
 def M(mid, name_en, name_th, body, cab="NOT_APPLICABLE", reg=None, aliases=(),
-      notes=""):
+      notes="", nameplate="", scope="CORE"):
     model = {
-        "id": mid, "name_en": name_en, "name_th": name_th, "body_type": body,
-        "cab_type": cab,
-        "registration_type": reg or "",
+        "id": mid, "name_en": name_en, "name_th": name_th,
+        "nameplate": nameplate, "body_type": body, "cab_type": cab,
+        "registration_type": reg or "", "market_scope": scope,
         "aliases": list(aliases), "notes": notes, "generations": [],
     }
     _ctx["brand"]["models"].append(model)
@@ -105,7 +112,83 @@ def add_base_aliases() -> None:
                     model["aliases"].append(alias)
 
 
+BANDS = ((500_000, "ENTRY"), (1_000_000, "VOLUME"), (1_800_000, "UPPER"))
+
+
+def _band(price):
+    if price is None:
+        return "UNKNOWN"
+    for edge, label in BANDS:
+        if price < edge:
+            return label
+    return "LUXURY"
+
+
+def _spec_name(variant):
+    """A folded line is named by its spec, never by one of the trims it covers."""
+    parts = []
+    if variant["engine_cc"]:
+        parts.append(f"{variant['engine_cc'] / 1000:.1f}L")
+    elif variant["battery_kwh"]:
+        parts.append(f"{variant['battery_kwh']:.0f} kWh")
+    parts.append(variant["powertrain"])
+    if variant["drivetrain"] in {"4WD", "AWD"}:
+        parts.append(variant["drivetrain"])
+    return " ".join(parts)
+
+
+def fold_variants() -> None:
+    """Merge trims that differ on nothing this warehouse reports on.
+
+    Two trims with the same powertrain, drivetrain, engine, import route and
+    price band answer every question in the cube identically, and DLT never
+    tells them apart anyway. Folding them keeps the catalog honest about what
+    the data can actually resolve. Every original trim name survives as an
+    alias, so a source that does name a trim still lands on the right line.
+    """
+    for payload in _files.values():
+        for model in payload["models"]:
+            for gen in model["generations"]:
+                folded: dict[tuple, dict] = {}
+                for variant in gen["variants"]:
+                    key = (variant["powertrain"], variant["drivetrain"],
+                           variant["engine_cc"], variant["battery_kwh"],
+                           variant["import_type"], variant["origin_country"],
+                           _band(variant["price_thb"]))
+                    existing = folded.get(key)
+                    if existing is None:
+                        variant["aliases"] = list(dict.fromkeys(
+                            [variant["name"], *variant["aliases"]]))
+                        variant["price_min_thb"] = variant["price_thb"]
+                        variant["price_max_thb"] = variant["price_thb"]
+                        variant["name"] = _spec_name(variant)
+                        folded[key] = variant
+                        continue
+                    for alias in [variant["name"], *variant["aliases"]]:
+                        if alias not in existing["aliases"]:
+                            existing["aliases"].append(alias)
+                    prices = [p for p in (existing["price_min_thb"],
+                                          existing["price_max_thb"],
+                                          variant["price_thb"]) if p]
+                    existing["price_min_thb"] = min(prices)
+                    existing["price_max_thb"] = max(prices)
+                    existing["price_thb"] = min(prices)
+                # Two folded lines can share a spec name and differ only by
+                # band - the same engine either side of a price boundary. Say
+                # which band, rather than silently colliding.
+                lines = list(folded.values())
+                names: dict[str, int] = {}
+                for line in lines:
+                    names[line["name"]] = names.get(line["name"], 0) + 1
+                for line in lines:
+                    if names[line["name"]] > 1:
+                        line["name"] = (f"{line['name']} "
+                                        f"({_band(line['price_thb'])})")
+                gen["variants"] = lines
+
+
 def write() -> None:
+    fold_variants()
     add_base_aliases()
     OUT.mkdir(parents=True, exist_ok=True)
     for bid, payload in _files.items():
@@ -116,7 +199,12 @@ def write() -> None:
     variants = sum(len(g["variants"])
                    for p in _files.values() for m in p["models"]
                    for g in m["generations"])
-    print(f"wrote {len(_files)} brands, {models} models, {variants} variants "
+    nameplates = {(bid, m.get("nameplate") or m["name_en"])
+                  for bid, p in _files.items() for m in p["models"]}
+    niche = sum(1 for p in _files.values() for m in p["models"]
+                if m.get("market_scope") != "CORE")
+    print(f"wrote {len(_files)} brands, {len(nameplates)} nameplates, "
+          f"{models} models ({niche} not CORE), {variants} spec lines "
           f"for {YEAR} to {OUT}")
 
 
@@ -141,7 +229,11 @@ def seed_japanese() -> None:
     V("1.8 Sport", "ICE", "FWD", 1798, None, 899000, "CKD", "TH")
     V("1.8 HEV Smart", "HEV", "FWD", 1798, 1.3, 979000, "CKD", "TH")
     V("1.8 HEV GR Sport", "HEV", "FWD", 1798, 1.3, 1094000, "CKD", "TH")
+    # Two โฉม of one nameplate, listed oldest first so they read as a
+    # succession rather than as two unrelated cars.
     M("camry", "Camry", "คัมรี่", "SEDAN", aliases=["แคมรี่"])
+    G("XV70", "D", 5, "2018-10-01", ended="2024-11-01")
+    V("2.5 HEV", "HEV", "FWD", 2487, 1.6, 1749000, "CKD", "TH")
     G("XV80", "D", 5, "2024-11-01")
     V("2.5 HEV Premium", "HEV", "FWD", 2487, 1.0, 1899000, "CKD", "TH")
     V("2.5 HEV Premium Luxury", "HEV", "FWD", 2487, 1.0, 2099000, "CKD", "TH")
@@ -162,25 +254,26 @@ def seed_japanese() -> None:
     V("2.8 Legender 4x2", "ICE", "RWD", 2755, None, 1699000, "CKD", "TH")
     V("2.8 GR Sport 4x4", "ICE", "4WD", 2755, None, 1999000, "CKD", "TH")
     M("hilux_revo_single_cab", "Hilux Revo Single Cab", "ไฮลักซ์ รีโว่ ตอนเดียว",
-      "PICKUP", cab="SINGLE_CAB",
+      "PICKUP", cab="SINGLE_CAB", nameplate="Hilux",
       aliases=["revo single cab", "revo standard cab", "รีโว่ ตอนเดียว"])
     G("AN120", "F", 3, "2020-06-01")
     V("2.4 Entry", "ICE", "RWD", 2393, None, 599000, "CKD", "TH")
     M("hilux_revo_smart_cab", "Hilux Revo Smart Cab", "ไฮลักซ์ รีโว่ สมาร์ทแค็บ",
-      "PICKUP", cab="SMART_CAB",
+      "PICKUP", cab="SMART_CAB", nameplate="Hilux",
       aliases=["revo smart cab", "revo cab", "รีโว่ แค็บ"])
     G("AN120", "F", 4, "2020-06-01")
     V("2.4 Mid", "ICE", "RWD", 2393, None, 749000, "CKD", "TH")
     V("2.4 Prerunner Z Edition", "ICE", "RWD", 2393, None, 899000, "CKD", "TH")
     M("hilux_revo_double_cab", "Hilux Revo Double Cab", "ไฮลักซ์ รีโว่ 4 ประตู",
-      "PICKUP", cab="DOUBLE_CAB",
+      "PICKUP", cab="DOUBLE_CAB", nameplate="Hilux",
       aliases=["revo double cab", "revo 4 ประตู", "รีโว่ 4 ประตู",
                "revo double cab 4x4"])
     G("AN120", "F", 5, "2020-06-01")
     V("2.4 Prerunner", "ICE", "RWD", 2393, None, 949000, "CKD", "TH")
     V("2.8 GR Sport 4x4", "ICE", "4WD", 2755, None, 1359000, "CKD", "TH")
     M("hilux_champ", "Hilux Champ", "ไฮลักซ์ แชมป์", "PICKUP",
-      cab="SINGLE_CAB", aliases=["champ", "hilux champ", "แชมป์"])
+      cab="SINGLE_CAB", nameplate="Hilux",
+      aliases=["champ", "hilux champ", "แชมป์"])
     G("CHAMP", "F", 2, "2023-11-22")
     V("2.0", "ICE", "RWD", 1998, None, 459000, "CKD", "TH")
     V("2.4", "ICE", "RWD", 2393, None, 577000, "CKD", "TH")
@@ -191,14 +284,14 @@ def seed_japanese() -> None:
     M("veloz", "Veloz", "เวลอซ", "MPV")
     G("W100", "B", 7, "2022-04-01")
     V("1.5 Premium", "ICE", "FWD", 1496, None, 795000, "CBU", "ID")
-    M("alphard", "Alphard", "อัลพาร์ด", "MPV")
+    M("alphard", "Alphard", "อัลพาร์ด", "MPV", scope="NICHE")
     G("AH40", "E", 7, "2023-09-01")
     V("2.5 HEV Executive Lounge", "HEV", "AWD", 2487, 1.0, 4599000, "CBU", "JP")
     M("bz4x", "bZ4X", "บีแซดโฟร์เอ็กซ์", "CROSSOVER", aliases=["bz4x"])
     G("EA10", "C", 5, "2022-10-01")
     V("Premium", "BEV", "FWD", None, 71.4, 1836000, "CBU", "JP")
     M("land_cruiser_300", "Land Cruiser 300", "แลนด์ครุยเซอร์ 300", "PPV",
-      aliases=["land cruiser", "lc300"])
+      scope="NICHE", aliases=["land cruiser", "lc300"])
     G("J300", "E", 7, "2021-08-01")
     V("3.3 D VX", "ICE", "4WD", 3346, None, 5990000, "CBU", "JP")
 
@@ -554,7 +647,8 @@ def seed_chinese() -> None:
     M("zeekr_x", "Zeekr X", "ซีเคอร์ เอ็กซ์", "CROSSOVER", aliases=["zeekr x"])
     G("ZX", "B", 5, "2024-05-01")
     V("Long Range RWD", "BEV", "RWD", None, 66.0, 1199000, "CBU", "CN")
-    M("zeekr_009", "Zeekr 009", "ซีเคอร์ 009", "MPV", aliases=["009"])
+    M("zeekr_009", "Zeekr 009", "ซีเคอร์ 009", "MPV", scope="NICHE",
+      aliases=["009"])
     G("Z009", "E", 6, "2024-05-01")
     V("Long Range", "BEV", "AWD", None, 116.0, 3999000, "CBU", "CN")
 
@@ -592,7 +686,7 @@ def seed_korean_western() -> None:
     M("ev6", "EV6", "อีวี6", "CROSSOVER", aliases=["ev 6"])
     G("CV", "C", 5, "2022-01-01")
     V("GT-Line", "BEV", "RWD", None, 77.4, 2199000, "CBU", "KR")
-    M("ev9", "EV9", "อีวี9", "SUV", aliases=["ev 9"])
+    M("ev9", "EV9", "อีวี9", "SUV", scope="NICHE", aliases=["ev 9"])
     G("MV", "E", 7, "2024-01-01")
     V("GT-Line AWD", "BEV", "AWD", None, 99.8, 3490000, "CBU", "KR")
 
@@ -616,7 +710,7 @@ def seed_korean_western() -> None:
     G("U704", "D", 7, "2022-06-01")
     V("2.0 Titanium+ 4x2", "ICE", "RWD", 1996, None, 1699000, "CKD", "TH")
     V("2.0 Platinum 4x4", "ICE", "4WD", 1996, None, 2199000, "CKD", "TH")
-    M("mustang", "Mustang", "มัสแตง", "COUPE")
+    M("mustang", "Mustang", "มัสแตง", "COUPE", scope="NICHE")
     G("S650", "D", 4, "2024-01-01")
     V("5.0 GT", "ICE", "RWD", 5038, None, 5999000, "CBU", "US")
 
@@ -683,7 +777,7 @@ def seed_korean_western() -> None:
     M("mb_glc", "GLC", "จีแอลซี", "CROSSOVER")
     G("X254", "D", 5, "2023-01-01")
     V("GLC300e AMG Dynamic", "PHEV", "AWD", 1999, 24.8, 4290000, "CKD", "TH")
-    M("mb_eqs", "EQS", "อีคิวเอส", "SEDAN")
+    M("mb_eqs", "EQS", "อีคิวเอส", "SEDAN", scope="NICHE")
     G("V297", "E", 5, "2022-01-01")
     V("EQS500 4Matic AMG", "BEV", "AWD", None, 107.8, 8090000, "CKD", "TH")
 
@@ -707,7 +801,8 @@ def seed_korean_western() -> None:
     M("lexus_rx", "RX", "อาร์เอ็กซ์", "CROSSOVER", aliases=["rx350h"])
     G("AL30", "E", 5, "2023-01-01")
     V("RX350h Premium", "HEV", "AWD", 2487, 1.0, 4790000, "CBU", "JP")
-    M("lexus_lm", "LM", "แอลเอ็ม", "MPV", aliases=["lm350h", "lm500h"])
+    M("lexus_lm", "LM", "แอลเอ็ม", "MPV", scope="NICHE",
+      aliases=["lm350h", "lm500h"])
     G("AH40L", "E", 4, "2024-01-01")
     V("LM350h Executive", "HEV", "FWD", 2487, 1.0, 7990000, "CBU", "JP")
 
@@ -717,10 +812,11 @@ def seed_korean_western() -> None:
     M("macan", "Macan", "มาคัน", "CROSSOVER")
     G("95B", "D", 5, "2019-01-01")
     V("Macan", "ICE", "AWD", 1984, None, 5300000, "CBU", "DE")
-    M("cayenne", "Cayenne", "คาเยน", "SUV")
+    M("cayenne", "Cayenne", "คาเยน", "SUV", scope="NICHE")
     G("E3", "E", 5, "2018-01-01")
     V("Cayenne E-Hybrid", "PHEV", "AWD", 2995, 25.9, 9500000, "CBU", "SK")
-    M("porsche_911", "911", "911", "COUPE", aliases=["nine eleven"])
+    M("porsche_911", "911", "911", "COUPE", scope="NICHE",
+      aliases=["nine eleven"])
     G("992", "D", 4, "2019-01-01")
     V("Carrera", "ICE", "RWD", 2981, None, 12500000, "CBU", "DE")
 

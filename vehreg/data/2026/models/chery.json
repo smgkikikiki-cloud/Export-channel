@@ -17,9 +17,11 @@
       "id": "omoda_c5",
       "name_en": "Omoda C5",
       "name_th": "โอโมดา ซี5",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "omoda c5",
         "c5"
@@ -34,17 +36,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "EV Luxury",
+              "name": "61 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 61.0,
-              "aliases": [],
+              "aliases": [
+                "EV Luxury"
+              ],
               "overrides": {},
               "price_thb": 989000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 989000,
+              "price_max_thb": 989000
             }
           ]
         }
@@ -54,9 +60,11 @@
       "id": "jaecoo_j7",
       "name_en": "Jaecoo J7",
       "name_th": "เจคู เจ7",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "jaecoo j7",
         "j7"
@@ -71,17 +79,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "PHEV Luxury",
+              "name": "1.5L PHEV",
               "powertrain": "PHEV",
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 18.3,
-              "aliases": [],
+              "aliases": [
+                "PHEV Luxury"
+              ],
               "overrides": {},
               "price_thb": 1099000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1099000,
+              "price_max_thb": 1099000
             }
           ]
         }

@@ -7,6 +7,10 @@ market position × powertrain × ประเทศผลิต × CBU/SKD/CKD �
 **ทำงานเป็นรายปี** ตอนนี้คือปี **2026** catalog แต่ละปีแยกโฟลเดอร์กันสนิท
 ไม่มีการอ่านข้ามปี ปีหน้าค่อย `catalog fork` ออกไปแก้
 
+**ข้อจำกัดที่ต้องรู้ก่อนใช้:** DLT ไม่ประกาศยอดแยกรุ่นย่อย ละเอียดสุดคือระดับ
+"แบบรถ" ระบบจึงไม่แยก trim และไม่ยอมให้ฉลากที่บอกแค่ชื่อรุ่นตกลงไประดับ trim
+(ดูหัวข้อ *grain* ท้ายไฟล์)
+
 ใช้ Python standard library ล้วน ไม่ต้อง pip install ไม่ต้องมี server
 ฐานข้อมูลเป็นไฟล์ SQLite ไฟล์เดียว
 
@@ -84,8 +88,15 @@ Toyota Hilux Revo   model-ambiguous: toyota.hilux_revo_single_cab | toyota.hilux
 ### 4. ถามข้อมูล
 
 ```bash
-# ทุก segment × powertrain
+# ทุก segment × powertrain (นับเฉพาะ CORE โดยดีฟอลต์)
 python -m vehreg cube --by segment,powertrain
+
+# รวมกระบะทุกแค็บกลับเป็น nameplate เดียว
+python -m vehreg cube --by nameplate --filter body_type=PICKUP
+
+# อยากเห็นของที่ถูกตัดออกด้วย
+python -m vehreg cube --by brand --scope all
+python -m vehreg cube --by model --scope NICHE
 
 # เฉพาะกระบะ แจงตามแค็บ × ประเภทจดทะเบียน × ช่วงราคา
 python -m vehreg cube --by cab_type,registration_type,market_position \
@@ -108,6 +119,15 @@ python -m vehreg cube --by brand,model,powertrain,market_position --csv out.csv
 กรองด้วย `--filter <facet>=<ค่า>[,<ค่า>]` ได้ทุก facet และ group ด้วย `--by`
 ได้ทุก facet เช่นกัน รวม `period`, `quarter`, `year`, `province`, `grain`
 
+**ทุกคำสั่ง cube นับเฉพาะ `market_scope = CORE`** คือรถที่ขายโดยตัวแทนจำหน่าย
+ทางการและมียอดมีนัยสำคัญ ตัดเกรย์ ตัดซูเปอร์คาร์ ตัดของยอดหยิบมือออกหมด
+และมันจะพิมพ์บอกทุกครั้งว่าตัดอะไรออกไปกี่คัน:
+
+```
+total: 1,063,684 units
+excluded by scope: MIXED 49,471, NICHE 144 (pass --scope all to include them)
+```
+
 ### 5. เติม catalog (ตรงนี้คือของที่อยู่ในหัวเจ้าของ)
 
 ```bash
@@ -127,9 +147,17 @@ python -m vehreg init                          # rebuild dimension
   ไม่เขียนอะไรเลย ให้ตั้งชื่อแยก เช่น `Mazda2 Sedan` กับ `Mazda2 Hatchback`
 * **กระบะแยกตามแค็บ** ตั้งชื่อรุ่นแยก แล้วกรอก `cab_type` ให้ถูก
   (`SINGLE_CAB` / `SMART_CAB` / `DOUBLE_CAB`)
+* **`nameplate` คือตัวรวมกลับ** ปล่อยว่างได้ถ้าชื่อรุ่นบอกอยู่แล้ว
+  (`Mazda2 Sedan` → `Mazda2`) แต่ถ้ารวมข้ามชื่อต้องกรอก — Revo กับ Champ
+  ใส่ `Hilux` ทั้งคู่
+* **`market_scope`** ปล่อยว่าง = `CORE` ใส่ `NICHE` สำหรับซูเปอร์คาร์/ของยอดหยิบมือ
+  `GREY` สำหรับของที่ไม่ใช่ตัวแทนทางการ แล้วมันจะไม่เข้ารายงาน
+* **หนึ่งแถว = หนึ่ง spec ไม่ใช่หนึ่ง trim** trim ที่ไม่ต่างกันในแกนที่รายงาน
+  ให้ยุบรวม แล้วใส่ช่วงราคาจริงที่ `price_min_thb` / `price_max_thb`
+  เอาชื่อ trim เดิมไปใส่ `variant_aliases` ถ้ายุบข้ามช่วงราคา validate จะฟ้อง
 * **ปล่อย `registration_type` ว่างไว้** ระบบเติมให้เอง — double cab เป็น รย.1
   ที่เหลือเป็น รย.3
-* **`generation` ปล่อยว่างได้** ถ้าไม่แยกโฉม
+* **`generation` ปล่อยว่างได้** ถ้าไม่แยกโฉม กรอกแล้วเรียงตาม `launched` เอง
 * import ซ้ำได้ปลอดภัย แถวที่ชี้รุ่นย่อยเดิมจะอัปเดตทับ ไม่สร้างซ้ำ
 * ถ้าแถวไหนทำให้ catalog ผิดกติกา **ไม่เขียนลงดิสก์เลย** และบอกว่าแถวไหนผิด
 
@@ -141,6 +169,31 @@ python -m vehreg catalog validate              # ตรวจกติกาข�
 python -m vehreg catalog audit                 # ราคาไหนยังไม่ได้ยืนยัน
 python -m vehreg catalog show revo_double      # ดูว่าแต่ละ facet มาจากชั้นไหน
 python -m vehreg catalog years                 # มี catalog ปีไหนบ้าง
+python -m vehreg catalog nameplate Hilux       # รวมกลับ: ทุกแค็บ ทุกโฉม เรียงเวลา
+python -m vehreg catalog scope NICHE           # รุ่นที่ถูกกันออกจากรายงาน
+```
+
+`catalog nameplate` คือมุมมองที่รวมของที่แตกไปกลับมาให้ดูพร้อมรายละเอียด:
+
+```
+Toyota Hilux
+  Hilux Revo Single Cab  (PICKUP/SINGLE_CAB, RY3)
+    AN120    2020-06 -> current
+      2.4L ICE                    599,000
+  Hilux Revo Double Cab  (PICKUP/DOUBLE_CAB, RY1)
+    AN120    2020-06 -> current
+      2.4L ICE                    949,000
+      2.8L ICE 4WD              1,359,000
+  Hilux Champ  (PICKUP/SINGLE_CAB, RY3)
+    CHAMP    2023-11 -> current
+      2.0L ICE                    459,000
+
+Toyota Camry
+  Camry  (SEDAN, RY1)
+    XV70     2018-10 -> 2024-11
+      2.5L HEV                  1,749,000
+    XV80     2024-11 -> current
+      2.5L HEV                  1,899,000  (1,899,000-2,099,000)
 ```
 
 ### 6. ขึ้นปีใหม่
@@ -161,12 +214,16 @@ DLT ประกาศละเอียดสุดแค่ระดับ "�
 เวลา cross แกนที่รุ่นหนึ่งมีหลายค่า (เช่น Corolla Cross มีทั้ง ICE และ HEV)
 แถวระดับ MODEL จะรายงานเป็น `MIXED` **ไม่ใช่เดาเลือกข้างใดข้างหนึ่ง**
 
-ถ้าอยากให้แตกออกมา ใช้สัดส่วนที่ข้อมูลชุดนั้นเองแสดงไว้:
+`allocate` มีไว้เผื่ออนาคต ถ้ามีข้อมูลระดับ trim เข้ามา (หรือเจ้าของป้อนสัดส่วนเอง)
+มันจะแตก MIXED ออกได้ แต่ตอนนี้ที่ต้นทางเป็น model ล้วน มันจะไม่ได้อะไร:
 
 ```bash
 python -m vehreg allocate --fallback year      # คำนวณ mix จากแถวระดับรุ่นย่อยที่มี
 python -m vehreg cube --by powertrain --allocate
 ```
+
+MIXED ที่เหลืออยู่คือความจริงของข้อมูล ไม่ใช่บั๊ก — Corolla Cross ขายทั้ง ICE
+และ HEV แต่ DLT รายงานรวม จะแยกได้ต้องมีข้อมูลที่ DLT ไม่ได้ให้
 
 `grain = BRAND` คือแถวที่รู้แค่ยี่ห้อ (จับคู่รุ่นไม่ได้หรือกำกวม)
 ยอดยังอยู่ครบ แต่ตอบคำถามระดับรุ่นไม่ได้จนกว่าจะเคลียร์คิว review
@@ -194,8 +251,8 @@ vehreg/
   data/2026/models/ catalog รายยี่ห้อของปี 2026 (JSON, แก้มือได้ diff ได้)
 tools/
   seed_catalog.py       สร้าง catalog 2026 ตั้งต้น (รันครั้งเดียว)
-  make_sample_data.py   สร้างไฟล์ตัวอย่างสังเคราะห์ แยกตาม รย.
-tests/test_vehreg.py    42 เทสต์ ออฟไลน์ล้วน
+  make_sample_data.py   สร้างไฟล์ตัวอย่างสังเคราะห์ แยกตาม รย. (ระดับแบบรถ)
+tests/test_vehreg.py    50 เทสต์ ออฟไลน์ล้วน
 docs/VEHREG_TAXONOMY.md เหตุผลการออกแบบ + ข้อที่เจ้าของต้องตัดสินใจ
 ```
 
@@ -208,4 +265,5 @@ docs/VEHREG_TAXONOMY.md เหตุผลการออกแบบ + ข้�
 * ไม่มีข้อมูลยอดขายจากค่าย (wholesale) — คนละตัวเลขกับยอดจดทะเบียน
 * ไม่มีข้อมูลปีเก่า และไม่เทียบข้ามปีอัตโนมัติ — ถ้าจะเทียบ 2026 กับ 2027
   ต้องมี catalog ทั้งสองปีและ ingest ทั้งสองปีเข้าฐานเดียวกัน
-* catalog ยังเป็นโครงตั้งต้น ราคายังไม่ยืนยัน
+* **ไม่มียอดแยก trim** และจะไม่มีจนกว่าจะมีแหล่งข้อมูลอื่น
+* catalog ยังเป็นโครงตั้งต้น ราคายังไม่ยืนยัน และรายการ NICHE เป็นแค่ข้อเสนอ

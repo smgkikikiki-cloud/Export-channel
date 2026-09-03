@@ -135,6 +135,16 @@ class Resolver:
             self._model_index_by_brand[brand_id] = index
         return self._model_index_by_brand[brand_id]
 
+    def _has_residual(self, model_id: str, brand_id: str, text: str) -> bool:
+        """True when ``text`` carries words the brand and model names do not."""
+        model = self.catalog.models[model_id]
+        brand = self.catalog.brands[brand_id]
+        known: set[str] = set()
+        for name in (model.name_en, model.name_th, brand.name_en, brand.name_th,
+                     *model.aliases):
+            known.update(fold(name).split())
+        return bool([t for t in fold(text).split() if t not in known])
+
     def _narrow_by_class(self, candidates: list[str], reg: str) -> list[str]:
         if reg == "*" or not candidates:
             return candidates
@@ -212,7 +222,15 @@ class Resolver:
             self.last_candidates = []
             return brand_id, Grain.BRAND, how, score, "model-not-found"
 
-        trim_text = raw_variant or model_text
+        # Only go looking for a spec line when the source actually said
+        # something beyond the model name. Without this, a label like
+        # "Honda e:N1" would match the folded line whose alias is "e:N1" and
+        # claim trim-level precision the source never had.
+        trim_text = raw_variant or (model_text if self._has_residual(
+            model_id, brand_id, model_text) else "")
+        if not trim_text:
+            return model_id, Grain.MODEL, model_how, model_score, ""
+
         variant_id, variant_score, variant_how = self._variants_index(
             model_id).lookup(trim_text)
         if variant_id:

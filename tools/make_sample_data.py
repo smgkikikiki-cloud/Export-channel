@@ -4,6 +4,9 @@ exercised offline. These are NOT real registration figures - they exist only to
 prove the loader, the class scoping, the review queue and the cube. Replace with
 real DLT downloads before reading anything into the numbers.
 
+Rows stop at the nameplate, with no trim column, because that is what DLT
+actually publishes - there is no public trim-level registration data.
+
 Two files are written, because that is how DLT publishes and how the double-cab
 split resolves:
 
@@ -27,11 +30,14 @@ from vehreg.catalog import DEFAULT_YEAR, Catalog  # noqa: E402
 OUT_DIR = ROOT / "data" / "raw"
 YEAR = DEFAULT_YEAR
 PERIODS = [f"{YEAR}-{m:02d}" for m in range(1, 13)]
-HEADER = ["เดือน", "ยี่ห้อ", "แบบรถ", "รุ่นย่อย", "จำนวน"]
+HEADER = ["เดือน", "ยี่ห้อ", "แบบรถ", "จำนวน"]
 
 # Rough monthly scale by segment so the synthetic mix is not uniform noise.
 SCALE = {"A": 300, "B": 1400, "C": 900, "D": 400, "E": 120, "F": 1200,
          "UNKNOWN": 100}
+# A halo model still shows up in DLT, just barely - which is the whole reason
+# market_scope exists rather than deleting those rows.
+SCOPE_WEIGHT = {"CORE": 1.0, "NICHE": 0.01, "GREY": 0.01, "UNKNOWN": 0.5}
 BRAND_WEIGHT = {"toyota": 3.0, "isuzu": 2.4, "honda": 1.6, "ford": 1.0,
                 "mitsubishi": 0.9, "nissan": 0.5, "byd": 1.1, "mg": 0.7,
                 "gwm": 0.4, "mazda": 0.4}
@@ -62,7 +68,9 @@ def main() -> None:
         if not variants:
             continue
         gen = catalog.generation_for_variant(variants[0].id)
-        base = SCALE.get(gen.segment.value, 100) * BRAND_WEIGHT.get(brand.id, 0.25)
+        base = (SCALE.get(gen.segment.value, 100)
+                * BRAND_WEIGHT.get(brand.id, 0.25)
+                * SCOPE_WEIGHT.get(model.market_scope.value, 1.0))
         trend = random.uniform(-0.4, 0.6)
         bucket = rows.setdefault(model.registration_type.value, [])
 
@@ -76,15 +84,13 @@ def main() -> None:
             label = model.name_en
             if random.random() < 0.4:
                 label = CAB_WORDS.sub("", label) or model.name_en
-            # Most months arrive at model grain; some sources break out a trim.
-            trim = random.choice(variants).name if random.random() < 0.35 else ""
             bucket.append({"เดือน": period, "ยี่ห้อ": brand.name_en,
-                           "แบบรถ": label, "รุ่นย่อย": trim, "จำนวน": units})
+                           "แบบรถ": label, "จำนวน": units})
 
     for brand_label, model_label in UNKNOWN_LABELS:
         for period in PERIODS[::3]:
             rows["RY1"].append({"เดือน": period, "ยี่ห้อ": brand_label,
-                                "แบบรถ": model_label, "รุ่นย่อย": "",
+                                "แบบรถ": model_label,
                                 "จำนวน": random.randint(20, 260)})
 
     for reg, bucket in rows.items():

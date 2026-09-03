@@ -16,9 +16,11 @@
       "id": "bmw_3",
       "name_en": "3 Series",
       "name_th": "ซีรีส์ 3",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "320d",
         "330e",
@@ -34,17 +36,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "330e M Sport",
+              "name": "2.0L PHEV",
               "powertrain": "PHEV",
               "drivetrain": "RWD",
               "engine_cc": 1998,
               "battery_kwh": 12.0,
-              "aliases": [],
+              "aliases": [
+                "330e M Sport"
+              ],
               "overrides": {},
               "price_thb": 2799000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2799000,
+              "price_max_thb": 2799000
             }
           ]
         }
@@ -54,9 +60,11 @@
       "id": "bmw_5",
       "name_en": "5 Series",
       "name_th": "ซีรีส์ 5",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "530e",
         "series 5"
@@ -71,17 +79,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "530e M Sport",
+              "name": "2.0L PHEV",
               "powertrain": "PHEV",
               "drivetrain": "RWD",
               "engine_cc": 1998,
               "battery_kwh": 19.4,
-              "aliases": [],
+              "aliases": [
+                "530e M Sport"
+              ],
               "overrides": {},
               "price_thb": 3999000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3999000,
+              "price_max_thb": 3999000
             }
           ]
         }
@@ -91,9 +103,11 @@
       "id": "bmw_x1",
       "name_en": "X1",
       "name_th": "เอ็กซ์1",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "x 1"
       ],
@@ -107,17 +121,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "sDrive18i xLine",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "sDrive18i xLine"
+              ],
               "overrides": {},
               "price_thb": 2399000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2399000,
+              "price_max_thb": 2399000
             }
           ]
         }
@@ -127,9 +145,11 @@
       "id": "bmw_x3",
       "name_en": "X3",
       "name_th": "เอ็กซ์3",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "x 3"
       ],
@@ -143,17 +163,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "20 xDrive M Sport",
+              "name": "2.0L MHEV AWD",
               "powertrain": "MHEV",
               "drivetrain": "AWD",
               "engine_cc": 1998,
               "battery_kwh": 0.5,
-              "aliases": [],
+              "aliases": [
+                "20 xDrive M Sport"
+              ],
               "overrides": {},
               "price_thb": 3999000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3999000,
+              "price_max_thb": 3999000
             }
           ]
         }
@@ -163,9 +187,11 @@
       "id": "bmw_ix3",
       "name_en": "iX3",
       "name_th": "ไอเอ็กซ์3",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "ix 3"
       ],
@@ -179,17 +205,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "Inspiring",
+              "name": "80 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 80.0,
-              "aliases": [],
+              "aliases": [
+                "Inspiring"
+              ],
               "overrides": {},
               "price_thb": 3399000,
               "import_type": "CBU",
               "origin_country": "CN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3399000,
+              "price_max_thb": 3399000
             }
           ]
         }
@@ -199,9 +229,11 @@
       "id": "bmw_i4",
       "name_en": "i4",
       "name_th": "ไอ4",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "i 4"
       ],
@@ -215,17 +247,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "eDrive40 M Sport",
+              "name": "84 kWh BEV",
               "powertrain": "BEV",
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 83.9,
-              "aliases": [],
+              "aliases": [
+                "eDrive40 M Sport"
+              ],
               "overrides": {},
               "price_thb": 3999000,
               "import_type": "CBU",
               "origin_country": "DE",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3999000,
+              "price_max_thb": 3999000
             }
           ]
         }

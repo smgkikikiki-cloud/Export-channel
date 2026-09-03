@@ -17,9 +17,11 @@
       "id": "mb_c_class",
       "name_en": "C-Class",
       "name_th": "ซี-คลาส",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "c class",
         "c220d",
@@ -35,17 +37,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "C350e AMG Dynamic",
+              "name": "2.0L PHEV",
               "powertrain": "PHEV",
               "drivetrain": "RWD",
               "engine_cc": 1999,
               "battery_kwh": 25.4,
-              "aliases": [],
+              "aliases": [
+                "C350e AMG Dynamic"
+              ],
               "overrides": {},
               "price_thb": 3399000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 3399000,
+              "price_max_thb": 3399000
             }
           ]
         }
@@ -55,9 +61,11 @@
       "id": "mb_e_class",
       "name_en": "E-Class",
       "name_th": "อี-คลาส",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "e class",
         "e220d"
@@ -72,17 +80,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "E220d AMG Dynamic",
+              "name": "2.0L MHEV",
               "powertrain": "MHEV",
               "drivetrain": "RWD",
               "engine_cc": 1993,
               "battery_kwh": 0.9,
-              "aliases": [],
+              "aliases": [
+                "E220d AMG Dynamic"
+              ],
               "overrides": {},
               "price_thb": 4290000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 4290000,
+              "price_max_thb": 4290000
             }
           ]
         }
@@ -92,9 +104,11 @@
       "id": "mb_gla",
       "name_en": "GLA",
       "name_th": "จีแอลเอ",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -106,17 +120,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "GLA200 AMG Dynamic",
+              "name": "1.3L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1332,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "GLA200 AMG Dynamic"
+              ],
               "overrides": {},
               "price_thb": 2590000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 2590000,
+              "price_max_thb": 2590000
             }
           ]
         }
@@ -126,9 +144,11 @@
       "id": "mb_glc",
       "name_en": "GLC",
       "name_th": "จีแอลซี",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -140,17 +160,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "GLC300e AMG Dynamic",
+              "name": "2.0L PHEV AWD",
               "powertrain": "PHEV",
               "drivetrain": "AWD",
               "engine_cc": 1999,
               "battery_kwh": 24.8,
-              "aliases": [],
+              "aliases": [
+                "GLC300e AMG Dynamic"
+              ],
               "overrides": {},
               "price_thb": 4290000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 4290000,
+              "price_max_thb": 4290000
             }
           ]
         }
@@ -160,9 +184,11 @@
       "id": "mb_eqs",
       "name_en": "EQS",
       "name_th": "อีคิวเอส",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "NICHE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -174,17 +200,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "EQS500 4Matic AMG",
+              "name": "108 kWh BEV AWD",
               "powertrain": "BEV",
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 107.8,
-              "aliases": [],
+              "aliases": [
+                "EQS500 4Matic AMG"
+              ],
               "overrides": {},
               "price_thb": 8090000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 8090000,
+              "price_max_thb": 8090000
             }
           ]
         }

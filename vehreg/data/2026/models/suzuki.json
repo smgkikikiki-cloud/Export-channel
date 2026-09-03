@@ -15,9 +15,11 @@
       "id": "swift",
       "name_en": "Swift",
       "name_th": "สวิฟท์",
+      "nameplate": "",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "สวิฟท์"
       ],
@@ -31,17 +33,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.2 GLX",
+              "name": "1.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1197,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.2 GLX"
+              ],
               "overrides": {},
               "price_thb": 599000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 599000,
+              "price_max_thb": 599000
             }
           ]
         }
@@ -51,9 +57,11 @@
       "id": "ciaz",
       "name_en": "Ciaz",
       "name_th": "เซียส",
+      "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -65,17 +73,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.2 GLX",
+              "name": "1.2L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1197,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.2 GLX"
+              ],
               "overrides": {},
               "price_thb": 675000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 675000,
+              "price_max_thb": 675000
             }
           ]
         }
@@ -85,9 +97,11 @@
       "id": "celerio",
       "name_en": "Celerio",
       "name_th": "เซเลริโอ",
+      "nameplate": "",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -99,17 +113,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.0 GL",
+              "name": "1.0L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 998,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.0 GL"
+              ],
               "overrides": {},
               "price_thb": 399000,
               "import_type": "CKD",
               "origin_country": "TH",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 399000,
+              "price_max_thb": 399000
             }
           ]
         }
@@ -119,9 +137,11 @@
       "id": "ertiga",
       "name_en": "Ertiga",
       "name_th": "เออร์ติก้า",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -133,17 +153,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 GX",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 GX"
+              ],
               "overrides": {},
               "price_thb": 715000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 715000,
+              "price_max_thb": 715000
             }
           ]
         }
@@ -153,9 +177,11 @@
       "id": "xl7",
       "name_en": "XL7",
       "name_th": "เอ็กซ์แอล7",
+      "nameplate": "",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "xl 7"
       ],
@@ -169,17 +195,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 GLX",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 GLX"
+              ],
               "overrides": {},
               "price_thb": 799000,
               "import_type": "CBU",
               "origin_country": "ID",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 799000,
+              "price_max_thb": 799000
             }
           ]
         }
@@ -189,9 +219,11 @@
       "id": "jimny",
       "name_en": "Jimny",
       "name_th": "จิมนี่",
+      "nameplate": "",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [
         "จิมนี่"
       ],
@@ -205,17 +237,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 4WD",
+              "name": "1.5L ICE 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 4WD"
+              ],
               "overrides": {},
               "price_thb": 1550000,
               "import_type": "CBU",
               "origin_country": "JP",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 1550000,
+              "price_max_thb": 1550000
             }
           ]
         }
@@ -225,9 +261,11 @@
       "id": "fronx",
       "name_en": "Fronx",
       "name_th": "ฟรอนซ์",
+      "nameplate": "",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
+      "market_scope": "CORE",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -239,17 +277,21 @@
           "ended": null,
           "variants": [
             {
-              "name": "1.5 GLX",
+              "name": "1.5L ICE",
               "powertrain": "ICE",
               "drivetrain": "FWD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "aliases": [],
+              "aliases": [
+                "1.5 GLX"
+              ],
               "overrides": {},
               "price_thb": 659000,
               "import_type": "CBU",
               "origin_country": "IN",
-              "price_note": "seed-unverified"
+              "price_note": "seed-unverified",
+              "price_min_thb": 659000,
+              "price_max_thb": 659000
             }
           ]
         }

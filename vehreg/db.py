@@ -26,12 +26,14 @@ MIXED = "MIXED"
 
 #: Facet columns materialised on every dimension row.
 DIM_FACETS: tuple[str, ...] = (
-    "brand", "model", "variant", "generation", "segment", "body_type",
-    "cab_type", "market_position", "powertrain", "powertrain_group",
-    "origin_country", "import_type", "brand_segment", "oem_group",
-    "brand_origin", "drivetrain", "registration_type",
+    "brand", "nameplate", "model", "variant", "generation", "segment",
+    "body_type", "cab_type", "market_position", "powertrain",
+    "powertrain_group", "origin_country", "import_type", "brand_segment",
+    "oem_group", "brand_origin", "drivetrain", "registration_type",
+    "market_scope",
 )
-DIM_NUMERIC: tuple[str, ...] = ("price_thb", "seats", "engine_cc", "battery_kwh")
+DIM_NUMERIC: tuple[str, ...] = ("price_thb", "price_min_thb", "price_max_thb",
+                                "seats", "engine_cc", "battery_kwh")
 DIM_FLAGS: tuple[str, ...] = ("is_electrified", "is_plug_in", "is_locally_assembled")
 
 SCHEMA = f"""
@@ -185,6 +187,7 @@ def build_dimension(catalog: Catalog) -> list[dict[str, Any]]:
                for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS}
         row["variant"] = None
         row["model"] = None
+        row["nameplate"] = None
         row["generation"] = None
         row["brand"] = brand.name_en
         row["brand_segment"] = brand.brand_segment.value
