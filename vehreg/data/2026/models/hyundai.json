@@ -17,7 +17,7 @@
       "name_th": "เครต้า",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -34,20 +34,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-01-01",
-                  "end": null,
-                  "price_thb": 999000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 999000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -59,7 +51,7 @@
       "name_th": "สตาร์เกเซอร์",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -76,20 +68,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-01-01",
-                  "end": null,
-                  "price_thb": 799000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 799000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -101,7 +85,7 @@
       "name_th": "ไอออนิค 5",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ioniq 5"
       ],
@@ -120,20 +104,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 72.6,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-03-01",
-                  "end": null,
-                  "price_thb": 1849000,
-                  "import_type": "CBU",
-                  "origin_country": "KR",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1849000,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -145,7 +121,7 @@
       "name_th": "ไอออนิค 6",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ioniq 6"
       ],
@@ -164,20 +140,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 77.4,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-06-01",
-                  "end": null,
-                  "price_thb": 2299000,
-                  "import_type": "CBU",
-                  "origin_country": "KR",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2299000,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -206,20 +174,12 @@
               "drivetrain": "FWD",
               "engine_cc": 2199,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-10-01",
-                  "end": null,
-                  "price_thb": 1899000,
-                  "import_type": "CBU",
-                  "origin_country": "KR",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1899000,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified"
             }
           ]
         }

@@ -19,7 +19,7 @@
       "name_th": "ซี-คลาส",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "c class",
         "c220d",
@@ -40,20 +40,12 @@
               "drivetrain": "RWD",
               "engine_cc": 1999,
               "battery_kwh": 25.4,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-01-01",
-                  "end": null,
-                  "price_thb": 3399000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3399000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -65,7 +57,7 @@
       "name_th": "อี-คลาส",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "e class",
         "e220d"
@@ -85,20 +77,12 @@
               "drivetrain": "RWD",
               "engine_cc": 1993,
               "battery_kwh": 0.9,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-01-01",
-                  "end": null,
-                  "price_thb": 4290000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 4290000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -110,7 +94,7 @@
       "name_th": "จีแอลเอ",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -127,20 +111,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1332,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2020-01-01",
-                  "end": null,
-                  "price_thb": 2590000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2590000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -152,7 +128,7 @@
       "name_th": "จีแอลซี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -169,20 +145,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1999,
               "battery_kwh": 24.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-01-01",
-                  "end": null,
-                  "price_thb": 4290000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 4290000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -194,7 +162,7 @@
       "name_th": "อีคิวเอส",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -211,20 +179,12 @@
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 107.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-01-01",
-                  "end": null,
-                  "price_thb": 8090000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 8090000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }

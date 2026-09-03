@@ -248,10 +248,25 @@ class BrandSegment(Facet):
 # --------------------------------------------------------------------------
 class RegistrationType(Facet):
     RY1 = "RY1"    # รย.1 รถยนต์นั่งส่วนบุคคลไม่เกิน 7 คน
-    RY2 = "RY2"    # รย.2 รถยนต์นั่งส่วนบุคคลเกิน 7 คน (van, some MPV)
-    RY3 = "RY3"    # รย.3 รถยนต์บรรทุกส่วนบุคคล (pickup, most PPV pre-2024)
+    RY2 = "RY2"    # รย.2 รถยนต์นั่งส่วนบุคคลเกิน 7 คน (van, large MPV)
+    RY3 = "RY3"    # รย.3 รถยนต์บรรทุกส่วนบุคคล (single cab, smart cab)
     RY12 = "RY12"  # รย.12 รถจักรยานยนต์ - out of scope, kept for completeness
     OTHER = "OTHER"
+
+
+def registration_type_for(body: BodyType, cab: CabType) -> RegistrationType:
+    """Which DLT class a car is registered under.
+
+    A double-cab pickup is registered รย.1 - it is a passenger car in DLT's
+    eyes - while single and smart cabs are รย.3. That split is why cab type is
+    a model-level fact here and why each cab body is its own model row.
+    """
+    body = BodyType.parse(body)
+    cab = CabType.parse(cab)
+    if body is BodyType.PICKUP:
+        return RegistrationType.RY1 if cab is CabType.DOUBLE_CAB \
+            else RegistrationType.RY3
+    return RegistrationType.RY1
 
 
 class Drivetrain(Facet):
@@ -276,6 +291,19 @@ GRAIN_RANK = {Grain.BRAND: 0, Grain.MODEL: 1, Grain.VARIANT: 2}
 # --------------------------------------------------------------------------
 # Cross-facet consistency rules
 # --------------------------------------------------------------------------
+def check_registration(body: BodyType, cab: CabType,
+                       reg: RegistrationType) -> list[str]:
+    """รย. class must follow from body and cab, with รย.2 as the only opt-out."""
+    expected = registration_type_for(body, cab)
+    reg = RegistrationType.parse(reg)
+    if reg is RegistrationType.RY2:
+        return []                      # >7 seats: van and large MPV, owner's call
+    if reg is not expected:
+        return [f"{BodyType.parse(body).value}/{CabType.parse(cab).value} is "
+                f"registered {expected.value}, not {reg.value}"]
+    return []
+
+
 def check_body_segment(body: BodyType, cab: CabType, segment: Segment) -> list[str]:
     """Return human-readable problems; empty list means consistent."""
     problems: list[str] = []

@@ -1,0 +1,815 @@
+{
+  "brand": {
+    "id": "toyota",
+    "name_en": "Toyota",
+    "name_th": "โตโยต้า",
+    "brand_segment": "MASS",
+    "oem_group": "Toyota Group",
+    "brand_origin": "JP",
+    "aliases": [
+      "โตโยต้า",
+      "toyota motor thailand",
+      "TMT"
+    ]
+  },
+  "models": [
+    {
+      "id": "yaris_ativ",
+      "name_en": "Yaris Ativ",
+      "name_th": "ยาริส เอทีฟ",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "ativ",
+        "yaris ativ",
+        "ยาริสเอทีฟ"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MXPA10",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2022-08-09",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.2 Sport",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 559000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.2 Smart",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 609000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.2 Premium",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 664000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.2 Premium Luxury",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 709000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yaris",
+      "name_en": "Yaris",
+      "name_th": "ยาริส",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "ยาริส"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MXPA1x",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.2 Sport",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 559000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.2 Premium",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 664000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corolla_altis",
+      "name_en": "Corolla Altis",
+      "name_th": "โคโรลล่า อัลติส",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "altis",
+        "corolla"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "E210",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2019-08-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.8 Sport",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1798,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.8 HEV Smart",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1798,
+              "battery_kwh": 1.3,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 979000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.8 HEV GR Sport",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1798,
+              "battery_kwh": 1.3,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1094000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camry",
+      "name_en": "Camry",
+      "name_th": "คัมรี่",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "แคมรี่"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XV80",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2024-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5 HEV Premium",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "2.5 HEV Premium Luxury",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 2099000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "corolla_cross",
+      "name_en": "Corolla Cross",
+      "name_th": "โคโรลล่า ครอส",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "corolla cross"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XG10",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2020-07-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.8 Smart",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1798,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 959000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.8 HEV Smart",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1798,
+              "battery_kwh": 1.3,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1029000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.8 HEV Premium",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1798,
+              "battery_kwh": 1.3,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1149000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.8 HEV GR Sport",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1798,
+              "battery_kwh": 1.3,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1239000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yaris_cross",
+      "name_en": "Yaris Cross",
+      "name_th": "ยาริส ครอส",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AC200",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2023-09-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 HEV Smart",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1490,
+              "battery_kwh": 0.8,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 799000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "1.5 HEV Premium Luxury",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1490,
+              "battery_kwh": 0.8,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fortuner",
+      "name_en": "Fortuner",
+      "name_th": "ฟอร์จูนเนอร์",
+      "body_type": "PPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "ฟอร์จูนเนอร์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AN160",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2020-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 V 4x2",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1399000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "2.8 Legender 4x2",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2755,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1699000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "2.8 GR Sport 4x4",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2755,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1999000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hilux_revo_single_cab",
+      "name_en": "Hilux Revo Single Cab",
+      "name_th": "ไฮลักซ์ รีโว่ ตอนเดียว",
+      "body_type": "PICKUP",
+      "cab_type": "SINGLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "revo single cab",
+        "revo standard cab",
+        "รีโว่ ตอนเดียว",
+        "Hilux Revo",
+        "ไฮลักซ์ รีโว่"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AN120",
+          "segment": "F",
+          "seats": 3,
+          "launched": "2020-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 Entry",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 599000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hilux_revo_smart_cab",
+      "name_en": "Hilux Revo Smart Cab",
+      "name_th": "ไฮลักซ์ รีโว่ สมาร์ทแค็บ",
+      "body_type": "PICKUP",
+      "cab_type": "SMART_CAB",
+      "registration_type": "",
+      "aliases": [
+        "revo smart cab",
+        "revo cab",
+        "รีโว่ แค็บ",
+        "Hilux Revo",
+        "ไฮลักซ์ รีโว่"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AN120",
+          "segment": "F",
+          "seats": 4,
+          "launched": "2020-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 Mid",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 749000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "2.4 Prerunner Z Edition",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hilux_revo_double_cab",
+      "name_en": "Hilux Revo Double Cab",
+      "name_th": "ไฮลักซ์ รีโว่ 4 ประตู",
+      "body_type": "PICKUP",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "revo double cab",
+        "revo 4 ประตู",
+        "รีโว่ 4 ประตู",
+        "revo double cab 4x4",
+        "Hilux Revo",
+        "ไฮลักซ์ รีโว่"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AN120",
+          "segment": "F",
+          "seats": 5,
+          "launched": "2020-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 Prerunner",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 949000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "2.8 GR Sport 4x4",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2755,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1359000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hilux_champ",
+      "name_en": "Hilux Champ",
+      "name_th": "ไฮลักซ์ แชมป์",
+      "body_type": "PICKUP",
+      "cab_type": "SINGLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "champ",
+        "hilux champ",
+        "แชมป์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "CHAMP",
+          "segment": "F",
+          "seats": 2,
+          "launched": "2023-11-22",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1998,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 459000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "2.4",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 577000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "innova_zenix",
+      "name_en": "Innova Zenix",
+      "name_th": "อินโนว่า ซีนิกซ์",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "innova",
+        "zenix"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AW40",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2023-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0 HEV Premium",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1987,
+              "battery_kwh": 1.0,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1349000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veloz",
+      "name_en": "Veloz",
+      "name_th": "เวลอซ",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "W100",
+          "segment": "B",
+          "seats": 7,
+          "launched": "2022-04-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 Premium",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1496,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 795000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alphard",
+      "name_en": "Alphard",
+      "name_th": "อัลพาร์ด",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AH40",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2023-09-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5 HEV Executive Lounge",
+              "powertrain": "HEV",
+              "drivetrain": "AWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 4599000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bz4x",
+      "name_en": "bZ4X",
+      "name_th": "บีแซดโฟร์เอ็กซ์",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "bz4x"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "EA10",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2022-10-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Premium",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 71.4,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1836000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "land_cruiser_300",
+      "name_en": "Land Cruiser 300",
+      "name_th": "แลนด์ครุยเซอร์ 300",
+      "body_type": "PPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "land cruiser",
+        "lc300"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "J300",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2021-08-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "3.3 D VX",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 3346,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 5990000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

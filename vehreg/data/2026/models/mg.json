@@ -19,7 +19,7 @@
       "name_th": "เอ็มจี3",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "mg 3"
       ],
@@ -38,20 +38,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 1.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-07-01",
-                  "end": null,
-                  "price_thb": 789000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 789000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -63,7 +55,7 @@
       "name_th": "เอ็มจี4",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "mg4",
         "mg 4"
@@ -83,20 +75,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 51.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-11-01",
-                  "end": null,
-                  "price_thb": 769000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 769000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             },
             {
               "name": "X 64kWh",
@@ -104,20 +88,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 64.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-11-01",
-                  "end": null,
-                  "price_thb": 969000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 969000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -129,7 +105,7 @@
       "name_th": "เอ็มจี5",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "mg 5"
       ],
@@ -148,20 +124,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-01-01",
-                  "end": null,
-                  "price_thb": 679000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 679000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -173,7 +141,7 @@
       "name_th": "เอ็มจี แซดเอส",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "zs"
       ],
@@ -192,20 +160,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-01-01",
-                  "end": null,
-                  "price_thb": 689000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 689000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -217,7 +177,7 @@
       "name_th": "เอ็มจี แซดเอส อีวี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "zs ev",
         "new zs ev"
@@ -237,20 +197,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 51.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-06-01",
-                  "end": null,
-                  "price_thb": 949000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 949000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -262,7 +214,7 @@
       "name_th": "เอ็มจี เอชเอส",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "hs"
       ],
@@ -281,20 +233,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1490,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 999000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 999000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "PHEV X",
@@ -302,20 +246,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1490,
               "battery_kwh": 16.6,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 1359000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1359000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -327,7 +263,7 @@
       "name_th": "เอ็มจี วีเอส เอชอีวี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "vs hev"
       ],
@@ -346,34 +282,68 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 1.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-08-01",
-                  "end": null,
-                  "price_thb": 899000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 899000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
       ]
     },
     {
-      "id": "mg_extender",
-      "name_en": "MG Extender",
-      "name_th": "เอ็มจี เอ็กซ์เทนเดอร์",
+      "id": "mg_extender_giant_cab",
+      "name_en": "MG Extender Giant Cab",
+      "name_th": "เอ็มจี เอ็กซ์เทนเดอร์ ไจแอนท์แค็บ",
       "body_type": "PICKUP",
-      "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY3",
+      "cab_type": "SMART_CAB",
+      "registration_type": "",
       "aliases": [
-        "extender"
+        "extender giant cab",
+        "giant cab",
+        "MG Extender",
+        "เอ็มจี เอ็กซ์เทนเดอร์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "EXT",
+          "segment": "F",
+          "seats": 4,
+          "launched": "2019-10-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0 Grand X",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1996,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 649000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_extender_double_cab",
+      "name_en": "MG Extender Double Cab",
+      "name_th": "เอ็มจี เอ็กซ์เทนเดอร์ 4 ประตู",
+      "body_type": "PICKUP",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "extender double cab",
+        "grand tiger",
+        "MG Extender",
+        "เอ็มจี เอ็กซ์เทนเดอร์"
       ],
       "notes": "",
       "generations": [
@@ -385,46 +355,17 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.0 Grand Tiger Double Cab",
+              "name": "2.0 Grand Tiger",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 1996,
               "battery_kwh": null,
-              "cab_type": "DOUBLE_CAB",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-10-01",
-                  "end": null,
-                  "price_thb": 799000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
-            },
-            {
-              "name": "2.0 Giant Cab",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 1996,
-              "battery_kwh": null,
-              "cab_type": "SMART_CAB",
-              "aliases": [],
-              "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-10-01",
-                  "end": null,
-                  "price_thb": 649000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 799000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -436,7 +377,7 @@
       "name_th": "เอ็มจี แม็กซัส 9",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "maxus 9",
         "mifa 9"
@@ -456,20 +397,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 90.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-03-01",
-                  "end": null,
-                  "price_thb": 2599000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2599000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -481,7 +414,7 @@
       "name_th": "เอ็มจี อีเอส",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "es5",
         "mg es5"
@@ -501,20 +434,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 62.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2025-01-01",
-                  "end": null,
-                  "price_thb": 999000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 999000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }

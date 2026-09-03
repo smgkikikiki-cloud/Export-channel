@@ -17,7 +17,7 @@
       "name_th": "ซีเคอร์ เอ็กซ์",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "zeekr x"
       ],
@@ -36,20 +36,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 66.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-05-01",
-                  "end": null,
-                  "price_thb": 1199000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1199000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -61,7 +53,7 @@
       "name_th": "ซีเคอร์ 009",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "009"
       ],
@@ -80,20 +72,12 @@
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 116.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-05-01",
-                  "end": null,
-                  "price_thb": 3999000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3999000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }

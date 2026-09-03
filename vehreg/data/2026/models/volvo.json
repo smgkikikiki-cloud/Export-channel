@@ -17,7 +17,7 @@
       "name_th": "เอ็กซ์ซี40",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "xc 40",
         "xc40 recharge"
@@ -37,20 +37,12 @@
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 78.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-01-01",
-                  "end": null,
-                  "price_thb": 2590000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2590000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -62,7 +54,7 @@
       "name_th": "เอ็กซ์ซี60",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "xc 60"
       ],
@@ -81,20 +73,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1969,
               "battery_kwh": 18.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-01-01",
-                  "end": null,
-                  "price_thb": 3390000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3390000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -106,7 +90,7 @@
       "name_th": "เอ็กซ์ซี90",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "xc 90"
       ],
@@ -125,20 +109,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1969,
               "battery_kwh": 18.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2016-01-01",
-                  "end": null,
-                  "price_thb": 4990000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 4990000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -150,7 +126,7 @@
       "name_th": "อีเอ็กซ์30",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ex 30"
       ],
@@ -169,20 +145,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 69.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-05-01",
-                  "end": null,
-                  "price_thb": 1590000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1590000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }

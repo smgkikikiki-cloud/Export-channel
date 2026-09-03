@@ -1,23 +1,23 @@
-"""SQLite warehouse: a type-2 dimension over the catalog plus a fact table.
+"""SQLite warehouse: one dimension row per unit per year, plus a fact table.
 
-The dimension is rebuilt from the catalog, never hand-edited. Because prices and
-import routes are dated, a variant produces one dimension row per stretch of
-months during which its classification was constant. A March-2023 registration
-therefore joins the March-2023 price band, not today's.
+The dimension is rebuilt from the catalog, never hand-edited. There is exactly
+one row per (unit, year, grain), because a year's catalog is a single settled
+answer - no valid-from/valid-to, no back-dating, no reading last year's file to
+classify this year's volume. Rebuilding a year replaces only that year.
 
 DLT does not always publish down to the trim. A fact row records the grain it
 actually arrived at - ``BRAND``, ``MODEL`` or ``VARIANT`` - and joins a
-dimension row of the same grain. Where a model spans several powertrains, the
-model-grain row reports ``MIXED`` for that facet rather than picking one; the
-cube can then either show MIXED honestly or split it with an allocation
-profile.
+dimension row of the same grain and the same year. Where a model spans several
+powertrains, the model-grain row reports ``MIXED`` for that facet rather than
+picking one; the cube can then either show MIXED honestly or split it with an
+allocation profile.
 """
 
 from __future__ import annotations
 
 import sqlite3
 from pathlib import Path
-from typing import Any, Iterable, Iterator, Optional, Sequence
+from typing import Any, Sequence
 
 from .catalog import Catalog
 from .taxonomy import Grain
@@ -38,17 +38,16 @@ SCHEMA = f"""
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS dim_unit (
-    unit_id        TEXT NOT NULL,
-    grain          TEXT NOT NULL,
-    valid_from     TEXT NOT NULL,           -- inclusive 'YYYY-MM'
-    valid_to       TEXT,                    -- exclusive 'YYYY-MM', NULL = open
-    lifecycle_from TEXT,                    -- real first month on sale
+    unit_id      TEXT NOT NULL,
+    catalog_year INTEGER NOT NULL,
+    grain        TEXT NOT NULL,
     {", ".join(f"{c} TEXT" for c in DIM_FACETS)},
     {", ".join(f"{c} REAL" for c in DIM_NUMERIC)},
     {", ".join(f"{c} INTEGER" for c in DIM_FLAGS)},
-    PRIMARY KEY (unit_id, valid_from)
+    PRIMARY KEY (unit_id, catalog_year)
 );
-CREATE INDEX IF NOT EXISTS ix_dim_unit_grain ON dim_unit(grain, valid_from);
+CREATE INDEX IF NOT EXISTS ix_dim_unit_grain
+    ON dim_unit(catalog_year, grain);
 
 CREATE TABLE IF NOT EXISTS dim_source (
     source_id   INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -79,12 +78,16 @@ CREATE INDEX IF NOT EXISTS ix_fact_period ON fact_registration(period);
 CREATE INDEX IF NOT EXISTS ix_fact_unit ON fact_registration(unit_id, period);
 
 -- Raw labels the owner has taught the matcher. Applied before fuzzy matching.
+-- reg_type is part of the key because the same label means different cars in
+-- different DLT files: "REVO" in a รย.1 export is the double cab, in a รย.3
+-- export it is a single or smart cab. '*' matches any file.
 CREATE TABLE IF NOT EXISTS alias_override (
     scope     TEXT NOT NULL,                -- 'brand' | 'model' | 'variant'
     raw       TEXT NOT NULL,
+    reg_type  TEXT NOT NULL DEFAULT '*',
     target_id TEXT NOT NULL,
     added_at  TEXT NOT NULL DEFAULT (datetime('now')),
-    PRIMARY KEY (scope, raw)
+    PRIMARY KEY (scope, raw, reg_type)
 );
 
 -- Anything the ingest refused to guess at. Never dropped, never auto-resolved.
@@ -116,7 +119,7 @@ CREATE VIEW IF NOT EXISTS fact_classified AS
 SELECT f.fact_id, f.period, f.registration_type AS fact_registration_type,
        f.province, f.grain, f.units, f.raw_label, f.source_id,
        f.match_how, f.match_score,
-       d.unit_id, d.lifecycle_from,
+       d.unit_id, d.catalog_year,
        {", ".join(f"d.{c}" for c in DIM_FACETS)},
        {", ".join(f"d.{c}" for c in DIM_NUMERIC)},
        {", ".join(f"d.{c}" for c in DIM_FLAGS)}
@@ -124,8 +127,7 @@ FROM fact_registration f
 LEFT JOIN dim_unit d
        ON d.unit_id = f.unit_id
       AND d.grain = f.grain
-      AND f.period >= d.valid_from
-      AND (d.valid_to IS NULL OR f.period < d.valid_to);
+      AND d.catalog_year = CAST(substr(f.period, 1, 4) AS INTEGER);
 """
 
 
@@ -139,11 +141,8 @@ def connect(path: Path | str) -> sqlite3.Connection:
 # --------------------------------------------------------------------------
 # Dimension build
 # --------------------------------------------------------------------------
-def _month(iso_date: Optional[str]) -> Optional[str]:
-    return iso_date[:7] if iso_date else None
-
-
 def _consensus(values: Sequence[Any]) -> Any:
+    """One value if every child agrees, else MIXED."""
     kept = [v for v in values if v is not None]
     if not kept:
         return None
@@ -156,127 +155,69 @@ def _flat(resolved) -> dict[str, Any]:
     return {c: row.get(c) for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS}
 
 
-def _active_variants(catalog: Catalog, model_id: str, month: str) -> list[str]:
-    out = []
-    for variant in catalog.variants_of(model_id):
-        gen = catalog.generations[variant.generation_id]
-        start = _month(gen.launched) or "0000-00"
-        end = _month(gen.ended)
-        if month >= start and (end is None or month < end):
-            out.append(variant.id)
-    return out
-
-
-def _change_months(catalog: Catalog, variant_ids: Iterable[str]) -> list[str]:
-    months: set[str] = set()
-    for vid in variant_ids:
-        gen = catalog.generation_for_variant(vid)
-        for value in (gen.launched, gen.ended):
-            if value:
-                months.add(value[:7])
-        for period in catalog.periods.get(vid, []):
-            months.add(period.start[:7])
-            if period.end:
-                months.add(period.end[:7])
-    return sorted(m for m in months if m)
-
-
-#: Lower sentinel for the first dimension row of any unit. A fact dated before
-#: a car's first known month still has to join *something* - otherwise it would
-#: silently drop out of every cross-tab - so the earliest classification is
-#: extended backwards. ``lifecycle_from`` keeps the real date for anyone who
-#: wants to spot pre-launch rows as the data-quality signal they are.
-OPEN_START = "0000-00"
-
-
-def _collapse(rows: list[tuple[str, dict[str, Any]]]) -> list[dict[str, Any]]:
-    """Merge consecutive months whose facets are identical into one SCD row."""
-    out: list[dict[str, Any]] = []
-    for month, facets in rows:
-        if out and all(out[-1].get(k) == v for k, v in facets.items()):
-            continue
-        if out:
-            out[-1]["valid_to"] = month
-        row = dict(facets)
-        row["valid_from"] = month
-        row["valid_to"] = None
-        out.append(row)
-    if out:
-        out[0]["lifecycle_from"] = out[0]["valid_from"]
-        out[0]["valid_from"] = OPEN_START
-    for row in out[1:]:
-        row["lifecycle_from"] = out[0]["lifecycle_from"]
-    return out
-
-
 def build_dimension(catalog: Catalog) -> list[dict[str, Any]]:
-    """Materialise variant-, model- and brand-grain dimension rows."""
+    """Variant-, model- and brand-grain rows for ``catalog.year``."""
     rows: list[dict[str, Any]] = []
+    year = catalog.year
 
     for variant_id in catalog.variants:
-        months = _change_months(catalog, [variant_id]) or ["1900-01"]
-        snapshots = [(m, _flat(catalog.resolve(variant_id, f"{m}-15")))
-                     for m in months]
-        for row in _collapse(snapshots):
-            row.update(unit_id=variant_id, grain=Grain.VARIANT.value)
-            rows.append(row)
+        row = _flat(catalog.resolve(variant_id))
+        row.update(unit_id=variant_id, catalog_year=year, grain=Grain.VARIANT.value)
+        rows.append(row)
 
-    for model_id, model in catalog.models.items():
-        variant_ids = [v.id for v in catalog.variants_of(model_id)]
-        months = _change_months(catalog, variant_ids) or ["1900-01"]
-        snapshots = []
-        for month in months:
-            active = _active_variants(catalog, model_id, month) or variant_ids
-            flats = [_flat(catalog.resolve(vid, f"{month}-15")) for vid in active]
-            merged = {c: _consensus([f[c] for f in flats])
-                      for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS}
-            merged["variant"] = None          # a model row has no single trim
-            merged["generation"] = _consensus([f["generation"] for f in flats])
-            snapshots.append((month, merged))
-        for row in _collapse(snapshots):
-            row.update(unit_id=model_id, grain=Grain.MODEL.value)
-            rows.append(row)
+    for model_id in catalog.models:
+        flats = [_flat(catalog.resolve(v.id)) for v in catalog.variants_of(model_id)]
+        if not flats:
+            continue
+        row = {c: _consensus([f[c] for f in flats])
+               for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS}
+        row["variant"] = None                 # a model row has no single trim
+        row.update(unit_id=model_id, catalog_year=year, grain=Grain.MODEL.value)
+        rows.append(row)
 
     for brand_id, brand in catalog.brands.items():
-        variant_ids = [v.id for m in catalog.models_of(brand_id)
-                       for v in catalog.variants_of(m.id)]
-        months = _change_months(catalog, variant_ids) or ["1900-01"]
-        snapshots = []
-        for month in months:
-            flats = [_flat(catalog.resolve(vid, f"{month}-15")) for vid in variant_ids]
-            merged = {c: _consensus([f[c] for f in flats])
-                      for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS}
-            merged["variant"] = None
-            merged["model"] = None
-            merged["generation"] = None
-            merged["brand"] = brand.name_en
-            merged["brand_segment"] = brand.brand_segment.value
-            merged["oem_group"] = brand.oem_group
-            snapshots.append((month, merged))
-        for row in _collapse(snapshots):
-            row.update(unit_id=brand_id, grain=Grain.BRAND.value)
-            rows.append(row)
+        flats = [_flat(catalog.resolve(v.id))
+                 for m in catalog.models_of(brand_id)
+                 for v in catalog.variants_of(m.id)]
+        if not flats:
+            continue
+        row = {c: _consensus([f[c] for f in flats])
+               for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS}
+        row["variant"] = None
+        row["model"] = None
+        row["generation"] = None
+        row["brand"] = brand.name_en
+        row["brand_segment"] = brand.brand_segment.value
+        row["oem_group"] = brand.oem_group
+        row.update(unit_id=brand_id, catalog_year=year, grain=Grain.BRAND.value)
+        rows.append(row)
 
     return rows
 
 
 DIM_COLUMNS: tuple[str, ...] = (
-    ("unit_id", "grain", "valid_from", "valid_to", "lifecycle_from")
-    + DIM_FACETS + DIM_NUMERIC + DIM_FLAGS
+    ("unit_id", "catalog_year", "grain") + DIM_FACETS + DIM_NUMERIC + DIM_FLAGS
 )
 
 
 def rebuild_dimension(conn: sqlite3.Connection, catalog: Catalog) -> int:
+    """Replace the dimension for ``catalog.year``. Other years are untouched."""
     rows = build_dimension(catalog)
     placeholders = ", ".join("?" for _ in DIM_COLUMNS)
     with conn:
-        conn.execute("DELETE FROM dim_unit")
+        conn.execute("DELETE FROM dim_unit WHERE catalog_year = ?",
+                     (catalog.year,))
         conn.executemany(
             f"INSERT INTO dim_unit ({', '.join(DIM_COLUMNS)}) "
             f"VALUES ({placeholders})",
             [tuple(row.get(c) for c in DIM_COLUMNS) for row in rows],
         )
     return len(rows)
+
+
+def loaded_years(conn: sqlite3.Connection) -> list[int]:
+    return [int(r["catalog_year"]) for r in conn.execute(
+        "SELECT DISTINCT catalog_year FROM dim_unit ORDER BY catalog_year")]
 
 
 def register_source(conn: sqlite3.Connection, name: str, **fields: Any) -> int:
@@ -295,7 +236,10 @@ def register_source(conn: sqlite3.Connection, name: str, **fields: Any) -> int:
 
 def unmatched_summary(conn: sqlite3.Connection) -> list[sqlite3.Row]:
     return conn.execute(
-        "SELECT reason, COUNT(*) AS rows, SUM(units) AS units "
-        "FROM ingest_review WHERE status = 'open' GROUP BY reason "
+        "SELECT substr(reason, 1, "
+        "  CASE WHEN instr(reason, ':') > 0 THEN instr(reason, ':') - 1 "
+        "       ELSE length(reason) END) AS reason, "
+        "  COUNT(*) AS rows, SUM(units) AS units "
+        "FROM ingest_review WHERE status = 'open' GROUP BY 1 "
         "ORDER BY units DESC"
     ).fetchall()

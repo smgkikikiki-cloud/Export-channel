@@ -15,8 +15,10 @@ from pathlib import Path
 from typing import Any, Optional
 
 from . import allocate as allocate_mod, authoring, cube as cube_mod
-from .catalog import DATA_DIR, Catalog, CatalogError
-from .db import connect, rebuild_dimension, unmatched_summary
+from .catalog import (
+    DATA_DIR, DEFAULT_YEAR, Catalog, CatalogError, available_years, fork_year,
+)
+from .db import connect, loaded_years, rebuild_dimension, unmatched_summary
 from .ingest import ColumnMap, ingest_csv, teach_alias
 from .taxonomy import (
     BodyType, BrandSegment, CabType, Drivetrain, ImportType, MarketPosition,
@@ -28,7 +30,7 @@ DEFAULT_DB = Path("data/vehreg.sqlite3")
 
 
 def _catalog(args) -> Catalog:
-    return Catalog.load(args.data_dir)
+    return Catalog.load(args.data_dir, args.year)
 
 
 def _conn(args):
@@ -98,9 +100,20 @@ def cmd_catalog(args) -> int:
     if args.catalog_cmd == "template":
         print(f"wrote {authoring.template(args.path)}")
         return 0
+    if args.catalog_cmd == "years":
+        years = available_years(args.data_dir)
+        print("catalog years on disk: "
+              + (", ".join(map(str, years)) if years else "none"))
+        return 0
+    if args.catalog_cmd == "fork":
+        target = fork_year(args.data_dir, args.year, args.to,
+                           overwrite=args.overwrite)
+        print(f"copied {args.year} -> {args.to} at {target}")
+        print(f"edit it, then: python -m vehreg --year {args.to} init")
+        return 0
     if args.catalog_cmd == "import":
         applied, problems, written = authoring.import_csv(
-            args.path, args.data_dir, dry_run=args.dry_run)
+            args.path, args.data_dir, year=args.year, dry_run=args.dry_run)
         print(f"rows applied: {applied}")
         for problem in problems[:40]:
             print(f"  - {problem}")
@@ -108,10 +121,12 @@ def cmd_catalog(args) -> int:
             print(f"  ... {len(problems) - 40} more")
         if args.dry_run:
             print("dry run: nothing written")
+        elif problems:
+            print("nothing written: fix the problems above first")
         else:
             for path in written:
                 print(f"wrote {path}")
-        return 1 if any(p.startswith("line ") for p in problems) else 0
+        return 1 if problems else 0
 
     catalog = _catalog(args)
     if args.catalog_cmd == "stats":
@@ -126,30 +141,29 @@ def cmd_catalog(args) -> int:
         return 1 if problems else 0
     if args.catalog_cmd == "audit":
         unverified = [
-            (vid, p) for vid, periods in catalog.periods.items()
-            for p in periods
-            if p.price_thb is None or "unverified" in (p.price_note or "")
+            v for v in catalog.variants.values()
+            if v.price_thb is None or "unverified" in (v.price_note or "")
         ]
-        for vid, period in unverified[:args.limit]:
-            print(f"  {vid} @{period.start} price={period.price_thb} "
-                  f"({period.price_note or 'no note'})")
-        print(f"{len(unverified)} periods still need an owner-confirmed price")
+        for variant in unverified[:args.limit]:
+            print(f"  {variant.id} price={variant.price_thb} "
+                  f"({variant.price_note or 'no note'})")
+        print(f"{len(unverified)} variants in {catalog.year} still need an "
+              "owner-confirmed price")
         return 0
     if args.catalog_cmd == "export":
         count = authoring.export_csv(catalog, args.path)
         print(f"wrote {count} rows to {args.path}")
         return 0
     if args.catalog_cmd == "show":
-        as_of = args.as_of
         matches = [vid for vid in catalog.variants if args.query.lower() in vid]
         if not matches:
             print(f"no variant id contains {args.query!r}")
             return 1
         for vid in matches[:args.limit]:
-            resolved = catalog.resolve(vid, as_of)
-            print(f"\n{vid}  (as of {as_of})")
+            resolved = catalog.resolve(vid)
+            print(f"\n{vid}  (catalog {catalog.year})")
             for key, value in resolved.as_row().items():
-                if key in {"variant_id", "as_of"}:
+                if key in {"variant_id", "year"}:
                     continue
                 origin = resolved.provenance.get(key, "-")
                 print(f"  {key:<22} {str(value):<28} <- {origin}")
@@ -182,9 +196,12 @@ def cmd_review(args) -> int:
         scope, _, rest = args.map.partition(":")
         raw, _, target = rest.rpartition("=")
         if not (scope and raw and target):
-            raise SystemExit("--map expects scope:raw label=target_id")
-        teach_alias(conn, scope, raw, target)
-        print(f"taught {scope}: {raw!r} -> {target}")
+            raise SystemExit(
+                "--map expects scope:raw label=target_id, e.g. "
+                "'model:TOYOTA REVO=toyota.hilux_revo_smart_cab'")
+        teach_alias(conn, scope, raw, target, args.reg or "*")
+        scope_note = f" for {args.reg}" if args.reg else " for any DLT class"
+        print(f"taught {scope}{scope_note}: {raw!r} -> {target}")
         return 0
     print("open review rows by reason:")
     for row in unmatched_summary(conn):
@@ -248,6 +265,7 @@ def cmd_allocate(args) -> int:
 def cmd_coverage(args) -> int:
     conn = _conn(args)
     report = cube_mod.coverage_report(conn)
+    report["catalog_years_loaded"] = loaded_years(conn)
     print(json.dumps(report, indent=2, ensure_ascii=False))
     return 0
 
@@ -259,6 +277,9 @@ def build_parser() -> argparse.ArgumentParser:
         description="Thai new-vehicle registration intelligence warehouse")
     parser.add_argument("--db", default=str(DEFAULT_DB))
     parser.add_argument("--data-dir", default=str(DATA_DIR))
+    parser.add_argument("--year", type=int, default=DEFAULT_YEAR,
+                        help=f"catalog year to work with (default {DEFAULT_YEAR}); "
+                             "years are independent, nothing reads across them")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p = sub.add_parser("facets", help="print every facet vocabulary")
@@ -277,8 +298,13 @@ def build_parser() -> argparse.ArgumentParser:
     c.set_defaults(func=cmd_catalog)
     c = csub.add_parser("show", help="resolve one variant and show provenance")
     c.add_argument("query")
-    c.add_argument("--as-of", default="2025-06-15")
     c.add_argument("--limit", type=int, default=5)
+    c.set_defaults(func=cmd_catalog)
+    csub.add_parser("years", help="list catalog years on disk").set_defaults(
+        func=cmd_catalog)
+    c = csub.add_parser("fork", help="start another year as a copy of --year")
+    c.add_argument("--to", type=int, required=True)
+    c.add_argument("--overwrite", action="store_true")
     c.set_defaults(func=cmd_catalog)
     c = csub.add_parser("template", help="write a blank authoring CSV")
     c.add_argument("path")
@@ -307,6 +333,9 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("review", help="see and resolve unmatched labels")
     p.add_argument("--limit", type=int, default=25)
     p.add_argument("--map", help="scope:raw label=target_id")
+    p.add_argument("--reg", choices=["RY1", "RY2", "RY3"],
+                   help="limit the lesson to one DLT class, so the same label "
+                        "can mean a double cab in รย.1 and a smart cab in รย.3")
     p.set_defaults(func=cmd_review)
 
     p = sub.add_parser("cube", help="cross-tab any facets")

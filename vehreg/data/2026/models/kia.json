@@ -34,20 +34,12 @@
               "drivetrain": "FWD",
               "engine_cc": 2151,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-06-01",
-                  "end": null,
-                  "price_thb": 2399000,
-                  "import_type": "CBU",
-                  "origin_country": "KR",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2399000,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -59,7 +51,7 @@
       "name_th": "อีวี6",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ev 6"
       ],
@@ -78,20 +70,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 77.4,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-01-01",
-                  "end": null,
-                  "price_thb": 2199000,
-                  "import_type": "CBU",
-                  "origin_country": "KR",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2199000,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -103,7 +87,7 @@
       "name_th": "อีวี9",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ev 9"
       ],
@@ -122,20 +106,12 @@
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 99.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-01-01",
-                  "end": null,
-                  "price_thb": 3490000,
-                  "import_type": "CBU",
-                  "origin_country": "KR",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3490000,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified"
             }
           ]
         }

@@ -19,7 +19,7 @@
       "name_th": "โอโมดา ซี5",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "omoda c5",
         "c5"
@@ -39,20 +39,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 61.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-04-01",
-                  "end": null,
-                  "price_thb": 989000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 989000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -64,7 +56,7 @@
       "name_th": "เจคู เจ7",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "jaecoo j7",
         "j7"
@@ -84,20 +76,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 18.3,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-09-01",
-                  "end": null,
-                  "price_thb": 1099000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1099000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }

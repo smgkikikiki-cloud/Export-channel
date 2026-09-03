@@ -20,9 +20,9 @@ from .db import DIM_FACETS, DIM_FLAGS, DIM_NUMERIC, MIXED
 GROUPABLE: frozenset[str] = frozenset(
     DIM_FACETS + DIM_FLAGS + ("period", "province", "grain",
                               "fact_registration_type", "unit_id", "year",
-                              "quarter")
+                              "quarter", "catalog_year")
 )
-FILTERABLE: frozenset[str] = GROUPABLE | frozenset(DIM_NUMERIC) | {"lifecycle_from"}
+FILTERABLE: frozenset[str] = GROUPABLE | frozenset(DIM_NUMERIC)
 
 _EXPR = {
     "year": "substr(period, 1, 4)",
@@ -130,20 +130,18 @@ WITH allocated AS (
        OR NOT EXISTS (SELECT 1 FROM allocation_weight w
                       WHERE w.model_id = f.unit_id AND w.period = f.period)
 )
-SELECT a.*, {facets}
+SELECT a.*, d.catalog_year, {facets}
 FROM allocated a
 LEFT JOIN dim_unit d
        ON d.unit_id = a.unit_id AND d.grain = a.grain
-      AND a.period >= d.valid_from
-      AND (d.valid_to IS NULL OR a.period < d.valid_to)
+      AND d.catalog_year = CAST(substr(a.period, 1, 4) AS INTEGER)
 """
 
 
 def _source_sql(allocate: bool) -> str:
     if not allocate:
         return "SELECT fc.*, 0 AS estimated FROM fact_classified fc"
-    facets = ", ".join(["d.lifecycle_from"]
-                       + [f"d.{c}" for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS])
+    facets = ", ".join(f"d.{c}" for c in DIM_FACETS + DIM_NUMERIC + DIM_FLAGS)
     return ALLOCATED_SOURCE.format(facets=facets)
 
 
@@ -266,8 +264,12 @@ def coverage_report(conn: sqlite3.Connection) -> dict[str, Any]:
     unjoined = conn.execute(
         "SELECT COALESCE(SUM(units), 0) AS units FROM fact_classified "
         "WHERE unit_id IS NULL").fetchone()
+    years = [int(r["y"]) for r in conn.execute(
+        "SELECT DISTINCT CAST(substr(period, 1, 4) AS INTEGER) AS y "
+        "FROM fact_registration ORDER BY y")]
     total = sum(by_grain.values())
     return {
+        "fact_years": years,
         "units_by_grain": by_grain,
         "units_total": total,
         "units_variant_grain_pct": (by_grain.get("VARIANT", 0) / total

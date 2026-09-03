@@ -17,7 +17,7 @@
       "name_th": "คิว3",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "q 3"
       ],
@@ -36,20 +36,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 2799000,
-                  "import_type": "CBU",
-                  "origin_country": "DE",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2799000,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -61,7 +53,7 @@
       "name_th": "คิว5",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "q 5"
       ],
@@ -80,20 +72,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1984,
               "battery_kwh": 0.5,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-01-01",
-                  "end": null,
-                  "price_thb": 3999000,
-                  "import_type": "CBU",
-                  "origin_country": "DE",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3999000,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified"
             }
           ]
         }

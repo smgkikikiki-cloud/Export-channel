@@ -18,7 +18,7 @@
       "name_th": "แอตโต้ 3",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "atto 3",
         "yuan plus"
@@ -38,38 +38,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 60.5,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-10-01",
-                  "end": "2023-07-01",
-                  "price_thb": 1199000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                },
-                {
-                  "start": "2023-07-01",
-                  "end": "2024-07-04",
-                  "price_thb": 1099000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                },
-                {
-                  "start": "2024-07-04",
-                  "end": null,
-                  "price_thb": 899000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -81,7 +55,7 @@
       "name_th": "ดอลฟิน",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ดอลฟิน"
       ],
@@ -100,20 +74,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 44.9,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-05-01",
-                  "end": null,
-                  "price_thb": 699000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 699000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             },
             {
               "name": "Extended Range",
@@ -121,20 +87,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 60.5,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-05-01",
-                  "end": null,
-                  "price_thb": 859000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 859000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -146,7 +104,7 @@
       "name_th": "ซีล",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ซีล"
       ],
@@ -165,20 +123,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 61.4,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-09-01",
-                  "end": null,
-                  "price_thb": 1099000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1099000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             },
             {
               "name": "AWD Performance",
@@ -186,20 +136,12 @@
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 82.5,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-09-01",
-                  "end": null,
-                  "price_thb": 1599000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1599000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -211,7 +153,7 @@
       "name_th": "ซีไลอ้อน 6",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "sealion 6",
         "seal u"
@@ -231,20 +173,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 18.3,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-07-01",
-                  "end": null,
-                  "price_thb": 899000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -256,7 +190,7 @@
       "name_th": "ซีไลอ้อน 7",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "sealion 7"
       ],
@@ -275,20 +209,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 82.5,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2025-01-01",
-                  "end": null,
-                  "price_thb": 1399000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1399000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -300,7 +226,7 @@
       "name_th": "บีวายดี เอ็ม6",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "m6",
         "e6"
@@ -320,20 +246,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 55.4,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-08-01",
-                  "end": null,
-                  "price_thb": 829000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 829000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -344,11 +262,12 @@
       "name_en": "Shark 6",
       "name_th": "ชาร์ค 6",
       "body_type": "PICKUP",
-      "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY3",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
       "aliases": [
         "shark",
-        "shark 6"
+        "shark 6",
+        "ชาร์ค"
       ],
       "notes": "",
       "generations": [
@@ -365,20 +284,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1498,
               "battery_kwh": 29.6,
-              "cab_type": "DOUBLE_CAB",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2025-03-01",
-                  "end": null,
-                  "price_thb": 1599000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1599000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -390,7 +301,7 @@
       "name_th": "ดอลฟิน มินิ",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "seagull",
         "dolphin mini"
@@ -410,20 +321,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 38.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-08-01",
-                  "end": null,
-                  "price_thb": 569000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 569000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }

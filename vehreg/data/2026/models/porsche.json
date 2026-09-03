@@ -17,7 +17,7 @@
       "name_th": "มาคัน",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -34,20 +34,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1984,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 5300000,
-                  "import_type": "CBU",
-                  "origin_country": "DE",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 5300000,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -59,7 +51,7 @@
       "name_th": "คาเยน",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -76,20 +68,12 @@
               "drivetrain": "AWD",
               "engine_cc": 2995,
               "battery_kwh": 25.9,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-01-01",
-                  "end": null,
-                  "price_thb": 9500000,
-                  "import_type": "CBU",
-                  "origin_country": "SK",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 9500000,
+              "import_type": "CBU",
+              "origin_country": "SK",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -101,7 +85,7 @@
       "name_th": "911",
       "body_type": "COUPE",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "nine eleven"
       ],
@@ -120,20 +104,12 @@
               "drivetrain": "RWD",
               "engine_cc": 2981,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 12500000,
-                  "import_type": "CBU",
-                  "origin_country": "DE",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 12500000,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified"
             }
           ]
         }

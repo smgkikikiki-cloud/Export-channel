@@ -17,7 +17,7 @@
       "name_th": "อัลเมร่า",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "อัลเมร่า"
       ],
@@ -36,20 +36,12 @@
               "drivetrain": "FWD",
               "engine_cc": 999,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-11-01",
-                  "end": null,
-                  "price_thb": 679000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 679000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -61,7 +53,7 @@
       "name_th": "คิกส์ อี-พาวเวอร์",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "kicks",
         "คิกส์"
@@ -81,35 +73,110 @@
               "drivetrain": "FWD",
               "engine_cc": 1198,
               "battery_kwh": 2.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2020-05-01",
-                  "end": null,
-                  "price_thb": 1029000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1029000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
       ]
     },
     {
-      "id": "navara",
-      "name_en": "Navara",
-      "name_th": "นาวาร่า",
+      "id": "navara_single_cab",
+      "name_en": "Navara Single Cab",
+      "name_th": "นาวาร่า ตอนเดียว",
       "body_type": "PICKUP",
-      "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY3",
+      "cab_type": "SINGLE_CAB",
+      "registration_type": "",
       "aliases": [
-        "นาวาร่า",
-        "np300"
+        "navara single cab",
+        "นาวาร่า ตอนเดียว",
+        "Navara",
+        "นาวาร่า"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "D23",
+          "segment": "F",
+          "seats": 3,
+          "launched": "2021-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5 S",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2488,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 569000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "navara_king_cab",
+      "name_en": "Navara King Cab",
+      "name_th": "นาวาร่า คิงแค็บ",
+      "body_type": "PICKUP",
+      "cab_type": "SMART_CAB",
+      "registration_type": "",
+      "aliases": [
+        "navara king cab",
+        "king cab",
+        "นาวาร่า แค็บ",
+        "Navara",
+        "นาวาร่า"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "D23",
+          "segment": "F",
+          "seats": 4,
+          "launched": "2021-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5 E",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2488,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 729000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "navara_double_cab",
+      "name_en": "Navara Double Cab",
+      "name_th": "นาวาร่า 4 ประตู",
+      "body_type": "PICKUP",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "navara double cab",
+        "pro-4x",
+        "pro 4x",
+        "นาวาร่า 4 ประตู",
+        "Navara",
+        "นาวาร่า"
       ],
       "notes": "",
       "generations": [
@@ -121,46 +188,17 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.5 S Single Cab",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2488,
-              "battery_kwh": null,
-              "cab_type": "SINGLE_CAB",
-              "aliases": [],
-              "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-01-01",
-                  "end": null,
-                  "price_thb": 569000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
-            },
-            {
-              "name": "2.5 Pro-4X Double Cab",
+              "name": "2.5 Pro-4X 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2488,
               "battery_kwh": null,
-              "cab_type": "DOUBLE_CAB",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-01-01",
-                  "end": null,
-                  "price_thb": 1199000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1199000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -172,7 +210,7 @@
       "name_th": "เทอร์ร่า",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -189,20 +227,12 @@
               "drivetrain": "4WD",
               "engine_cc": 2298,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-10-01",
-                  "end": null,
-                  "price_thb": 1599000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1599000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }

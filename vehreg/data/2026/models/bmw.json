@@ -18,7 +18,7 @@
       "name_th": "ซีรีส์ 3",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "320d",
         "330e",
@@ -39,20 +39,12 @@
               "drivetrain": "RWD",
               "engine_cc": 1998,
               "battery_kwh": 12.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 2799000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2799000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -64,7 +56,7 @@
       "name_th": "ซีรีส์ 5",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "530e",
         "series 5"
@@ -84,20 +76,12 @@
               "drivetrain": "RWD",
               "engine_cc": 1998,
               "battery_kwh": 19.4,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-01-01",
-                  "end": null,
-                  "price_thb": 3999000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3999000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -109,7 +93,7 @@
       "name_th": "เอ็กซ์1",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "x 1"
       ],
@@ -128,20 +112,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-01-01",
-                  "end": null,
-                  "price_thb": 2399000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2399000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -153,7 +129,7 @@
       "name_th": "เอ็กซ์3",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "x 3"
       ],
@@ -172,20 +148,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1998,
               "battery_kwh": 0.5,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-11-01",
-                  "end": null,
-                  "price_thb": 3999000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3999000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -197,7 +165,7 @@
       "name_th": "ไอเอ็กซ์3",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ix 3"
       ],
@@ -216,20 +184,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 80.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-08-01",
-                  "end": null,
-                  "price_thb": 3399000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3399000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -241,7 +201,7 @@
       "name_th": "ไอ4",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "i 4"
       ],
@@ -260,20 +220,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 83.9,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-03-01",
-                  "end": null,
-                  "price_thb": 3999000,
-                  "import_type": "CBU",
-                  "origin_country": "DE",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3999000,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified"
             }
           ]
         }

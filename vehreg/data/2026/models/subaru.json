@@ -17,7 +17,7 @@
       "name_th": "ฟอเรสเตอร์",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -34,20 +34,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1995,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 1590000,
-                  "import_type": "CBU",
-                  "origin_country": "JP",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1590000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -59,7 +51,7 @@
       "name_th": "ครอสส์เทรค",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "xv"
       ],
@@ -78,20 +70,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1995,
               "battery_kwh": 0.6,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-11-01",
-                  "end": null,
-                  "price_thb": 1290000,
-                  "import_type": "CBU",
-                  "origin_country": "JP",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1290000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
             }
           ]
         }

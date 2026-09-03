@@ -1,0 +1,204 @@
+{
+  "brand": {
+    "id": "isuzu",
+    "name_en": "Isuzu",
+    "name_th": "อีซูซุ",
+    "brand_segment": "MASS",
+    "oem_group": "Isuzu",
+    "brand_origin": "JP",
+    "aliases": [
+      "อีซูซุ",
+      "tri petch isuzu"
+    ]
+  },
+  "models": [
+    {
+      "id": "dmax_spark",
+      "name_en": "D-Max Spark",
+      "name_th": "ดีแมคซ์ สปาร์ค",
+      "body_type": "PICKUP",
+      "cab_type": "SINGLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "dmax spark",
+        "spark",
+        "d max spark",
+        "ดีแมคซ์ ตอนเดียว",
+        "D-Max",
+        "ดีแมคซ์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "RG",
+          "segment": "F",
+          "seats": 3,
+          "launched": "2019-10-11",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.9 S",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1898,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 569000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dmax_cab4",
+      "name_en": "D-Max Cab4",
+      "name_th": "ดีแมคซ์ แค็บโฟร์",
+      "body_type": "PICKUP",
+      "cab_type": "SMART_CAB",
+      "registration_type": "",
+      "aliases": [
+        "dmax cab4",
+        "cab4",
+        "d max cab 4",
+        "ดีแมคซ์ แค็บ",
+        "D-Max",
+        "ดีแมคซ์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "RG",
+          "segment": "F",
+          "seats": 4,
+          "launched": "2019-10-11",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.9 Hi-Lander",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1898,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 829000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dmax_double_cab",
+      "name_en": "D-Max Double Cab",
+      "name_th": "ดีแมคซ์ 4 ประตู",
+      "body_type": "PICKUP",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "dmax double cab",
+        "v-cross",
+        "vcross",
+        "ดีแมคซ์ 4 ประตู",
+        "d max 4 door",
+        "D-Max",
+        "ดีแมคซ์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "RG",
+          "segment": "F",
+          "seats": 5,
+          "launched": "2019-10-11",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.9 Hi-Lander",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1898,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "3.0 V-Cross 4x4",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2999,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1329000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mux",
+      "name_en": "MU-X",
+      "name_th": "มิว-เอ็กซ์",
+      "body_type": "PPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "aliases": [
+        "mux",
+        "mu x",
+        "มิวเอ็กซ์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "RJ",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2020-10-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.9 Active",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1898,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1199000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            },
+            {
+              "name": "3.0 Ultimate 4x4",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2999,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 1699000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

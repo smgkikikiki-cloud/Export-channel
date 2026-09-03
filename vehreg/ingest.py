@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Any, Iterable, Iterator, Optional, Sequence
 
 from .catalog import Catalog
-from .db import register_source
+from .db import loaded_years, register_source
 from .normalize import MatchIndex, fold, period_key, split_brand_model
 from .taxonomy import Grain, RegistrationType
 
@@ -105,38 +105,59 @@ class IngestReport:
 
 
 class Resolver:
-    """Brand -> model -> variant matching, scoped at every step."""
+    """Brand -> model -> variant matching, scoped at every step.
+
+    Matching always runs against every model of the brand, so a label that
+    names its cab ("REVO DOUBLE CAB") resolves on its own. The DLT class of the
+    file is used only to break a tie: a bare "REVO" matches all three cab models
+    equally, and in a รย.1 export only the double cab is รย.1, so the tie
+    resolves. Where the class still leaves two candidates - single vs smart cab
+    in a รย.3 export - the row is reported ambiguous and queued, never guessed.
+    """
 
     def __init__(self, catalog: Catalog, conn: sqlite3.Connection) -> None:
         self.catalog = catalog
-        self.overrides = {
-            (row["scope"], row["raw"]): row["target_id"]
-            for row in conn.execute("SELECT scope, raw, target_id FROM alias_override")
+        self.overrides: dict[tuple[str, str, str], str] = {
+            (row["scope"], row["raw"], row["reg_type"]): row["target_id"]
+            for row in conn.execute(
+                "SELECT scope, raw, reg_type, target_id FROM alias_override")
         }
         self._model_index_by_brand: dict[str, MatchIndex] = {}
         self._variant_index_by_model: dict[str, MatchIndex] = {}
+        self.last_candidates: list[str] = []
 
     def _models_index(self, brand_id: str) -> MatchIndex:
         if brand_id not in self._model_index_by_brand:
             index = MatchIndex()
             for model in self.catalog.models_of(brand_id):
-                index.add(model.id, [model.name_en, model.name_th, *model.aliases])
+                index.add(model.id, [model.name_en, model.name_th], priority=1)
+                index.add(model.id, list(model.aliases))
             self._model_index_by_brand[brand_id] = index
         return self._model_index_by_brand[brand_id]
+
+    def _narrow_by_class(self, candidates: list[str], reg: str) -> list[str]:
+        if reg == "*" or not candidates:
+            return candidates
+        narrowed = [c for c in candidates
+                    if self.catalog.models[c].registration_type.value == reg]
+        return narrowed or candidates
 
     def _variants_index(self, model_id: str) -> MatchIndex:
         if model_id not in self._variant_index_by_model:
             index = MatchIndex()
             for variant in self.catalog.variants_of(model_id):
-                index.add(variant.id, [variant.name, *variant.aliases])
+                index.add(variant.id, [variant.name], priority=1)
+                index.add(variant.id, list(variant.aliases))
             self._variant_index_by_model[model_id] = index
         return self._variant_index_by_model[model_id]
 
-    def _override(self, scope: str, raw: str) -> Optional[str]:
-        return self.overrides.get((scope, fold(raw)))
+    def _override(self, scope: str, raw: str, reg: str = "*") -> Optional[str]:
+        folded = fold(raw)
+        return (self.overrides.get((scope, folded, reg))
+                or self.overrides.get((scope, folded, "*")))
 
-    def resolve(self, raw_brand: str, raw_model: str, raw_variant: str = ""
-                ) -> tuple[Optional[str], Grain, str, float, str]:
+    def resolve(self, raw_brand: str, raw_model: str, raw_variant: str = "",
+                reg: str = "*") -> tuple[Optional[str], Grain, str, float, str]:
         """Return ``(unit_id, grain, how, score, reason)``.
 
         ``unit_id`` is ``None`` only when even the brand could not be placed;
@@ -145,12 +166,13 @@ class Resolver:
         """
         label = " ".join(x for x in (raw_brand, raw_model, raw_variant) if x).strip()
 
-        forced = self._override("variant", label) or self._override("model", label)
+        forced = (self._override("variant", label, reg)
+                  or self._override("model", label, reg))
         if forced:
             grain = Grain.VARIANT if forced in self.catalog.variants else Grain.MODEL
             return forced, grain, "override", 1.0, ""
 
-        brand_id = self._override("brand", raw_brand or label)
+        brand_id = self._override("brand", raw_brand or label, reg)
         if not brand_id:
             brand_id, score, how = self.catalog.brand_index.lookup(raw_brand or label)
         else:
@@ -168,16 +190,27 @@ class Resolver:
             return None, Grain.BRAND, how, score, "brand-not-found"
 
         model_text = raw_model or label
-        model_id = self._override("model", model_text)
+        index = self._models_index(brand_id)
+        model_id = self._override("model", model_text, reg)
         if model_id:
             model_score, model_how = 1.0, "override"
         else:
-            model_id, model_score, model_how = self._models_index(brand_id).lookup(
-                model_text)
+            model_id, model_score, model_how = index.lookup(model_text)
+            if not model_id and model_how == "ambiguous":
+                # The label fits several models equally; the DLT class of the
+                # file is the tie-breaker, and only when it leaves exactly one.
+                narrowed = self._narrow_by_class(
+                    index.ambiguous_candidates(model_text), reg)
+                if len(narrowed) == 1:
+                    model_id, model_score, model_how = (narrowed[0], 0.95,
+                                                        "class-scoped")
+                else:
+                    self.last_candidates = narrowed
+                    return brand_id, Grain.BRAND, how, score, (
+                        "model-ambiguous: " + " | ".join(narrowed))
         if not model_id:
-            reason = ("model-ambiguous" if model_how == "ambiguous"
-                      else "model-not-found")
-            return brand_id, Grain.BRAND, how, score, reason
+            self.last_candidates = []
+            return brand_id, Grain.BRAND, how, score, "model-not-found"
 
         trim_text = raw_variant or model_text
         variant_id, variant_score, variant_how = self._variants_index(
@@ -272,6 +305,9 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
         notes=notes)
 
     resolver = Resolver(catalog, conn)
+    # A fact whose year has no catalog cannot be classified, and quietly
+    # loading it would produce rows with every facet NULL. Queue it instead.
+    known_years = set(loaded_years(conn)) or {catalog.year}
     report = IngestReport(source_id=source_id)
     facts: list[tuple] = []
     reviews: list[tuple] = []
@@ -300,25 +336,14 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
             report.reasons["bad-units"] = report.reasons.get("bad-units", 0) + 1
             continue
 
-        unit_id, grain, how, score, reason = resolver.resolve(
-            raw_brand, raw_model, raw_variant)
-
-        if unit_id is None:
+        if int(period[:4]) not in known_years:
             reviews.append((source_id, period, raw_brand, raw_model, label, units,
-                            reason, None, score))
-            report.reasons[reason] = report.reasons.get(reason, 0) + 1
+                            "no-catalog-for-year", None, None))
+            report.reasons["no-catalog-for-year"] = report.reasons.get(
+                "no-catalog-for-year", 0) + 1
             report.units_review += units
             continue
 
-        if reason:
-            # Placed, but less deeply than the source allowed. Record the fact
-            # at the grain achieved *and* flag it, so precision loss is visible.
-            reviews.append((source_id, period, raw_brand, raw_model, label, units,
-                            reason, unit_id, score))
-            report.reasons[reason] = report.reasons.get(reason, 0) + 1
-
-        province = ((row.get(mapping.province) or "ALL").strip()
-                    if mapping.province else "ALL")
         reg_raw = ((row.get(mapping.registration_type) or "").strip()
                    if mapping.registration_type else "")
         try:
@@ -327,6 +352,29 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
         except ValueError:
             reg = RegistrationType.OTHER.value
 
+        unit_id, grain, how, score, reason = resolver.resolve(
+            raw_brand, raw_model, raw_variant, reg)
+
+        # Group the ambiguity reasons so the report stays readable while the
+        # review row keeps the full candidate list.
+        bucket = reason.split(":", 1)[0] if reason else ""
+
+        if unit_id is None:
+            reviews.append((source_id, period, raw_brand, raw_model, label, units,
+                            reason, None, score))
+            report.reasons[bucket] = report.reasons.get(bucket, 0) + 1
+            report.units_review += units
+            continue
+
+        if reason:
+            # Placed, but less deeply than the source allowed. Record the fact
+            # at the grain achieved *and* flag it, so precision loss is visible.
+            reviews.append((source_id, period, raw_brand, raw_model, label, units,
+                            reason, unit_id, score))
+            report.reasons[bucket] = report.reasons.get(bucket, 0) + 1
+
+        province = ((row.get(mapping.province) or "ALL").strip()
+                    if mapping.province else "ALL")
         facts.append((period, reg, province or "ALL", unit_id, grain.value, units,
                       source_id, label, how, score))
         report.units_matched += units
@@ -350,16 +398,23 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
     return report
 
 
-def teach_alias(conn: sqlite3.Connection, scope: str, raw: str,
-                target_id: str) -> None:
-    """Record an owner decision so the same label matches next time."""
+def teach_alias(conn: sqlite3.Connection, scope: str, raw: str, target_id: str,
+                reg: str = "*") -> None:
+    """Record an owner decision so the same label matches next time.
+
+    ``reg`` limits the lesson to one DLT class, which is how "REVO" can mean the
+    double cab in a รย.1 file and the smart cab in a รย.3 file.
+    """
     if scope not in {"brand", "model", "variant"}:
         raise ValueError("scope must be brand, model or variant")
+    if reg != "*":
+        reg = RegistrationType.parse(reg).value
     with conn:
         conn.execute(
-            "INSERT INTO alias_override (scope, raw, target_id) VALUES (?,?,?) "
-            "ON CONFLICT (scope, raw) DO UPDATE SET target_id = excluded.target_id",
-            (scope, fold(raw), target_id))
+            "INSERT INTO alias_override (scope, raw, reg_type, target_id) "
+            "VALUES (?,?,?,?) ON CONFLICT (scope, raw, reg_type) "
+            "DO UPDATE SET target_id = excluded.target_id",
+            (scope, fold(raw), reg, target_id))
         conn.execute(
             "UPDATE ingest_review SET status = 'mapped' "
             "WHERE status = 'open' AND lower(raw_label) LIKE ?",

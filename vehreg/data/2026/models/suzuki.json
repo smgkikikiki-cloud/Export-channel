@@ -17,7 +17,7 @@
       "name_th": "สวิฟท์",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "สวิฟท์"
       ],
@@ -36,20 +36,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1197,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-03-01",
-                  "end": null,
-                  "price_thb": 599000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 599000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -61,7 +53,7 @@
       "name_th": "เซียส",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -78,20 +70,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1197,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2016-01-01",
-                  "end": null,
-                  "price_thb": 675000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 675000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -103,7 +87,7 @@
       "name_th": "เซเลริโอ",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -120,20 +104,12 @@
               "drivetrain": "FWD",
               "engine_cc": 998,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-01-01",
-                  "end": null,
-                  "price_thb": 399000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 399000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -145,7 +121,7 @@
       "name_th": "เออร์ติก้า",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -162,20 +138,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 715000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 715000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -187,7 +155,7 @@
       "name_th": "เอ็กซ์แอล7",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "xl 7"
       ],
@@ -206,20 +174,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2020-02-01",
-                  "end": null,
-                  "price_thb": 799000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 799000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -231,7 +191,7 @@
       "name_th": "จิมนี่",
       "body_type": "SUV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "จิมนี่"
       ],
@@ -250,20 +210,12 @@
               "drivetrain": "4WD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-01-01",
-                  "end": null,
-                  "price_thb": 1550000,
-                  "import_type": "CBU",
-                  "origin_country": "JP",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1550000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -275,7 +227,7 @@
       "name_th": "ฟรอนซ์",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -292,20 +244,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1462,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-06-01",
-                  "end": null,
-                  "price_thb": 659000,
-                  "import_type": "CBU",
-                  "origin_country": "IN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 659000,
+              "import_type": "CBU",
+              "origin_country": "IN",
+              "price_note": "seed-unverified"
             }
           ]
         }

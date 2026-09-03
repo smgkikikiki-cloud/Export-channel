@@ -22,7 +22,7 @@
       "name_th": "ฮาวาล เอช6",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "h6",
         "haval h6"
@@ -42,20 +42,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": 1.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-06-01",
-                  "end": null,
-                  "price_thb": 1199000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1199000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "PHEV Ultra",
@@ -63,20 +55,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": 34.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-06-01",
-                  "end": null,
-                  "price_thb": 1449000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1449000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -88,7 +72,7 @@
       "name_th": "ฮาวาล โจเลี่ยน",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "jolion"
       ],
@@ -107,20 +91,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1497,
               "battery_kwh": 1.7,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-11-01",
-                  "end": null,
-                  "price_thb": 879000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 879000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -132,7 +108,7 @@
       "name_th": "โอร่า กู๊ดแคท",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "good cat",
         "ora"
@@ -152,20 +128,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 63.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-02-01",
-                  "end": null,
-                  "price_thb": 899000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 899000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -177,7 +145,7 @@
       "name_th": "โอร่า 03",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ora 03"
       ],
@@ -196,20 +164,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 63.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-01-01",
-                  "end": null,
-                  "price_thb": 829000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 829000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -221,7 +181,7 @@
       "name_th": "แทงค์ 300",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "tank 300"
       ],
@@ -240,20 +200,12 @@
               "drivetrain": "4WD",
               "engine_cc": 1998,
               "battery_kwh": 1.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-03-01",
-                  "end": null,
-                  "price_thb": 1749000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1749000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -265,7 +217,7 @@
       "name_th": "แทงค์ 500",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "tank 500"
       ],
@@ -284,20 +236,12 @@
               "drivetrain": "4WD",
               "engine_cc": 1998,
               "battery_kwh": 1.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-03-01",
-                  "end": null,
-                  "price_thb": 2999000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2999000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }

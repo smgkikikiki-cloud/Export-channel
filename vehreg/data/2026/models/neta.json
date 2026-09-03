@@ -18,7 +18,7 @@
       "name_th": "เนต้า วี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "neta v",
         "v-ii"
@@ -38,20 +38,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 40.7,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-11-01",
-                  "end": null,
-                  "price_thb": 549000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 549000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -63,7 +55,7 @@
       "name_th": "เนต้า เอ็กซ์",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "neta x"
       ],
@@ -82,20 +74,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 52.5,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-06-01",
-                  "end": null,
-                  "price_thb": 799000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 799000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }

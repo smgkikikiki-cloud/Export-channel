@@ -1,31 +1,46 @@
 #!/usr/bin/env python3
-"""Generate a SYNTHETIC DLT-shaped export so the pipeline can be exercised
-offline. These are NOT real registration figures - they exist only to prove the
-loader, the review queue and the cube. Replace with a real DLT download before
-reading anything into the numbers.
+"""Generate SYNTHETIC DLT-shaped exports for 2026 so the pipeline can be
+exercised offline. These are NOT real registration figures - they exist only to
+prove the loader, the class scoping, the review queue and the cube. Replace with
+real DLT downloads before reading anything into the numbers.
+
+Two files are written, because that is how DLT publishes and how the double-cab
+split resolves:
+
+    sample_dlt_ry1_2026.csv   รย.1 - passenger cars and double-cab pickups
+    sample_dlt_ry3_2026.csv   รย.3 - single cab and smart cab pickups
 """
 
 from __future__ import annotations
 
 import csv
 import random
+import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from vehreg.catalog import Catalog  # noqa: E402
+from vehreg.catalog import DEFAULT_YEAR, Catalog  # noqa: E402
 
-OUT = ROOT / "data" / "raw" / "sample_dlt_registrations.csv"
-PERIODS = [f"{y}-{m:02d}" for y in (2023, 2024, 2025) for m in range(1, 13)]
+OUT_DIR = ROOT / "data" / "raw"
+YEAR = DEFAULT_YEAR
+PERIODS = [f"{YEAR}-{m:02d}" for m in range(1, 13)]
+HEADER = ["เดือน", "ยี่ห้อ", "แบบรถ", "รุ่นย่อย", "จำนวน"]
 
 # Rough monthly scale by segment so the synthetic mix is not uniform noise.
-SCALE = {"A": 300, "B": 1400, "C": 900, "D": 400, "E": 120, "F": 3000,
+SCALE = {"A": 300, "B": 1400, "C": 900, "D": 400, "E": 120, "F": 1200,
          "UNKNOWN": 100}
 BRAND_WEIGHT = {"toyota": 3.0, "isuzu": 2.4, "honda": 1.6, "ford": 1.0,
                 "mitsubishi": 0.9, "nissan": 0.5, "byd": 1.1, "mg": 0.7,
                 "gwm": 0.4, "mazda": 0.4}
+
+# Words DLT usually leaves out of the "แบบรถ" cell, which is exactly why the
+# รย. class has to scope the match.
+CAB_WORDS = re.compile(
+    r"\s+(single cab|double cab|smart cab|club cab|king cab|open cab|"
+    r"freestyle cab|giant cab|cab4|spark)$", re.IGNORECASE)
 
 # Labels DLT prints that the seeded catalog cannot place, so the review queue is
 # never empty in a demo - that is the honest default state of this pipeline.
@@ -38,9 +53,9 @@ UNKNOWN_LABELS = [
 def main() -> None:
     random.seed(20260903)
     catalog = Catalog.load()
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    rows: dict[str, list[dict]] = {"RY1": [], "RY2": [], "RY3": []}
 
-    rows = []
     for model in catalog.models.values():
         brand = catalog.brands[model.brand_id]
         variants = catalog.variants_of(model.id)
@@ -49,43 +64,38 @@ def main() -> None:
         gen = catalog.generation_for_variant(variants[0].id)
         base = SCALE.get(gen.segment.value, 100) * BRAND_WEIGHT.get(brand.id, 0.25)
         trend = random.uniform(-0.4, 0.6)
+        bucket = rows.setdefault(model.registration_type.value, [])
+
         for index, period in enumerate(PERIODS):
-            if gen.launched and period < gen.launched[:7]:
-                continue
             drift = 1 + trend * (index / len(PERIODS))
             units = max(0, int(random.gauss(base * drift, base * 0.28)))
             if units == 0:
                 continue
+            # DLT drops the cab word about half the time; the รย. class of the
+            # file is then the only thing that can resolve it.
+            label = model.name_en
+            if random.random() < 0.4:
+                label = CAB_WORDS.sub("", label) or model.name_en
             # Most months arrive at model grain; some sources break out a trim.
-            if random.random() < 0.35:
-                variant = random.choice(variants)
-                rows.append({
-                    "เดือน": period, "ยี่ห้อ": brand.name_en,
-                    "แบบรถ": model.name_en, "รุ่นย่อย": variant.name,
-                    "ประเภท": model.registration_type.value,
-                    "จำนวน": units,
-                })
-            else:
-                rows.append({
-                    "เดือน": period, "ยี่ห้อ": brand.name_en,
-                    "แบบรถ": model.name_en, "รุ่นย่อย": "",
-                    "ประเภท": model.registration_type.value,
-                    "จำนวน": units,
-                })
+            trim = random.choice(variants).name if random.random() < 0.35 else ""
+            bucket.append({"เดือน": period, "ยี่ห้อ": brand.name_en,
+                           "แบบรถ": label, "รุ่นย่อย": trim, "จำนวน": units})
 
     for brand_label, model_label in UNKNOWN_LABELS:
-        for period in PERIODS[::4]:
-            rows.append({"เดือน": period, "ยี่ห้อ": brand_label,
-                         "แบบรถ": model_label, "รุ่นย่อย": "",
-                         "ประเภท": "RY1", "จำนวน": random.randint(20, 260)})
+        for period in PERIODS[::3]:
+            rows["RY1"].append({"เดือน": period, "ยี่ห้อ": brand_label,
+                                "แบบรถ": model_label, "รุ่นย่อย": "",
+                                "จำนวน": random.randint(20, 260)})
 
-    with open(OUT, "w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=["เดือน", "ยี่ห้อ", "แบบรถ", "รุ่นย่อย",
-                                "ประเภท", "จำนวน"])
-        writer.writeheader()
-        writer.writerows(rows)
-    print(f"wrote {len(rows)} synthetic rows to {OUT}")
+    for reg, bucket in rows.items():
+        if not bucket:
+            continue
+        path = OUT_DIR / f"sample_dlt_{reg.lower()}_{YEAR}.csv"
+        with open(path, "w", newline="", encoding="utf-8-sig") as handle:
+            writer = csv.DictWriter(handle, fieldnames=HEADER)
+            writer.writeheader()
+            writer.writerows(bucket)
+        print(f"wrote {len(bucket):>5} synthetic {reg} rows to {path}")
 
 
 if __name__ == "__main__":

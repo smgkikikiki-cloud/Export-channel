@@ -18,7 +18,7 @@
       "name_th": "ซิตี้",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ซิตี้",
         "city sedan"
@@ -38,20 +38,12 @@
               "drivetrain": "FWD",
               "engine_cc": 988,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-11-25",
-                  "end": null,
-                  "price_thb": 609000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 609000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "1.0 Turbo SV",
@@ -59,20 +51,12 @@
               "drivetrain": "FWD",
               "engine_cc": 988,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-11-25",
-                  "end": null,
-                  "price_thb": 709000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 709000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "e:HEV SV",
@@ -80,20 +64,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 0.7,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-11-25",
-                  "end": null,
-                  "price_thb": 839000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 839000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "e:HEV RS",
@@ -101,20 +77,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 0.7,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-11-25",
-                  "end": null,
-                  "price_thb": 899000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 899000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -126,10 +94,12 @@
       "name_th": "ซิตี้ แฮทช์แบ็ก",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "city hatchback",
-        "city hb"
+        "city hb",
+        "City",
+        "ซิตี้"
       ],
       "notes": "",
       "generations": [
@@ -146,20 +116,12 @@
               "drivetrain": "FWD",
               "engine_cc": 988,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-01-01",
-                  "end": null,
-                  "price_thb": 749000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 749000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "e:HEV RS",
@@ -167,20 +129,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 0.7,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-01-01",
-                  "end": null,
-                  "price_thb": 924000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 924000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -192,7 +146,7 @@
       "name_th": "ซีวิค",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "ซีวิค"
       ],
@@ -211,20 +165,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-08-01",
-                  "end": null,
-                  "price_thb": 1099000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1099000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "e:HEV RS",
@@ -232,20 +178,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1993,
               "battery_kwh": 1.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2021-08-01",
-                  "end": null,
-                  "price_thb": 1299000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1299000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -257,7 +195,7 @@
       "name_th": "แอคคอร์ด",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -274,20 +212,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1993,
               "battery_kwh": 1.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-04-01",
-                  "end": null,
-                  "price_thb": 1749000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1749000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -299,7 +229,7 @@
       "name_th": "เอชอาร์-วี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "hrv",
         "hr v"
@@ -319,20 +249,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 0.7,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-01-01",
-                  "end": null,
-                  "price_thb": 999000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 999000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "e:HEV RS",
@@ -340,20 +262,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": 0.7,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-01-01",
-                  "end": null,
-                  "price_thb": 1149000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1149000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -365,7 +279,7 @@
       "name_th": "ซีอาร์-วี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "crv",
         "cr v"
@@ -385,20 +299,12 @@
               "drivetrain": "AWD",
               "engine_cc": 1993,
               "battery_kwh": 1.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-11-01",
-                  "end": null,
-                  "price_thb": 1729000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1729000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "2.0 e:HEV RS",
@@ -406,20 +312,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1993,
               "battery_kwh": 1.1,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-11-01",
-                  "end": null,
-                  "price_thb": 1599000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1599000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -431,7 +329,7 @@
       "name_th": "ดับเบิลยูอาร์-วี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "wrv",
         "wr v"
@@ -451,20 +349,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-08-01",
-                  "end": null,
-                  "price_thb": 799000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 799000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "1.5 RS",
@@ -472,20 +362,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-08-01",
-                  "end": null,
-                  "price_thb": 869000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 869000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -497,7 +379,7 @@
       "name_th": "บีอาร์-วี",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "brv",
         "br v"
@@ -517,20 +399,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1498,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-04-01",
-                  "end": null,
-                  "price_thb": 973000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 973000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -542,7 +416,7 @@
       "name_th": "อีเอ็น1",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "en1",
         "e n1"
@@ -562,20 +436,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 68.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-01-01",
-                  "end": null,
-                  "price_thb": 1249000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1249000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }

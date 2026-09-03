@@ -13,15 +13,97 @@
   },
   "models": [
     {
-      "id": "triton",
-      "name_en": "Triton",
-      "name_th": "ไทรทัน",
+      "id": "triton_single_cab",
+      "name_en": "Triton Single Cab",
+      "name_th": "ไทรทัน ตอนเดียว",
       "body_type": "PICKUP",
-      "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY3",
+      "cab_type": "SINGLE_CAB",
+      "registration_type": "",
       "aliases": [
-        "ไทรทัน",
-        "triton athlete"
+        "triton single cab",
+        "ไทรทัน ตอนเดียว",
+        "Triton",
+        "ไทรทัน"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MV",
+          "segment": "F",
+          "seats": 3,
+          "launched": "2023-07-26",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 GL",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 569000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "triton_club_cab",
+      "name_en": "Triton Club Cab",
+      "name_th": "ไทรทัน คลับแค็บ",
+      "body_type": "PICKUP",
+      "cab_type": "SMART_CAB",
+      "registration_type": "",
+      "aliases": [
+        "triton club cab",
+        "club cab",
+        "ไทรทัน แค็บ",
+        "Triton",
+        "ไทรทัน"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MV",
+          "segment": "F",
+          "seats": 4,
+          "launched": "2023-07-26",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 GLX",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "aliases": [],
+              "overrides": {},
+              "price_thb": 719000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "triton_double_cab",
+      "name_en": "Triton Double Cab",
+      "name_th": "ไทรทัน 4 ประตู",
+      "body_type": "PICKUP",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
+      "aliases": [
+        "triton double cab",
+        "triton athlete",
+        "ไทรทัน 4 ประตู",
+        "Triton",
+        "ไทรทัน"
       ],
       "notes": "",
       "generations": [
@@ -33,88 +115,30 @@
           "ended": null,
           "variants": [
             {
-              "name": "2.4 GL Single Cab",
+              "name": "2.4 Athlete",
               "powertrain": "ICE",
               "drivetrain": "RWD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "cab_type": "SINGLE_CAB",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-07-26",
-                  "end": null,
-                  "price_thb": 569000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 999000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
-              "name": "2.4 GLX Club Cab",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2442,
-              "battery_kwh": null,
-              "cab_type": "SMART_CAB",
-              "aliases": [],
-              "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-07-26",
-                  "end": null,
-                  "price_thb": 719000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
-            },
-            {
-              "name": "2.4 Athlete Double Cab",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2442,
-              "battery_kwh": null,
-              "cab_type": "DOUBLE_CAB",
-              "aliases": [],
-              "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-07-26",
-                  "end": null,
-                  "price_thb": 999000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
-            },
-            {
-              "name": "2.4 Ultimate 4WD Double Cab",
+              "name": "2.4 Ultimate 4WD",
               "powertrain": "ICE",
               "drivetrain": "4WD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "cab_type": "DOUBLE_CAB",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-07-26",
-                  "end": null,
-                  "price_thb": 1249000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1249000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -126,7 +150,7 @@
       "name_th": "ปาเจโร สปอร์ต",
       "body_type": "PPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "pajero",
         "ปาเจโร"
@@ -146,20 +170,12 @@
               "drivetrain": "RWD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-07-01",
-                  "end": null,
-                  "price_thb": 1399000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1399000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             },
             {
               "name": "2.4 GT Premium 4WD",
@@ -167,20 +183,12 @@
               "drivetrain": "4WD",
               "engine_cc": 2442,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-07-01",
-                  "end": null,
-                  "price_thb": 1729000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1729000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -192,7 +200,7 @@
       "name_th": "เอ็กซ์แพนเดอร์",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "เอ็กซ์แพนเดอร์"
       ],
@@ -211,20 +219,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-08-01",
-                  "end": null,
-                  "price_thb": 899000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 899000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             },
             {
               "name": "1.6 HEV GT",
@@ -232,20 +232,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1600,
               "battery_kwh": 0.8,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-08-01",
-                  "end": null,
-                  "price_thb": 1099000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1099000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -257,7 +249,7 @@
       "name_th": "เอ็กซ์แพนเดอร์ ครอส",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -274,20 +266,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2020-01-01",
-                  "end": null,
-                  "price_thb": 949000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 949000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -299,7 +283,7 @@
       "name_th": "แอททราจ",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "แอททราจ"
       ],
@@ -318,20 +302,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1193,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-11-01",
-                  "end": null,
-                  "price_thb": 559000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 559000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -343,7 +319,7 @@
       "name_th": "มิราจ",
       "body_type": "HATCHBACK",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "มิราจ"
       ],
@@ -362,20 +338,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1193,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2019-11-01",
-                  "end": null,
-                  "price_thb": 519000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 519000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -387,7 +355,7 @@
       "name_th": "เอ็กซ์ฟอร์ซ",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [],
       "notes": "",
       "generations": [
@@ -404,20 +372,12 @@
               "drivetrain": "FWD",
               "engine_cc": 1499,
               "battery_kwh": null,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-01-01",
-                  "end": null,
-                  "price_thb": 949000,
-                  "import_type": "CBU",
-                  "origin_country": "ID",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 949000,
+              "import_type": "CBU",
+              "origin_country": "ID",
+              "price_note": "seed-unverified"
             }
           ]
         }

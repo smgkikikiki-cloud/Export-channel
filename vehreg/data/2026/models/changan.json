@@ -20,7 +20,7 @@
       "name_th": "ดีพัล เอส07",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "deepal s07",
         "s07"
@@ -40,20 +40,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 79.9,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-03-01",
-                  "end": null,
-                  "price_thb": 1359000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1359000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -65,7 +57,7 @@
       "name_th": "ดีพัล แอล07",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "l07"
       ],
@@ -84,20 +76,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 79.9,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-06-01",
-                  "end": null,
-                  "price_thb": 1099000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1099000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }

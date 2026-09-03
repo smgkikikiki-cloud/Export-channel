@@ -18,7 +18,7 @@
       "name_th": "ไอออน วาย พลัส",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "aion y",
         "y plus"
@@ -38,20 +38,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 63.2,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-07-01",
-                  "end": null,
-                  "price_thb": 949000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 949000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -63,7 +55,7 @@
       "name_th": "ไอออน อีเอส",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "aion es"
       ],
@@ -82,20 +74,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 55.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-04-01",
-                  "end": null,
-                  "price_thb": 699000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 699000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -107,7 +91,7 @@
       "name_th": "ไอออน วี",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "aion v"
       ],
@@ -126,20 +110,12 @@
               "drivetrain": "FWD",
               "engine_cc": null,
               "battery_kwh": 75.3,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2025-01-01",
-                  "end": null,
-                  "price_thb": 1199000,
-                  "import_type": "CKD",
-                  "origin_country": "TH",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1199000,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified"
             }
           ]
         }

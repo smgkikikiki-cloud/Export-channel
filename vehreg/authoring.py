@@ -1,13 +1,20 @@
-"""Bulk catalog authoring from a flat CSV.
+"""Bulk catalog authoring from a flat CSV, for one year at a time.
 
 The owner holds most of this taxonomy in their head, and typing it into nested
 JSON is the wrong shape for that. This module accepts one wide row per รุ่นย่อย
-and builds the brand/model/generation/variant/period nesting underneath, so the
-catalog can be filled in a spreadsheet and re-imported at any time.
+and builds the brand/model/generation/variant nesting underneath, so the catalog
+can be filled in a spreadsheet and re-imported at any time.
 
-Re-importing is safe: a row that names an existing variant updates it instead of
-duplicating it, and a row with a later ``start`` adds a dated period rather than
-overwriting the previous price.
+Two rules from the taxonomy show up here as column behaviour:
+
+* ``body_type`` and ``cab_type`` belong to the model. One nameplate sold in two
+  bodies is two rows with two different ``model`` names - the importer will not
+  let a second body hide inside a trim.
+* ``registration_type`` is left blank in normal use. A double-cab pickup resolves
+  to รย.1 and the other cabs to รย.3 on their own.
+
+Re-importing is safe: a row that names an existing variant updates it in place
+rather than duplicating it.
 """
 
 from __future__ import annotations
@@ -17,7 +24,7 @@ import json
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
-from .catalog import DATA_DIR, Catalog, CatalogError
+from .catalog import DATA_DIR, DEFAULT_YEAR, Catalog, CatalogError, year_dir
 from .normalize import slug
 from .taxonomy import (
     BodyType, BrandSegment, CabType, Drivetrain, ImportType, Powertrain,
@@ -25,45 +32,57 @@ from .taxonomy import (
 )
 
 COLUMNS: tuple[str, ...] = (
-    # identity
+    # identity - brand + model + variant is the minimum for a usable row
     "brand", "model", "generation", "variant",
     # brand facets
     "brand_th", "brand_segment", "oem_group", "brand_origin",
-    # model facets
-    "model_th", "body_type", "registration_type", "model_aliases",
+    # model facets (one model = one body; pickups split by cab)
+    "model_th", "body_type", "cab_type", "registration_type", "model_aliases",
     # generation facets
     "segment", "seats", "launched", "ended",
     # variant facets
-    "powertrain", "drivetrain", "engine_cc", "battery_kwh", "cab_type",
-    "variant_aliases",
-    # dated commercial facets
-    "start", "end", "price_thb", "import_type", "origin_country", "model_year",
-    "price_note",
+    "powertrain", "drivetrain", "engine_cc", "battery_kwh", "variant_aliases",
+    # commercial facets for this catalog year
+    "price_thb", "import_type", "origin_country", "price_note",
 )
 
 REQUIRED: tuple[str, ...] = ("brand", "model", "variant")
 
-
-def template(path: Path | str) -> Path:
-    """Write an empty CSV with the full column set and one worked example."""
-    path = Path(path)
-    example = {
+EXAMPLE_ROWS: tuple[dict[str, str], ...] = (
+    {
         "brand": "Toyota", "model": "Yaris Ativ", "generation": "MXPA10",
         "variant": "1.2 Smart", "brand_th": "โตโยต้า", "brand_segment": "MASS",
         "oem_group": "Toyota Group", "brand_origin": "JP",
-        "model_th": "ยาริส เอทีฟ", "body_type": "SEDAN",
-        "registration_type": "RY1", "model_aliases": "ativ|ยาริสเอทีฟ",
+        "model_th": "ยาริส เอทีฟ", "body_type": "SEDAN", "cab_type": "",
+        "registration_type": "", "model_aliases": "ativ|ยาริสเอทีฟ",
         "segment": "B", "seats": "5", "launched": "2022-08-09", "ended": "",
         "powertrain": "ICE", "drivetrain": "FWD", "engine_cc": "1197",
-        "battery_kwh": "", "cab_type": "", "variant_aliases": "1.2 smart cvt",
-        "start": "2022-08-09", "end": "", "price_thb": "609000",
-        "import_type": "CKD", "origin_country": "TH", "model_year": "",
+        "battery_kwh": "", "variant_aliases": "1.2 smart cvt",
+        "price_thb": "609000", "import_type": "CKD", "origin_country": "TH",
         "price_note": "",
-    }
+    },
+    {
+        # A pickup: one model per cab, and the รย. class follows from the cab.
+        "brand": "Toyota", "model": "Hilux Revo Double Cab", "generation": "AN120",
+        "variant": "2.8 GR Sport 4x4", "body_type": "PICKUP",
+        "cab_type": "DOUBLE_CAB", "registration_type": "",
+        "model_aliases": "revo double cab|revo 4 ประตู", "segment": "F",
+        "seats": "5", "powertrain": "ICE", "drivetrain": "4WD",
+        "engine_cc": "2755", "price_thb": "1359000", "import_type": "CKD",
+        "origin_country": "TH",
+    },
+)
+
+
+def template(path: Path | str) -> Path:
+    """Write a CSV with the full column set and two worked examples."""
+    path = Path(path)
     with open(path, "w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(COLUMNS))
+        writer = csv.DictWriter(handle, fieldnames=list(COLUMNS),
+                                extrasaction="ignore")
         writer.writeheader()
-        writer.writerow(example)
+        for row in EXAMPLE_ROWS:
+            writer.writerow(row)
     return path
 
 
@@ -140,16 +159,21 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
                 model = {"id": slug(model_name), "name_en": model_name,
                          "name_th": "", "body_type": "OTHER",
                          "cab_type": "NOT_APPLICABLE",
-                         "registration_type": "RY1", "aliases": [],
+                         "registration_type": "", "aliases": [],
                          "generations": []}
                 payload["models"].append(model)
             if _clean(row.get("model_th")):
                 model["name_th"] = _clean(row["model_th"])
             if _clean(row.get("body_type")):
-                model["body_type"] = BodyType.parse(row["body_type"]).value
-                if model["body_type"] == "PICKUP" and \
-                        not _clean(row.get("registration_type")):
-                    model["registration_type"] = "RY3"
+                body = BodyType.parse(row["body_type"]).value
+                if model["body_type"] not in {"OTHER", body}:
+                    raise CatalogError(
+                        f"model {model_name!r} is already {model['body_type']}; "
+                        f"a nameplate sold as {body} too is a separate model - "
+                        f"give it its own name, e.g. '{model_name} {body.title()}'")
+                model["body_type"] = body
+            if _clean(row.get("cab_type")):
+                model["cab_type"] = CabType.parse(row["cab_type"]).value
             if _clean(row.get("registration_type")):
                 model["registration_type"] = RegistrationType.parse(
                     row["registration_type"]).value
@@ -157,8 +181,7 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
                 if alias not in model["aliases"]:
                     model["aliases"].append(alias)
 
-            gen_code = _clean(row.get("generation")) or _clean(
-                row.get("launched"))[:4] or "gen1"
+            gen_code = _clean(row.get("generation")) or "gen1"
             gen = _find(model["generations"], "code", gen_code)
             if gen is None:
                 gen = {"code": gen_code, "segment": "UNKNOWN", "seats": None,
@@ -178,8 +201,9 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
             if variant is None:
                 variant = {"name": variant_name, "powertrain": "UNKNOWN",
                            "drivetrain": "UNKNOWN", "engine_cc": None,
-                           "battery_kwh": None, "cab_type": "NOT_APPLICABLE",
-                           "aliases": [], "periods": []}
+                           "battery_kwh": None, "price_thb": None,
+                           "import_type": "UNKNOWN", "origin_country": "UNKNOWN",
+                           "price_note": "", "aliases": []}
                 gen["variants"].append(variant)
             if _clean(row.get("powertrain")):
                 variant["powertrain"] = Powertrain.parse(row["powertrain"]).value
@@ -189,38 +213,17 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
                 variant["engine_cc"] = _int(row["engine_cc"])
             if _clean(row.get("battery_kwh")):
                 variant["battery_kwh"] = _num(row["battery_kwh"])
-            if _clean(row.get("cab_type")):
-                variant["cab_type"] = CabType.parse(row["cab_type"]).value
+            if _clean(row.get("price_thb")):
+                variant["price_thb"] = _num(row["price_thb"])
+            if _clean(row.get("import_type")):
+                variant["import_type"] = ImportType.parse(row["import_type"]).value
+            if _clean(row.get("origin_country")):
+                variant["origin_country"] = _clean(row["origin_country"]).upper()
+            if _clean(row.get("price_note")):
+                variant["price_note"] = _clean(row["price_note"])
             for alias in _aliases(row.get("variant_aliases")):
                 if alias not in variant["aliases"]:
                     variant["aliases"].append(alias)
-
-            start = _clean(row.get("start")) or gen.get("launched") or "1900-01-01"
-            period = next((p for p in variant["periods"] if p["start"] == start),
-                          None)
-            if period is None:
-                period = {"start": start, "end": None, "price_thb": None,
-                          "import_type": "UNKNOWN", "origin_country": "UNKNOWN",
-                          "model_year": None, "price_note": ""}
-                variant["periods"].append(period)
-                variant["periods"].sort(key=lambda p: p["start"])
-                # Close the preceding open period so the timeline stays a
-                # partition rather than a set of overlapping claims.
-                index = variant["periods"].index(period)
-                if index > 0 and variant["periods"][index - 1].get("end") is None:
-                    variant["periods"][index - 1]["end"] = start
-            if _clean(row.get("end")):
-                period["end"] = _clean(row["end"])
-            if _clean(row.get("price_thb")):
-                period["price_thb"] = _num(row["price_thb"])
-            if _clean(row.get("import_type")):
-                period["import_type"] = ImportType.parse(row["import_type"]).value
-            if _clean(row.get("origin_country")):
-                period["origin_country"] = _clean(row["origin_country"]).upper()
-            if _clean(row.get("model_year")):
-                period["model_year"] = _int(row["model_year"])
-            if _clean(row.get("price_note")):
-                period["price_note"] = _clean(row["price_note"])
             applied += 1
         except (ValueError, CatalogError) as exc:
             problems.append(f"line {line_no}: {exc}")
@@ -229,10 +232,10 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
 
 
 def import_csv(path: Path | str, data_dir: Path | str = DATA_DIR, *,
+               year: int = DEFAULT_YEAR,
                dry_run: bool = False) -> tuple[int, list[str], list[str]]:
-    """Merge a CSV into the on-disk catalog. Returns (rows, problems, files)."""
-    data_dir = Path(data_dir)
-    models_dir = data_dir / "models"
+    """Merge a CSV into one year's catalog. Returns (rows, problems, files)."""
+    models_dir = year_dir(data_dir, year)
     payloads: dict[str, dict] = {}
     for existing in sorted(models_dir.glob("*.json")):
         payload = json.loads(existing.read_text(encoding="utf-8"))
@@ -241,7 +244,8 @@ def import_csv(path: Path | str, data_dir: Path | str = DATA_DIR, *,
     # Problems the catalog already had are not this import's fault; only newly
     # introduced ones block the write.
     try:
-        baseline = set(Catalog.load(data_dir).validate()) if payloads else set()
+        baseline = set(Catalog.load(data_dir, year).validate()) if payloads \
+            else set()
     except CatalogError:
         baseline = set()
 
@@ -250,13 +254,13 @@ def import_csv(path: Path | str, data_dir: Path | str = DATA_DIR, *,
     before = {bid: json.dumps(p, sort_keys=True) for bid, p in payloads.items()}
     applied, problems = apply_rows(payloads, rows)
 
-    # Fail closed: a catalog that will not load is never written to disk.
-    probe = Catalog()
+    # Fail closed: a catalog that will not load or will not validate is never
+    # written to disk.
+    probe = Catalog(year)
     for bid, payload in payloads.items():
         probe.add_brand_payload(payload, source=f"<import {bid}>")
     probe.build_indexes()
-    introduced = [p for p in probe.validate() if p not in baseline]
-    problems += introduced
+    problems += [p for p in probe.validate() if p not in baseline]
 
     written: list[str] = []
     if not dry_run and not problems:
@@ -273,7 +277,7 @@ def import_csv(path: Path | str, data_dir: Path | str = DATA_DIR, *,
 
 
 def export_csv(catalog: Catalog, path: Path | str) -> int:
-    """Flatten the catalog back out to the same wide CSV shape."""
+    """Flatten a year's catalog back out to the same wide CSV shape."""
     count = 0
     with open(path, "w", newline="", encoding="utf-8-sig") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(COLUMNS))
@@ -282,33 +286,29 @@ def export_csv(catalog: Catalog, path: Path | str) -> int:
             gen = catalog.generation_for_variant(variant.id)
             model = catalog.model_for_variant(variant.id)
             brand = catalog.brand_for_variant(variant.id)
-            for period in catalog.periods.get(variant.id, []) or [None]:
-                writer.writerow({
-                    "brand": brand.name_en, "model": model.name_en,
-                    "generation": gen.code, "variant": variant.name,
-                    "brand_th": brand.name_th,
-                    "brand_segment": brand.brand_segment.value,
-                    "oem_group": brand.oem_group,
-                    "brand_origin": brand.brand_origin,
-                    "model_th": model.name_th,
-                    "body_type": model.body_type.value,
-                    "registration_type": model.registration_type.value,
-                    "model_aliases": "|".join(model.aliases),
-                    "segment": gen.segment.value, "seats": gen.seats,
-                    "launched": gen.launched, "ended": gen.ended,
-                    "powertrain": variant.powertrain.value,
-                    "drivetrain": variant.drivetrain.value,
-                    "engine_cc": variant.engine_cc,
-                    "battery_kwh": variant.battery_kwh,
-                    "cab_type": variant.cab_type.value,
-                    "variant_aliases": "|".join(variant.aliases),
-                    "start": period.start if period else "",
-                    "end": period.end if period else "",
-                    "price_thb": period.price_thb if period else "",
-                    "import_type": period.import_type.value if period else "",
-                    "origin_country": period.origin_country if period else "",
-                    "model_year": period.model_year if period else "",
-                    "price_note": period.price_note if period else "",
-                })
-                count += 1
+            writer.writerow({
+                "brand": brand.name_en, "model": model.name_en,
+                "generation": gen.code, "variant": variant.name,
+                "brand_th": brand.name_th,
+                "brand_segment": brand.brand_segment.value,
+                "oem_group": brand.oem_group,
+                "brand_origin": brand.brand_origin,
+                "model_th": model.name_th,
+                "body_type": model.body_type.value,
+                "cab_type": model.cab_type.value,
+                "registration_type": model.registration_type.value,
+                "model_aliases": "|".join(model.aliases),
+                "segment": gen.segment.value, "seats": gen.seats,
+                "launched": gen.launched, "ended": gen.ended,
+                "powertrain": variant.powertrain.value,
+                "drivetrain": variant.drivetrain.value,
+                "engine_cc": variant.engine_cc,
+                "battery_kwh": variant.battery_kwh,
+                "variant_aliases": "|".join(variant.aliases),
+                "price_thb": variant.price_thb,
+                "import_type": variant.import_type.value,
+                "origin_country": variant.origin_country,
+                "price_note": variant.price_note,
+            })
+            count += 1
     return count

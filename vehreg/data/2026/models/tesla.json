@@ -17,7 +17,7 @@
       "name_th": "โมเดล 3",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "model 3"
       ],
@@ -36,20 +36,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 60.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-12-07",
-                  "end": null,
-                  "price_thb": 1599000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1599000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             },
             {
               "name": "Long Range AWD",
@@ -57,20 +49,12 @@
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 79.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-12-07",
-                  "end": null,
-                  "price_thb": 1899000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1899000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -82,7 +66,7 @@
       "name_th": "โมเดล วาย",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "model y"
       ],
@@ -101,20 +85,12 @@
               "drivetrain": "RWD",
               "engine_cc": null,
               "battery_kwh": 60.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-12-07",
-                  "end": null,
-                  "price_thb": 1799000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 1799000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             },
             {
               "name": "Performance",
@@ -122,20 +98,12 @@
               "drivetrain": "AWD",
               "engine_cc": null,
               "battery_kwh": 79.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-12-07",
-                  "end": null,
-                  "price_thb": 2509000,
-                  "import_type": "CBU",
-                  "origin_country": "CN",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 2509000,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified"
             }
           ]
         }

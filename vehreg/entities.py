@@ -1,50 +1,55 @@
-"""The five identity layers and the facet-resolution chain.
+"""The four identity layers and the facet-resolution chain.
 
-    Brand  ->  Model  ->  Generation  ->  Variant  ->  VariantPeriod(date)
+    Brand  ->  Model  ->  Generation  ->  Variant
 
 Each layer declares only the facets that are genuinely constant at that layer.
-A lower layer may override anything a higher layer said. ``resolve()`` walks the
-chain from the most specific layer outwards, takes the first non-empty value,
-and records which layer supplied it, so any number in a report can be traced
-back to the row that asserted it.
+A lower layer may override anything a higher layer said, except the two facets
+that define what a model *is* (see below). ``resolve()`` walks the chain from
+the most specific layer outwards, takes the first non-empty value, and records
+which layer supplied it, so any number in a report can be traced back to the row
+that asserted it.
+
+Everything here is scoped to one **catalog year**. A car's price, import route
+and positioning are whatever the catalog for that year says - there is no
+back-dating and no interpolation across years. Last year's answers live in last
+year's catalog and are not consulted.
 
 Why the layers exist:
 
 * ``Brand``       - brand_segment, oem_group, brand origin. One row per marque.
-* ``Model``       - the nameplate. Body type lives here (a Yaris is a hatch).
-* ``Generation``  - the "โฉม". Segment and seat count can move between
-                    generations; a facelift that repositions a car is a new
-                    generation row, not an edit of history.
-* ``Variant``     - the รุ่นย่อย. Powertrain, drivetrain, engine, battery.
-* ``VariantPeriod`` - everything that moves while the trim is on sale: list
-                    price (hence market position), import route, assembly
-                    country, model year. Dated, so a 2023 fact is classified
-                    with the 2023 price and a 2025 fact with the 2025 price.
+* ``Model``       - the nameplate *as sold in one body*. Body type and, for
+                    pickups, cab type live here, and they are not overridable:
+                    one nameplate sold in two bodies is two models, and each
+                    pickup cab is its own model, because that is how the
+                    registration class splits.
+* ``Generation``  - the "โฉม". Segment and seat count sit here so a mid-year
+                    changeover can be recorded without editing the old row.
+* ``Variant``     - the รุ่นย่อย. Powertrain, drivetrain, engine, battery, and
+                    the commercial facts for the year: price (hence market
+                    position), import route, assembly country.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
-from datetime import date
-from typing import Any, Iterator, Optional
+from dataclasses import asdict, dataclass, field
+from typing import Any, Optional
 
 from .taxonomy import (
     BodyType, BrandSegment, CabType, Drivetrain, ImportType, MarketPosition,
-    Powertrain, PowertrainGroup, RegistrationType, Segment,
-    check_body_segment, check_origin, check_powertrain, is_electrified,
-    is_locally_assembled, is_plug_in, market_position_for_price,
-    normalize_country, powertrain_group,
+    Powertrain, RegistrationType, Segment,
+    check_body_segment, check_origin, check_powertrain, check_registration,
+    is_electrified, is_locally_assembled, is_plug_in, market_position_for_price,
+    normalize_country, powertrain_group, registration_type_for,
 )
 
-#: Facet -> the layer that normally owns it. Used only for validation messages
-#: and for the "where should I put this?" hint in the CLI; resolution itself is
-#: driven by the chain order below, so an override at any layer still works.
+#: Facet -> the layer that owns it. Used for validation messages and for the
+#: "where should I put this?" hint in the CLI.
 FACET_HOME_LAYER: dict[str, str] = {
     "brand_segment": "brand",
     "oem_group": "brand",
     "brand_origin": "brand",
     "body_type": "model",
-    "cab_type": "variant",
+    "cab_type": "model",
     "registration_type": "model",
     "segment": "generation",
     "seats": "generation",
@@ -52,14 +57,17 @@ FACET_HOME_LAYER: dict[str, str] = {
     "drivetrain": "variant",
     "engine_cc": "variant",
     "battery_kwh": "variant",
-    "price_thb": "period",
-    "import_type": "period",
-    "origin_country": "period",
-    "model_year": "period",
+    "price_thb": "variant",
+    "import_type": "variant",
+    "origin_country": "variant",
 }
 
 #: Most specific first. This is the whole override mechanism.
-RESOLUTION_CHAIN: tuple[str, ...] = ("period", "variant", "generation", "model", "brand")
+RESOLUTION_CHAIN: tuple[str, ...] = ("variant", "generation", "model", "brand")
+
+#: Overriding these below the model layer would let one model row mean two
+#: different cars, which is exactly what splitting models is meant to prevent.
+LOCKED_AT_MODEL: frozenset[str] = frozenset({"body_type", "cab_type"})
 
 _UNSET = (None, "", "UNKNOWN")
 
@@ -96,6 +104,9 @@ class Brand:
 
 @dataclass(frozen=True, slots=True)
 class Model:
+    """One nameplate in one body. ``Mazda2 Sedan`` and ``Mazda2 Hatchback`` are
+    two of these, and so are ``Hilux Revo Double Cab`` and ``... Smart Cab``."""
+
     id: str                                   # "toyota.yaris_ativ"
     brand_id: str
     name_en: str
@@ -117,10 +128,23 @@ class Model:
         out.update(self.overrides)
         return out
 
+    def validate(self) -> list[str]:
+        problems = check_registration(self.body_type, self.cab_type,
+                                      self.registration_type)
+        if self.body_type is BodyType.PICKUP and \
+                self.cab_type is CabType.NOT_APPLICABLE:
+            problems.append("a pickup model must name its cab_type; split the "
+                            "nameplate into one model per cab")
+        if self.body_type is not BodyType.PICKUP and \
+                self.cab_type is not CabType.NOT_APPLICABLE:
+            problems.append(f"cab_type is only valid for PICKUP, got "
+                            f"{self.body_type.value}")
+        return [f"model {self.id}: {p}" for p in problems]
+
 
 @dataclass(frozen=True, slots=True)
 class Generation:
-    id: str                                   # "toyota.yaris_ativ.2022"
+    id: str                                   # "toyota.yaris_ativ.mxpa10"
     model_id: str
     code: str = ""                            # factory code, e.g. "MXPA10"
     segment: Segment = Segment.UNKNOWN
@@ -140,14 +164,19 @@ class Generation:
 
 @dataclass(frozen=True, slots=True)
 class Variant:
-    id: str                                   # "toyota.yaris_ativ.2022.smart"
+    """One รุ่นย่อย, priced for the catalog year it belongs to."""
+
+    id: str                                   # "toyota.yaris_ativ.mxpa10.smart"
     generation_id: str
     name: str                                 # trim as marketed, e.g. "1.2 Smart"
     powertrain: Powertrain = Powertrain.UNKNOWN
     drivetrain: Drivetrain = Drivetrain.UNKNOWN
     engine_cc: Optional[int] = None
     battery_kwh: Optional[float] = None
-    cab_type: CabType = CabType.NOT_APPLICABLE
+    price_thb: Optional[float] = None
+    import_type: ImportType = ImportType.UNKNOWN
+    origin_country: str = "UNKNOWN"
+    price_note: str = ""
     aliases: tuple[str, ...] = ()
     overrides: dict[str, Any] = field(default_factory=dict)
 
@@ -156,9 +185,11 @@ class Variant:
             "variant": self.name,
             "powertrain": self.powertrain,
             "drivetrain": self.drivetrain,
+            "price_thb": self.price_thb,
+            "market_position": market_position_for_price(self.price_thb),
+            "import_type": self.import_type,
+            "origin_country": normalize_country(self.origin_country),
         }
-        if self.cab_type is not CabType.NOT_APPLICABLE:
-            out["cab_type"] = self.cab_type
         if self.engine_cc:
             out["engine_cc"] = self.engine_cc
         if self.battery_kwh:
@@ -167,48 +198,15 @@ class Variant:
         return out
 
     def validate(self) -> list[str]:
-        return [f"variant {self.id}: {p}"
-                for p in check_powertrain(self.powertrain, self.battery_kwh,
-                                          self.engine_cc)]
-
-
-@dataclass(frozen=True, slots=True)
-class VariantPeriod:
-    """Dated commercial facts for one trim. Half-open interval [start, end)."""
-
-    variant_id: str
-    start: str                                # ISO date, inclusive
-    end: Optional[str] = None                 # ISO date, exclusive; None = current
-    price_thb: Optional[float] = None
-    import_type: ImportType = ImportType.UNKNOWN
-    origin_country: str = "UNKNOWN"
-    model_year: Optional[int] = None
-    price_note: str = ""
-    overrides: dict[str, Any] = field(default_factory=dict)
-
-    def covers(self, when: str) -> bool:
-        if when < self.start:
-            return False
-        return self.end is None or when < self.end
-
-    def facets(self) -> dict[str, Any]:
-        out: dict[str, Any] = {
-            "price_thb": self.price_thb,
-            "market_position": market_position_for_price(self.price_thb),
-            "import_type": self.import_type,
-            "origin_country": normalize_country(self.origin_country),
-        }
-        if self.model_year:
-            out["model_year"] = self.model_year
-        out.update(self.overrides)
-        return out
-
-    def validate(self) -> list[str]:
-        problems = [f"period {self.variant_id}@{self.start}: {p}"
-                    for p in check_origin(self.import_type, self.origin_country)]
-        if self.end is not None and self.end <= self.start:
-            problems.append(f"period {self.variant_id}@{self.start}: end <= start")
-        return problems
+        problems = check_powertrain(self.powertrain, self.battery_kwh,
+                                    self.engine_cc)
+        problems += check_origin(self.import_type, self.origin_country)
+        locked = LOCKED_AT_MODEL & set(self.overrides)
+        if locked:
+            problems.append(
+                f"cannot override {', '.join(sorted(locked))} on a variant - "
+                "a nameplate sold in two bodies is two models")
+        return [f"variant {self.id}: {p}" for p in problems]
 
 
 @dataclass(frozen=True, slots=True)
@@ -216,7 +214,7 @@ class ResolvedVehicle:
     """One fully cross-classified row: every facet plus where it came from."""
 
     variant_id: str
-    as_of: str
+    year: int
     facets: dict[str, Any]
     provenance: dict[str, str]
 
@@ -231,13 +229,13 @@ class ResolvedVehicle:
         for key, value in self.facets.items():
             row[key] = value.value if hasattr(value, "value") else value
         row["variant_id"] = self.variant_id
-        row["as_of"] = self.as_of
+        row["year"] = self.year
         return row
 
 
 def resolve(brand: Brand, model: Model, generation: Generation, variant: Variant,
-            period: Optional[VariantPeriod], as_of: str) -> ResolvedVehicle:
-    """Collapse the five layers into one classified row.
+            year: int) -> ResolvedVehicle:
+    """Collapse the four layers into one classified row for ``year``.
 
     The first layer in ``RESOLUTION_CHAIN`` that asserts a facet wins. Values
     that are ``None``/``""``/``UNKNOWN`` do not count as asserted, so a lower
@@ -245,8 +243,8 @@ def resolve(brand: Brand, model: Model, generation: Generation, variant: Variant
     erasing it.
     """
     layers = {
-        "period": period.facets() if period else {},
-        "variant": variant.facets(),
+        "variant": {k: v for k, v in variant.facets().items()
+                    if k not in LOCKED_AT_MODEL},
         "generation": generation.facets(),
         "model": model.facets(),
         "brand": brand.facets(),
@@ -275,28 +273,25 @@ def resolve(brand: Brand, model: Model, generation: Generation, variant: Variant
     facets.setdefault("import_type", ImportType.UNKNOWN)
     facets.setdefault("origin_country", "UNKNOWN")
     facets["is_locally_assembled"] = is_locally_assembled(
-        facets["import_type"], facets["origin_country"]
-    )
+        facets["import_type"], facets["origin_country"])
     for derived in ("powertrain_group", "is_electrified", "is_plug_in",
                     "is_locally_assembled"):
         provenance[derived] = "derived"
 
-    return ResolvedVehicle(variant.id, as_of, facets, provenance)
+    return ResolvedVehicle(variant.id, year, facets, provenance)
 
 
 def cross_check(resolved: ResolvedVehicle) -> list[str]:
     """Rules that only make sense once the layers are combined."""
     f = resolved.facets
     body = BodyType.parse(f["body_type"])
-    reg = RegistrationType.parse(f["registration_type"])
-    problems = check_body_segment(body, f["cab_type"], f["segment"])
+    cab = CabType.parse(f["cab_type"])
+    problems = check_body_segment(body, cab, f["segment"])
     problems += check_powertrain(f.get("powertrain", Powertrain.UNKNOWN),
                                  f.get("battery_kwh"), f.get("engine_cc"))
     problems += check_origin(f["import_type"], f["origin_country"])
-    if body is BodyType.PICKUP and reg not in {RegistrationType.RY3,
-                                               RegistrationType.OTHER}:
-        problems.append(f"pickup is normally registered รย.3, not {reg.value}")
-    return [f"{resolved.variant_id}@{resolved.as_of}: {p}" for p in problems]
+    problems += check_registration(body, cab, f["registration_type"])
+    return [f"{resolved.variant_id}@{resolved.year}: {p}" for p in problems]
 
 
 def to_jsonable(obj: Any) -> Any:

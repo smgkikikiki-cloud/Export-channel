@@ -17,7 +17,7 @@
       "name_th": "อีเอส",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "es300h"
       ],
@@ -36,20 +36,12 @@
               "drivetrain": "FWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2018-01-01",
-                  "end": null,
-                  "price_thb": 3690000,
-                  "import_type": "CBU",
-                  "origin_country": "JP",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3690000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -61,7 +53,7 @@
       "name_th": "เอ็นเอ็กซ์",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "nx350h",
         "nx450h"
@@ -81,20 +73,12 @@
               "drivetrain": "AWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2022-01-01",
-                  "end": null,
-                  "price_thb": 3690000,
-                  "import_type": "CBU",
-                  "origin_country": "JP",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 3690000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -106,7 +90,7 @@
       "name_th": "อาร์เอ็กซ์",
       "body_type": "CROSSOVER",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "rx350h"
       ],
@@ -125,20 +109,12 @@
               "drivetrain": "AWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2023-01-01",
-                  "end": null,
-                  "price_thb": 4790000,
-                  "import_type": "CBU",
-                  "origin_country": "JP",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 4790000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
             }
           ]
         }
@@ -150,7 +126,7 @@
       "name_th": "แอลเอ็ม",
       "body_type": "MPV",
       "cab_type": "NOT_APPLICABLE",
-      "registration_type": "RY1",
+      "registration_type": "",
       "aliases": [
         "lm350h",
         "lm500h"
@@ -170,20 +146,12 @@
               "drivetrain": "FWD",
               "engine_cc": 2487,
               "battery_kwh": 1.0,
-              "cab_type": "NOT_APPLICABLE",
               "aliases": [],
               "overrides": {},
-              "periods": [
-                {
-                  "start": "2024-01-01",
-                  "end": null,
-                  "price_thb": 7990000,
-                  "import_type": "CBU",
-                  "origin_country": "JP",
-                  "model_year": null,
-                  "price_note": "seed-unverified"
-                }
-              ]
+              "price_thb": 7990000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified"
             }
           ]
         }

@@ -77,32 +77,48 @@ class MatchIndex:
     """
 
     def __init__(self) -> None:
-        self._exact: dict[str, str] = {}
-        self._candidates: list[tuple[str, str]] = []   # (folded surface, key)
+        # One surface can belong to several keys - "Hilux Revo" is a legitimate
+        # name for three cab models - so this maps to a list, and a surface with
+        # more than one owner is an ambiguity rather than a first-wins match.
+        # ``priority`` breaks the tie only when one owner holds the surface as
+        # its real name and the others merely as an alias: "City" is the City
+        # sedan's name and only a derived alias of City Hatchback, so the sedan
+        # wins, while "Hilux Revo" is an alias for every cab and stays ambiguous.
+        self._exact: dict[str, dict[str, int]] = {}
+        self._candidates: list[tuple[str, str, int]] = []
 
-    def add(self, key: str, surfaces: Iterable[str]) -> None:
+    def add(self, key: str, surfaces: Iterable[str], priority: int = 0) -> None:
         for surface in surfaces:
             folded = fold(surface)
             if not folded:
                 continue
-            self._exact.setdefault(folded, key)
-            self._candidates.append((folded, key))
+            owners = self._exact.setdefault(folded, {})
+            owners[key] = max(owners.get(key, priority), priority)
+            self._candidates.append((folded, key, priority))
+
+    @staticmethod
+    def _top(owners: dict[str, int]) -> list[str]:
+        best = max(owners.values())
+        return sorted(k for k, v in owners.items() if v == best)
 
     def _contains(self, raw_tokens: list[str]) -> tuple[Optional[str], int, bool]:
-        best_key, best_len, tied = None, 0, False
-        for surface, key in self._candidates:
+        best_len = 0
+        owners: dict[str, int] = {}
+        for surface, key, priority in self._candidates:
             st = surface.split()
             if not st or len(st) > len(raw_tokens):
                 continue
-            hit = any(raw_tokens[i:i + len(st)] == st
-                      for i in range(len(raw_tokens) - len(st) + 1))
-            if not hit:
+            if not any(raw_tokens[i:i + len(st)] == st
+                       for i in range(len(raw_tokens) - len(st) + 1)):
                 continue
             if len(st) > best_len:
-                best_key, best_len, tied = key, len(st), False
-            elif len(st) == best_len and key != best_key:
-                tied = True
-        return best_key, best_len, tied
+                best_len, owners = len(st), {key: priority}
+            elif len(st) == best_len:
+                owners[key] = max(owners.get(key, priority), priority)
+        if not owners:
+            return None, 0, False
+        top = self._top(owners)
+        return top[0], best_len, len(top) > 1
 
     def lookup(self, raw: str, floor: float = MATCH_FLOOR
                ) -> tuple[Optional[str], float, str]:
@@ -110,8 +126,12 @@ class MatchIndex:
         folded = fold(raw)
         if not folded:
             return None, 0.0, "none"
-        if folded in self._exact:
-            return self._exact[folded], 1.0, "exact"
+        owners = self._exact.get(folded)
+        if owners:
+            top = self._top(owners)
+            if len(top) > 1:
+                return None, 0.0, "ambiguous"
+            return top[0], 1.0, "exact"
 
         key, hit_len, tied = self._contains(folded.split())
         if tied:
@@ -121,7 +141,7 @@ class MatchIndex:
             return key, min(0.99, 0.90 + 0.03 * hit_len), "contains"
 
         best_key, best_score = None, 0.0
-        for surface, candidate in self._candidates:
+        for surface, candidate, _priority in self._candidates:
             score = similarity(folded, surface)
             if score > best_score:
                 best_key, best_score = candidate, score
@@ -129,8 +149,32 @@ class MatchIndex:
             return best_key, best_score, "fuzzy"
         return None, best_score, "none"
 
+    def ambiguous_candidates(self, raw: str) -> list[str]:
+        """Keys that tie for the longest whole-token match inside ``raw``."""
+        folded = fold(raw)
+        owners = self._exact.get(folded)
+        if owners:
+            top = self._top(owners)
+            if len(top) > 1:
+                return top
+        raw_tokens = folded.split()
+        best_len = 0
+        hits: dict[str, int] = {}
+        for surface, key, priority in self._candidates:
+            st = surface.split()
+            if not st or len(st) > len(raw_tokens):
+                continue
+            if not any(raw_tokens[i:i + len(st)] == st
+                       for i in range(len(raw_tokens) - len(st) + 1)):
+                continue
+            if len(st) > best_len:
+                best_len, hits = len(st), {key: priority}
+            elif len(st) == best_len:
+                hits[key] = max(hits.get(key, priority), priority)
+        return self._top(hits) if hits else []
+
     def keys(self) -> set[str]:
-        return {key for _, key in self._candidates}
+        return {key for _, key, _p in self._candidates}
 
     def __len__(self) -> int:
         return len(self._candidates)
