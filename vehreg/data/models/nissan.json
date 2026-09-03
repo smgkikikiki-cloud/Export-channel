@@ -1,0 +1,212 @@
+{
+  "brand": {
+    "id": "nissan",
+    "name_en": "Nissan",
+    "name_th": "นิสสัน",
+    "brand_segment": "MASS",
+    "oem_group": "Nissan",
+    "brand_origin": "JP",
+    "aliases": [
+      "นิสสัน"
+    ]
+  },
+  "models": [
+    {
+      "id": "almera",
+      "name_en": "Almera",
+      "name_th": "อัลเมร่า",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "อัลเมร่า"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "N18",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2019-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.0 Turbo VL",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 999,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-11-01",
+                  "end": null,
+                  "price_thb": 679000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kicks",
+      "name_en": "Kicks e-Power",
+      "name_th": "คิกส์ อี-พาวเวอร์",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "kicks",
+        "คิกส์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "P15",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2020-05-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "e-Power VL",
+              "powertrain": "REEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1198,
+              "battery_kwh": 2.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2020-05-01",
+                  "end": null,
+                  "price_thb": 1029000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "navara",
+      "name_en": "Navara",
+      "name_th": "นาวาร่า",
+      "body_type": "PICKUP",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY3",
+      "aliases": [
+        "นาวาร่า",
+        "np300"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "D23",
+          "segment": "F",
+          "seats": 5,
+          "launched": "2021-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5 S Single Cab",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2488,
+              "battery_kwh": null,
+              "cab_type": "SINGLE_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-01-01",
+                  "end": null,
+                  "price_thb": 569000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "2.5 Pro-4X Double Cab",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2488,
+              "battery_kwh": null,
+              "cab_type": "DOUBLE_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-01-01",
+                  "end": null,
+                  "price_thb": 1199000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "terra",
+      "name_en": "Terra",
+      "name_th": "เทอร์ร่า",
+      "body_type": "PPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "D23T",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2018-10-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.3 VL 4WD",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2298,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-10-01",
+                  "end": null,
+                  "price_thb": 1599000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

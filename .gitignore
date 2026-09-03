@@ -1,0 +1,9 @@
+# Narration Desk local work (never commit audio, caches or keys)
+work/
+
+# vehreg warehouse: rebuildable from the catalog + raw sources
+data/*.sqlite3
+data/*.sqlite3-journal
+
+__pycache__/
+*.pyc

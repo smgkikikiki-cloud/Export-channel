@@ -1,0 +1,307 @@
+{
+  "brand": {
+    "id": "gwm",
+    "name_en": "GWM",
+    "name_th": "จีดับเบิลยูเอ็ม",
+    "brand_segment": "MASS",
+    "oem_group": "Great Wall Motor",
+    "brand_origin": "CN",
+    "aliases": [
+      "great wall",
+      "great wall motor",
+      "เกรทวอลล์",
+      "haval",
+      "ora",
+      "tank"
+    ]
+  },
+  "models": [
+    {
+      "id": "haval_h6",
+      "name_en": "Haval H6",
+      "name_th": "ฮาวาล เอช6",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "h6",
+        "haval h6"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "H6HEV",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2021-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "HEV Ultra",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1497,
+              "battery_kwh": 1.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-06-01",
+                  "end": null,
+                  "price_thb": 1199000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "PHEV Ultra",
+              "powertrain": "PHEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1497,
+              "battery_kwh": 34.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-06-01",
+                  "end": null,
+                  "price_thb": 1449000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "haval_jolion",
+      "name_en": "Haval Jolion",
+      "name_th": "ฮาวาล โจเลี่ยน",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "jolion"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "JOL",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2021-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "HEV Ultra",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1497,
+              "battery_kwh": 1.7,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-11-01",
+                  "end": null,
+                  "price_thb": 879000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ora_good_cat",
+      "name_en": "Ora Good Cat",
+      "name_th": "โอร่า กู๊ดแคท",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "good cat",
+        "ora"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "GC",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2021-02-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "500 Ultra",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 63.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-02-01",
+                  "end": null,
+                  "price_thb": 899000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ora_03",
+      "name_en": "Ora 03",
+      "name_th": "โอร่า 03",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ora 03"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "O03",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "500 Ultra",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 63.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-01-01",
+                  "end": null,
+                  "price_thb": 829000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tank300",
+      "name_en": "Tank 300",
+      "name_th": "แทงค์ 300",
+      "body_type": "PPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "tank 300"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "T300",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2023-03-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "HEV Ultra 4WD",
+              "powertrain": "HEV",
+              "drivetrain": "4WD",
+              "engine_cc": 1998,
+              "battery_kwh": 1.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-03-01",
+                  "end": null,
+                  "price_thb": 1749000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tank500",
+      "name_en": "Tank 500",
+      "name_th": "แทงค์ 500",
+      "body_type": "PPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "tank 500"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "T500",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2024-03-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "HEV Ultra 4WD",
+              "powertrain": "HEV",
+              "drivetrain": "4WD",
+              "engine_cc": 1998,
+              "battery_kwh": 1.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-03-01",
+                  "end": null,
+                  "price_thb": 2999000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "brand": {
+    "id": "mini",
+    "name_en": "MINI",
+    "name_th": "มินิ",
+    "brand_segment": "PREMIUM_LUXURY",
+    "oem_group": "BMW Group",
+    "brand_origin": "GB",
+    "aliases": [
+      "มินิ"
+    ]
+  },
+  "models": [
+    {
+      "id": "mini_cooper",
+      "name_en": "Cooper",
+      "name_th": "คูเปอร์",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "mini cooper"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "J01",
+          "segment": "B",
+          "seats": 4,
+          "launched": "2024-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Cooper SE",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 54.2,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-06-01",
+                  "end": null,
+                  "price_thb": 2299000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "countryman",
+      "name_en": "Countryman",
+      "name_th": "คันทรีแมน",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "U25",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2024-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Countryman E",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 66.5,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-06-01",
+                  "end": null,
+                  "price_thb": 2799000,
+                  "import_type": "CBU",
+                  "origin_country": "DE",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

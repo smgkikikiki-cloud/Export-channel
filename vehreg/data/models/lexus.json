@@ -1,0 +1,193 @@
+{
+  "brand": {
+    "id": "lexus",
+    "name_en": "Lexus",
+    "name_th": "เล็กซัส",
+    "brand_segment": "PREMIUM_LUXURY",
+    "oem_group": "Toyota Group",
+    "brand_origin": "JP",
+    "aliases": [
+      "เล็กซัส"
+    ]
+  },
+  "models": [
+    {
+      "id": "lexus_es",
+      "name_en": "ES",
+      "name_th": "อีเอส",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "es300h"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XZ10",
+          "segment": "E",
+          "seats": 5,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "ES300h Grand Luxury",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-01-01",
+                  "end": null,
+                  "price_thb": 3690000,
+                  "import_type": "CBU",
+                  "origin_country": "JP",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lexus_nx",
+      "name_en": "NX",
+      "name_th": "เอ็นเอ็กซ์",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "nx350h",
+        "nx450h"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AZ20",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "NX350h Premium",
+              "powertrain": "HEV",
+              "drivetrain": "AWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-01-01",
+                  "end": null,
+                  "price_thb": 3690000,
+                  "import_type": "CBU",
+                  "origin_country": "JP",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lexus_rx",
+      "name_en": "RX",
+      "name_th": "อาร์เอ็กซ์",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "rx350h"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AL30",
+          "segment": "E",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "RX350h Premium",
+              "powertrain": "HEV",
+              "drivetrain": "AWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-01-01",
+                  "end": null,
+                  "price_thb": 4790000,
+                  "import_type": "CBU",
+                  "origin_country": "JP",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lexus_lm",
+      "name_en": "LM",
+      "name_th": "แอลเอ็ม",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "lm350h",
+        "lm500h"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AH40L",
+          "segment": "E",
+          "seats": 4,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "LM350h Executive",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-01-01",
+                  "end": null,
+                  "price_thb": 7990000,
+                  "import_type": "CBU",
+                  "origin_country": "JP",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

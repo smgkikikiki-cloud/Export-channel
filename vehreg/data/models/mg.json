@@ -1,0 +1,524 @@
+{
+  "brand": {
+    "id": "mg",
+    "name_en": "MG",
+    "name_th": "เอ็มจี",
+    "brand_segment": "MASS",
+    "oem_group": "SAIC",
+    "brand_origin": "CN",
+    "aliases": [
+      "เอ็มจี",
+      "mg sales thailand",
+      "morris garages"
+    ]
+  },
+  "models": [
+    {
+      "id": "mg3",
+      "name_en": "MG3",
+      "name_th": "เอ็มจี3",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "mg 3"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MG3H",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-07-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 HEV+",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": 1.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-07-01",
+                  "end": null,
+                  "price_thb": 789000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg4",
+      "name_en": "MG4 Electric",
+      "name_th": "เอ็มจี4",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "mg4",
+        "mg 4"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MG4E",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2022-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "D 51kWh",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 51.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-11-01",
+                  "end": null,
+                  "price_thb": 769000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "X 64kWh",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 64.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-11-01",
+                  "end": null,
+                  "price_thb": 969000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg5",
+      "name_en": "MG5",
+      "name_th": "เอ็มจี5",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "mg 5"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MG5G",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2021-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 X",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-01-01",
+                  "end": null,
+                  "price_thb": 679000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_zs",
+      "name_en": "MG ZS",
+      "name_th": "เอ็มจี แซดเอส",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "zs"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "ZSG",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 X",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-01-01",
+                  "end": null,
+                  "price_thb": 689000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_zs_ev",
+      "name_en": "MG ZS EV",
+      "name_th": "เอ็มจี แซดเอส อีวี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "zs ev",
+        "new zs ev"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "ZSEV",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2019-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Long Range",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 51.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-06-01",
+                  "end": null,
+                  "price_thb": 949000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_hs",
+      "name_en": "MG HS",
+      "name_th": "เอ็มจี เอชเอส",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "hs"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "HSG",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 Turbo X",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1490,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-01-01",
+                  "end": null,
+                  "price_thb": 999000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "PHEV X",
+              "powertrain": "PHEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1490,
+              "battery_kwh": 16.6,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-01-01",
+                  "end": null,
+                  "price_thb": 1359000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_vs_hev",
+      "name_en": "MG VS HEV",
+      "name_th": "เอ็มจี วีเอส เอชอีวี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "vs hev"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "VSH",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2023-08-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "HEV D",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": 1.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-08-01",
+                  "end": null,
+                  "price_thb": 899000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_extender",
+      "name_en": "MG Extender",
+      "name_th": "เอ็มจี เอ็กซ์เทนเดอร์",
+      "body_type": "PICKUP",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY3",
+      "aliases": [
+        "extender"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "EXT",
+          "segment": "F",
+          "seats": 5,
+          "launched": "2019-10-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0 Grand Tiger Double Cab",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1996,
+              "battery_kwh": null,
+              "cab_type": "DOUBLE_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-10-01",
+                  "end": null,
+                  "price_thb": 799000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "2.0 Giant Cab",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1996,
+              "battery_kwh": null,
+              "cab_type": "SMART_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-10-01",
+                  "end": null,
+                  "price_thb": 649000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_maxus_9",
+      "name_en": "MG Maxus 9",
+      "name_th": "เอ็มจี แม็กซัส 9",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "maxus 9",
+        "mifa 9"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MIFA9",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2023-03-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Luxury",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 90.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-03-01",
+                  "end": null,
+                  "price_thb": 2599000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mg_es",
+      "name_en": "MG ES",
+      "name_th": "เอ็มจี อีเอส",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "es5",
+        "mg es5"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "ES5",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2025-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Long Range",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 62.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2025-01-01",
+                  "end": null,
+                  "price_thb": 999000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

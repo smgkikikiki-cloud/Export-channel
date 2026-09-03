@@ -1,0 +1,105 @@
+{
+  "brand": {
+    "id": "neta",
+    "name_en": "Neta",
+    "name_th": "เนต้า",
+    "brand_segment": "BUDGET",
+    "oem_group": "Hozon",
+    "brand_origin": "CN",
+    "aliases": [
+      "เนต้า",
+      "hozon"
+    ]
+  },
+  "models": [
+    {
+      "id": "neta_v",
+      "name_en": "Neta V",
+      "name_th": "เนต้า วี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "neta v",
+        "v-ii"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "NV",
+          "segment": "A",
+          "seats": 5,
+          "launched": "2022-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Standard",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 40.7,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-11-01",
+                  "end": null,
+                  "price_thb": 549000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neta_x",
+      "name_en": "Neta X",
+      "name_th": "เนต้า เอ็กซ์",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "neta x"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "NX",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Smart",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 52.5,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-06-01",
+                  "end": null,
+                  "price_thb": 799000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

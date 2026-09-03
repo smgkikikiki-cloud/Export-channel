@@ -1,0 +1,234 @@
+{
+  "brand": {
+    "id": "mercedes_benz",
+    "name_en": "Mercedes-Benz",
+    "name_th": "เมอร์เซเดส-เบนซ์",
+    "brand_segment": "PREMIUM_LUXURY",
+    "oem_group": "Mercedes-Benz Group",
+    "brand_origin": "DE",
+    "aliases": [
+      "benz",
+      "เบนซ์",
+      "mercedes"
+    ]
+  },
+  "models": [
+    {
+      "id": "mb_c_class",
+      "name_en": "C-Class",
+      "name_th": "ซี-คลาส",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "c class",
+        "c220d",
+        "c350e"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "W206",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "C350e AMG Dynamic",
+              "powertrain": "PHEV",
+              "drivetrain": "RWD",
+              "engine_cc": 1999,
+              "battery_kwh": 25.4,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-01-01",
+                  "end": null,
+                  "price_thb": 3399000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mb_e_class",
+      "name_en": "E-Class",
+      "name_th": "อี-คลาส",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "e class",
+        "e220d"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "W214",
+          "segment": "E",
+          "seats": 5,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "E220d AMG Dynamic",
+              "powertrain": "MHEV",
+              "drivetrain": "RWD",
+              "engine_cc": 1993,
+              "battery_kwh": 0.9,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-01-01",
+                  "end": null,
+                  "price_thb": 4290000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mb_gla",
+      "name_en": "GLA",
+      "name_th": "จีแอลเอ",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "H247",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2020-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "GLA200 AMG Dynamic",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1332,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2020-01-01",
+                  "end": null,
+                  "price_thb": 2590000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mb_glc",
+      "name_en": "GLC",
+      "name_th": "จีแอลซี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "X254",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "GLC300e AMG Dynamic",
+              "powertrain": "PHEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1999,
+              "battery_kwh": 24.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-01-01",
+                  "end": null,
+                  "price_thb": 4290000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mb_eqs",
+      "name_en": "EQS",
+      "name_th": "อีคิวเอส",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "V297",
+          "segment": "E",
+          "seats": 5,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "EQS500 4Matic AMG",
+              "powertrain": "BEV",
+              "drivetrain": "AWD",
+              "engine_cc": null,
+              "battery_kwh": 107.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-01-01",
+                  "end": null,
+                  "price_thb": 8090000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

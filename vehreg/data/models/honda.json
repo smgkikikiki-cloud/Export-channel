@@ -1,0 +1,585 @@
+{
+  "brand": {
+    "id": "honda",
+    "name_en": "Honda",
+    "name_th": "ฮอนด้า",
+    "brand_segment": "MASS",
+    "oem_group": "Honda",
+    "brand_origin": "JP",
+    "aliases": [
+      "ฮอนด้า",
+      "honda automobile"
+    ]
+  },
+  "models": [
+    {
+      "id": "city",
+      "name_en": "City",
+      "name_th": "ซิตี้",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ซิตี้",
+        "city sedan"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "GN2",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2019-11-25",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.0 Turbo S+",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 988,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-11-25",
+                  "end": null,
+                  "price_thb": 609000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "1.0 Turbo SV",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 988,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-11-25",
+                  "end": null,
+                  "price_thb": 709000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "e:HEV SV",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": 0.7,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-11-25",
+                  "end": null,
+                  "price_thb": 839000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "e:HEV RS",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": 0.7,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-11-25",
+                  "end": null,
+                  "price_thb": 899000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "city_hatchback",
+      "name_en": "City Hatchback",
+      "name_th": "ซิตี้ แฮทช์แบ็ก",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "city hatchback",
+        "city hb"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "GN7",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2021-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.0 Turbo SV",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 988,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-01-01",
+                  "end": null,
+                  "price_thb": 749000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "e:HEV RS",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": 0.7,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-01-01",
+                  "end": null,
+                  "price_thb": 924000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "civic",
+      "name_en": "Civic",
+      "name_th": "ซีวิค",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ซีวิค"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "FE",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2021-08-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 Turbo EL+",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-08-01",
+                  "end": null,
+                  "price_thb": 1099000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "e:HEV RS",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1993,
+              "battery_kwh": 1.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-08-01",
+                  "end": null,
+                  "price_thb": 1299000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accord",
+      "name_en": "Accord",
+      "name_th": "แอคคอร์ด",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "CY",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2023-04-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "e:HEV EL",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1993,
+              "battery_kwh": 1.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-04-01",
+                  "end": null,
+                  "price_thb": 1749000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hrv",
+      "name_en": "HR-V",
+      "name_th": "เอชอาร์-วี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "hrv",
+        "hr v"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "RV",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "e:HEV E",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": 0.7,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-01-01",
+                  "end": null,
+                  "price_thb": 999000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "e:HEV RS",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": 0.7,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-01-01",
+                  "end": null,
+                  "price_thb": 1149000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crv",
+      "name_en": "CR-V",
+      "name_th": "ซีอาร์-วี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "crv",
+        "cr v"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "RS",
+          "segment": "C",
+          "seats": 7,
+          "launched": "2023-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0 e:HEV ES 4WD",
+              "powertrain": "HEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1993,
+              "battery_kwh": 1.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-11-01",
+                  "end": null,
+                  "price_thb": 1729000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "2.0 e:HEV RS",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1993,
+              "battery_kwh": 1.1,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-11-01",
+                  "end": null,
+                  "price_thb": 1599000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wrv",
+      "name_en": "WR-V",
+      "name_th": "ดับเบิลยูอาร์-วี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "wrv",
+        "wr v"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "DG",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2023-08-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 SV",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-08-01",
+                  "end": null,
+                  "price_thb": 799000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "1.5 RS",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-08-01",
+                  "end": null,
+                  "price_thb": 869000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brv",
+      "name_en": "BR-V",
+      "name_th": "บีอาร์-วี",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "brv",
+        "br v"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "DG3",
+          "segment": "B",
+          "seats": 7,
+          "launched": "2022-04-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 EL",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-04-01",
+                  "end": null,
+                  "price_thb": 973000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "en1",
+      "name_en": "e:N1",
+      "name_th": "อีเอ็น1",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "en1",
+        "e n1"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "EN1",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "e:N1",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 68.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-01-01",
+                  "end": null,
+                  "price_thb": 1249000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "brand": {
+    "id": "kia",
+    "name_en": "Kia",
+    "name_th": "เกีย",
+    "brand_segment": "MASS",
+    "oem_group": "Hyundai Motor Group",
+    "brand_origin": "KR",
+    "aliases": [
+      "เกีย"
+    ]
+  },
+  "models": [
+    {
+      "id": "carnival",
+      "name_en": "Carnival",
+      "name_th": "คาร์นิวัล",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY2",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "KA4",
+          "segment": "E",
+          "seats": 11,
+          "launched": "2021-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.2 D SXL",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 2151,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-06-01",
+                  "end": null,
+                  "price_thb": 2399000,
+                  "import_type": "CBU",
+                  "origin_country": "KR",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ev6",
+      "name_en": "EV6",
+      "name_th": "อีวี6",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ev 6"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "CV",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "GT-Line",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 77.4,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-01-01",
+                  "end": null,
+                  "price_thb": 2199000,
+                  "import_type": "CBU",
+                  "origin_country": "KR",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ev9",
+      "name_en": "EV9",
+      "name_th": "อีวี9",
+      "body_type": "SUV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ev 9"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MV",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "GT-Line AWD",
+              "powertrain": "BEV",
+              "drivetrain": "AWD",
+              "engine_cc": null,
+              "battery_kwh": 99.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-01-01",
+                  "end": null,
+                  "price_thb": 3490000,
+                  "import_type": "CBU",
+                  "origin_country": "KR",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

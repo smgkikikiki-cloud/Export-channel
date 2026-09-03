@@ -1,0 +1,149 @@
+{
+  "brand": {
+    "id": "aion",
+    "name_en": "Aion",
+    "name_th": "ไอออน",
+    "brand_segment": "MASS",
+    "oem_group": "GAC",
+    "brand_origin": "CN",
+    "aliases": [
+      "gac aion",
+      "ไอออน"
+    ]
+  },
+  "models": [
+    {
+      "id": "aion_y_plus",
+      "name_en": "Aion Y Plus",
+      "name_th": "ไอออน วาย พลัส",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "aion y",
+        "y plus"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AYP",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2023-07-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Premium 490",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 63.2,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-07-01",
+                  "end": null,
+                  "price_thb": 949000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aion_es",
+      "name_en": "Aion ES",
+      "name_th": "ไอออน อีเอส",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "aion es"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AES",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2024-04-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Standard",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 55.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-04-01",
+                  "end": null,
+                  "price_thb": 699000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aion_v",
+      "name_en": "Aion V",
+      "name_th": "ไอออน วี",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "aion v"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AV",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2025-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Luxury",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 75.3,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2025-01-01",
+                  "end": null,
+                  "price_thb": 1199000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

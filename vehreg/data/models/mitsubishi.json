@@ -1,0 +1,427 @@
+{
+  "brand": {
+    "id": "mitsubishi",
+    "name_en": "Mitsubishi",
+    "name_th": "มิตซูบิชิ",
+    "brand_segment": "MASS",
+    "oem_group": "Mitsubishi Motors",
+    "brand_origin": "JP",
+    "aliases": [
+      "มิตซูบิชิ",
+      "mitsubishi motors"
+    ]
+  },
+  "models": [
+    {
+      "id": "triton",
+      "name_en": "Triton",
+      "name_th": "ไทรทัน",
+      "body_type": "PICKUP",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY3",
+      "aliases": [
+        "ไทรทัน",
+        "triton athlete"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "MV",
+          "segment": "F",
+          "seats": 5,
+          "launched": "2023-07-26",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 GL Single Cab",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "cab_type": "SINGLE_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-07-26",
+                  "end": null,
+                  "price_thb": 569000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "2.4 GLX Club Cab",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "cab_type": "SMART_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-07-26",
+                  "end": null,
+                  "price_thb": 719000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "2.4 Athlete Double Cab",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "cab_type": "DOUBLE_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-07-26",
+                  "end": null,
+                  "price_thb": 999000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "2.4 Ultimate 4WD Double Cab",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "cab_type": "DOUBLE_CAB",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-07-26",
+                  "end": null,
+                  "price_thb": 1249000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pajero_sport",
+      "name_en": "Pajero Sport",
+      "name_th": "ปาเจโร สปอร์ต",
+      "body_type": "PPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "pajero",
+        "ปาเจโร"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "QF",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2019-07-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4 GT",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-07-01",
+                  "end": null,
+                  "price_thb": 1399000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "2.4 GT Premium 4WD",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 2442,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-07-01",
+                  "end": null,
+                  "price_thb": 1729000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xpander",
+      "name_en": "Xpander",
+      "name_th": "เอ็กซ์แพนเดอร์",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "เอ็กซ์แพนเดอร์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "A1",
+          "segment": "B",
+          "seats": 7,
+          "launched": "2018-08-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 GT",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1499,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-08-01",
+                  "end": null,
+                  "price_thb": 899000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            },
+            {
+              "name": "1.6 HEV GT",
+              "powertrain": "HEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1600,
+              "battery_kwh": 0.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-08-01",
+                  "end": null,
+                  "price_thb": 1099000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xpander_cross",
+      "name_en": "Xpander Cross",
+      "name_th": "เอ็กซ์แพนเดอร์ ครอส",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "A1C",
+          "segment": "B",
+          "seats": 7,
+          "launched": "2020-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 GT",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1499,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2020-01-01",
+                  "end": null,
+                  "price_thb": 949000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "attrage",
+      "name_en": "Attrage",
+      "name_th": "แอททราจ",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "แอททราจ"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "A10",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2019-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.2 GLS",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1193,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-11-01",
+                  "end": null,
+                  "price_thb": 559000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mirage",
+      "name_en": "Mirage",
+      "name_th": "มิราจ",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "มิราจ"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "A05",
+          "segment": "A",
+          "seats": 5,
+          "launched": "2019-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.2 GLS",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1193,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-11-01",
+                  "end": null,
+                  "price_thb": 519000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xforce",
+      "name_en": "Xforce",
+      "name_th": "เอ็กซ์ฟอร์ซ",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XF",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 Ultimate",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1499,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-01-01",
+                  "end": null,
+                  "price_thb": 949000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

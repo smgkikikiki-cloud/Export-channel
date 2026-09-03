@@ -1,0 +1,315 @@
+{
+  "brand": {
+    "id": "suzuki",
+    "name_en": "Suzuki",
+    "name_th": "ซูซูกิ",
+    "brand_segment": "BUDGET",
+    "oem_group": "Suzuki",
+    "brand_origin": "JP",
+    "aliases": [
+      "ซูซูกิ"
+    ]
+  },
+  "models": [
+    {
+      "id": "swift",
+      "name_en": "Swift",
+      "name_th": "สวิฟท์",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "สวิฟท์"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "AZ",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2018-03-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.2 GLX",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-03-01",
+                  "end": null,
+                  "price_thb": 599000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ciaz",
+      "name_en": "Ciaz",
+      "name_th": "เซียส",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "YL1",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2016-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.2 GLX",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1197,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2016-01-01",
+                  "end": null,
+                  "price_thb": 675000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "celerio",
+      "name_en": "Celerio",
+      "name_th": "เซเลริโอ",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "LF",
+          "segment": "A",
+          "seats": 5,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.0 GL",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 998,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-01-01",
+                  "end": null,
+                  "price_thb": 399000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ertiga",
+      "name_en": "Ertiga",
+      "name_th": "เออร์ติก้า",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XL6",
+          "segment": "B",
+          "seats": 7,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 GX",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1462,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-01-01",
+                  "end": null,
+                  "price_thb": 715000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xl7",
+      "name_en": "XL7",
+      "name_th": "เอ็กซ์แอล7",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "xl 7"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XL7G",
+          "segment": "B",
+          "seats": 7,
+          "launched": "2020-02-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 GLX",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1462,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2020-02-01",
+                  "end": null,
+                  "price_thb": 799000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jimny",
+      "name_en": "Jimny",
+      "name_th": "จิมนี่",
+      "body_type": "SUV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "จิมนี่"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "JB74",
+          "segment": "A",
+          "seats": 4,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 4WD",
+              "powertrain": "ICE",
+              "drivetrain": "4WD",
+              "engine_cc": 1462,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-01-01",
+                  "end": null,
+                  "price_thb": 1550000,
+                  "import_type": "CBU",
+                  "origin_country": "JP",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fronx",
+      "name_en": "Fronx",
+      "name_th": "ฟรอนซ์",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "FRX",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 GLX",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1462,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-06-01",
+                  "end": null,
+                  "price_thb": 659000,
+                  "import_type": "CBU",
+                  "origin_country": "IN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "brand": {
+    "id": "audi",
+    "name_en": "Audi",
+    "name_th": "เอาดี้",
+    "brand_segment": "PREMIUM_LUXURY",
+    "oem_group": "Volkswagen Group",
+    "brand_origin": "DE",
+    "aliases": [
+      "เอาดี้"
+    ]
+  },
+  "models": [
+    {
+      "id": "audi_q3",
+      "name_en": "Q3",
+      "name_th": "คิว3",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "q 3"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "F3",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "35 TFSI S line",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1498,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-01-01",
+                  "end": null,
+                  "price_thb": 2799000,
+                  "import_type": "CBU",
+                  "origin_country": "DE",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audi_q5",
+      "name_en": "Q5",
+      "name_th": "คิว5",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "q 5"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "FY",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "45 TFSI quattro S line",
+              "powertrain": "MHEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1984,
+              "battery_kwh": 0.5,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-01-01",
+                  "end": null,
+                  "price_thb": 3999000,
+                  "import_type": "CBU",
+                  "origin_country": "DE",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

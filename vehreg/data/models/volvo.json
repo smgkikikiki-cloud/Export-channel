@@ -1,0 +1,192 @@
+{
+  "brand": {
+    "id": "volvo",
+    "name_en": "Volvo",
+    "name_th": "วอลโว่",
+    "brand_segment": "PREMIUM_LUXURY",
+    "oem_group": "Geely",
+    "brand_origin": "SE",
+    "aliases": [
+      "วอลโว่"
+    ]
+  },
+  "models": [
+    {
+      "id": "xc40",
+      "name_en": "XC40",
+      "name_th": "เอ็กซ์ซี40",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "xc 40",
+        "xc40 recharge"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XC40G",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Recharge Pure Electric",
+              "powertrain": "BEV",
+              "drivetrain": "AWD",
+              "engine_cc": null,
+              "battery_kwh": 78.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-01-01",
+                  "end": null,
+                  "price_thb": 2590000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xc60",
+      "name_en": "XC60",
+      "name_th": "เอ็กซ์ซี60",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "xc 60"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XC60G",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "T8 Recharge Ultimate",
+              "powertrain": "PHEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1969,
+              "battery_kwh": 18.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2018-01-01",
+                  "end": null,
+                  "price_thb": 3390000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xc90",
+      "name_en": "XC90",
+      "name_th": "เอ็กซ์ซี90",
+      "body_type": "SUV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "xc 90"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "XC90G",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2016-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "T8 Recharge Ultimate",
+              "powertrain": "PHEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1969,
+              "battery_kwh": 18.8,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2016-01-01",
+                  "end": null,
+                  "price_thb": 4990000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex30",
+      "name_en": "EX30",
+      "name_th": "อีเอ็กซ์30",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ex 30"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "EX30G",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-05-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Ultra Single Motor",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 69.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-05-01",
+                  "end": null,
+                  "price_thb": 1590000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

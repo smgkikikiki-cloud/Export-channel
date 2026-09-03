@@ -1,0 +1,229 @@
+{
+  "brand": {
+    "id": "hyundai",
+    "name_en": "Hyundai",
+    "name_th": "ฮุนได",
+    "brand_segment": "MASS",
+    "oem_group": "Hyundai Motor Group",
+    "brand_origin": "KR",
+    "aliases": [
+      "ฮุนได"
+    ]
+  },
+  "models": [
+    {
+      "id": "creta",
+      "name_en": "Creta",
+      "name_th": "เครต้า",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "SU2",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 SEL",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1497,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-01-01",
+                  "end": null,
+                  "price_thb": 999000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stargazer",
+      "name_en": "Stargazer",
+      "name_th": "สตาร์เกเซอร์",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "KS",
+          "segment": "B",
+          "seats": 7,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5 Smart",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1497,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-01-01",
+                  "end": null,
+                  "price_thb": 799000,
+                  "import_type": "CBU",
+                  "origin_country": "ID",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ioniq5",
+      "name_en": "Ioniq 5",
+      "name_th": "ไอออนิค 5",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ioniq 5"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "NE",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2022-03-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Exclusive",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 72.6,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-03-01",
+                  "end": null,
+                  "price_thb": 1849000,
+                  "import_type": "CBU",
+                  "origin_country": "KR",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ioniq6",
+      "name_en": "Ioniq 6",
+      "name_th": "ไอออนิค 6",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ioniq 6"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "CE",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2023-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Exclusive",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 77.4,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-06-01",
+                  "end": null,
+                  "price_thb": 2299000,
+                  "import_type": "CBU",
+                  "origin_country": "KR",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "staria",
+      "name_en": "Staria",
+      "name_th": "สตาเรีย",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY2",
+      "aliases": [],
+      "notes": "",
+      "generations": [
+        {
+          "code": "US4",
+          "segment": "E",
+          "seats": 11,
+          "launched": "2021-10-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.2 D Premium",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 2199,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-10-01",
+                  "end": null,
+                  "price_thb": 1899000,
+                  "import_type": "CBU",
+                  "origin_country": "KR",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "brand": {
+    "id": "bmw",
+    "name_en": "BMW",
+    "name_th": "บีเอ็มดับเบิลยู",
+    "brand_segment": "PREMIUM_LUXURY",
+    "oem_group": "BMW Group",
+    "brand_origin": "DE",
+    "aliases": [
+      "บีเอ็มดับเบิลยู",
+      "bmw thailand"
+    ]
+  },
+  "models": [
+    {
+      "id": "bmw_3",
+      "name_en": "3 Series",
+      "name_th": "ซีรีส์ 3",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "320d",
+        "330e",
+        "series 3"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "G20",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "330e M Sport",
+              "powertrain": "PHEV",
+              "drivetrain": "RWD",
+              "engine_cc": 1998,
+              "battery_kwh": 12.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2019-01-01",
+                  "end": null,
+                  "price_thb": 2799000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bmw_5",
+      "name_en": "5 Series",
+      "name_th": "ซีรีส์ 5",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "530e",
+        "series 5"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "G60",
+          "segment": "E",
+          "seats": 5,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "530e M Sport",
+              "powertrain": "PHEV",
+              "drivetrain": "RWD",
+              "engine_cc": 1998,
+              "battery_kwh": 19.4,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-01-01",
+                  "end": null,
+                  "price_thb": 3999000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bmw_x1",
+      "name_en": "X1",
+      "name_th": "เอ็กซ์1",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "x 1"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "U11",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "sDrive18i xLine",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1499,
+              "battery_kwh": null,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2023-01-01",
+                  "end": null,
+                  "price_thb": 2399000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bmw_x3",
+      "name_en": "X3",
+      "name_th": "เอ็กซ์3",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "x 3"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "G45",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2024-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "20 xDrive M Sport",
+              "powertrain": "MHEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1998,
+              "battery_kwh": 0.5,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2024-11-01",
+                  "end": null,
+                  "price_thb": 3999000,
+                  "import_type": "CKD",
+                  "origin_country": "TH",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bmw_ix3",
+      "name_en": "iX3",
+      "name_th": "ไอเอ็กซ์3",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "ix 3"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "G08",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2021-08-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "Inspiring",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 80.0,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2021-08-01",
+                  "end": null,
+                  "price_thb": 3399000,
+                  "import_type": "CBU",
+                  "origin_country": "CN",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bmw_i4",
+      "name_en": "i4",
+      "name_th": "ไอ4",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY1",
+      "aliases": [
+        "i 4"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "G26",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2022-03-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "eDrive40 M Sport",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 83.9,
+              "cab_type": "NOT_APPLICABLE",
+              "aliases": [],
+              "overrides": {},
+              "periods": [
+                {
+                  "start": "2022-03-01",
+                  "end": null,
+                  "price_thb": 3999000,
+                  "import_type": "CBU",
+                  "origin_country": "DE",
+                  "model_year": null,
+                  "price_note": "seed-unverified"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
