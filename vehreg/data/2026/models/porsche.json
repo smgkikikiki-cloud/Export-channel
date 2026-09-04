@@ -132,6 +132,122 @@
           ]
         }
       ]
+    },
+    {
+      "id": "panamera",
+      "name_en": "Panamera",
+      "name_th": "พานาเมร่า",
+      "nameplate": "",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "panamera"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 4,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.9L PHEV",
+              "powertrain": "PHEV",
+              "drivetrain": "AWD",
+              "engine_cc": 2894,
+              "battery_kwh": 25.9,
+              "price_thb": 9900000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taycan",
+      "name_en": "Taycan",
+      "name_th": "ไทคานน์",
+      "nameplate": "",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "taycan"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 4,
+          "launched": "2020-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "89 kWh BEV",
+              "powertrain": "BEV",
+              "drivetrain": "AWD",
+              "engine_cc": null,
+              "battery_kwh": 89.0,
+              "price_thb": 7500000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "718",
+      "name_en": "718",
+      "name_th": "718",
+      "nameplate": "",
+      "body_type": "COUPE",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "718",
+        "cayman",
+        "boxster"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 2,
+          "launched": "2020-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "4.0L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 3995,
+              "battery_kwh": null,
+              "price_thb": 7900000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "DE",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

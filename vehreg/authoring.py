@@ -46,7 +46,7 @@ COLUMNS: tuple[str, ...] = (
     # identity - brand + model + variant is the minimum for a usable row
     "brand", "model", "generation", "variant",
     # brand facets
-    "brand_th", "brand_segment", "oem_group", "brand_origin",
+    "brand_th", "brand_segment", "oem_group", "brand_origin", "trim_detail",
     # model facets (one model = one body; pickups split by cab)
     "nameplate", "model_th", "body_type", "cab_type", "registration_type",
     "market_scope", "model_aliases",
@@ -165,7 +165,8 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
             payload = payloads.setdefault(brand_id, {
                 "brand": {"id": brand_id, "name_en": brand_name, "name_th": "",
                           "brand_segment": "UNKNOWN", "oem_group": "UNKNOWN",
-                          "brand_origin": "UNKNOWN", "aliases": []},
+                          "brand_origin": "UNKNOWN", "trim_detail": False,
+                          "aliases": []},
                 "models": [],
             })
             brand = payload["brand"]
@@ -177,6 +178,9 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
                 brand["oem_group"] = _clean(row["oem_group"])
             if _clean(row.get("brand_origin")):
                 brand["brand_origin"] = _clean(row["brand_origin"]).upper()
+            if _clean(row.get("trim_detail")):
+                brand["trim_detail"] = _clean(row["trim_detail"]).lower() in {
+                    "1", "true", "yes", "y", "t"}
 
             model_name = _clean(row["model"])
             model = _find(payload["models"], "name_en", model_name)
@@ -211,9 +215,16 @@ def apply_rows(payloads: dict[str, dict], rows: Iterable[dict[str, Any]]
                 if alias not in model["aliases"]:
                     model["aliases"].append(alias)
 
-            gen_code = _clean(row.get("generation")) or "gen1"
-            gen = _find(model["generations"], "code", gen_code)
+            # A blank generation means "the one this model already has" - a row
+            # that only sets an alias or a brand flag must not invent a second
+            # โฉม with everything unknown. Only a brand-new model gets "gen1".
+            gen_code = _clean(row.get("generation"))
+            if not gen_code and model["generations"]:
+                gen = model["generations"][-1]
+            else:
+                gen = _find(model["generations"], "code", gen_code or "gen1")
             if gen is None:
+                gen_code = gen_code or "gen1"
                 gen = {"code": gen_code, "segment": "UNKNOWN", "seats": None,
                        "launched": None, "ended": None, "variants": []}
                 model["generations"].append(gen)

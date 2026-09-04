@@ -9,7 +9,8 @@
     "aliases": [
       "เนต้า",
       "hozon"
-    ]
+    ],
+    "trim_detail": true
   },
   "models": [
     {

@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from . import allocate as allocate_mod, authoring, cube as cube_mod
-from . import dlt as dlt_mod
+from . import dlt as dlt_mod, trimledger
 from .catalog import (
     DATA_DIR, DEFAULT_YEAR, Catalog, CatalogError, available_years, fork_year,
 )
@@ -277,6 +277,43 @@ def cmd_dlt(args) -> int:
     return 0
 
 
+def cmd_trim(args) -> int:
+    conn = _conn(args)
+    if args.trim_cmd == "check":
+        problems = trimledger.reconcile(conn)
+        for row in problems[:args.limit]:
+            print(f"  {row['model_id']:<40} {row['period']}  "
+                  f"ledger={row['ledger_units']:,.0f} "
+                  f"master={row['master_units']:,.0f} "
+                  f"diff={row['difference']:+,.0f}")
+        if problems:
+            print(f"{len(problems)} model-months disagree")
+            return 1
+        print("trim ledger and master agree on every model-month")
+        return 0
+
+    if args.trim_cmd == "export":
+        count = trimledger.export_csv(
+            conn, args.path, period_from=getattr(args, "from"),
+            period_to=args.to, brand=args.brand)
+        print(f"wrote {count} trim rows to {args.path}")
+        return 0
+
+    rows = trimledger.rows(conn, period_from=getattr(args, "from"),
+                           period_to=args.to, brand=args.brand)
+    header = (f"{'brand':<12} {'nameplate':<20} {'trim':<28} "
+              f"{'grade':<14} {'km':>5} {'units':>8}")
+    print(header)
+    print("-" * len(header))
+    for row in rows[:args.limit]:
+        print(f"{str(row['brand'])[:12]:<12} {str(row['nameplate'])[:20]:<20} "
+              f"{str(row['trim_label'] or '(base)')[:28]:<28} "
+              f"{str(row['grade'] or '-')[:14]:<14} "
+              f"{(row['range_km'] or 0):>5.0f} {row['units']:>8,.0f}")
+    print(f"\n{len(rows)} trim rows, {sum(r['units'] for r in rows):,.0f} units")
+    return 0
+
+
 def cmd_review(args) -> int:
     conn = _conn(args)
     if args.map:
@@ -449,6 +486,21 @@ def build_parser() -> argparse.ArgumentParser:
             d.add_argument("--month", default=None, help=argparse.SUPPRESS)
             d.add_argument("--fetch-year", default=None, help=argparse.SUPPRESS)
         d.set_defaults(func=cmd_dlt)
+
+    p = sub.add_parser("trim", help="the separate trim ledger for the Chinese "
+                                    "marques and Tesla")
+    tsub = p.add_subparsers(dest="trim_cmd", required=True)
+    for name, helptext in (("list", "show trim rows"),
+                           ("check", "reconcile the ledger against the master"),
+                           ("export", "write the ledger to its own CSV")):
+        t = tsub.add_parser(name, help=helptext)
+        if name == "export":
+            t.add_argument("path")
+        t.add_argument("--from", dest="from", help="YYYY-MM")
+        t.add_argument("--to", help="YYYY-MM")
+        t.add_argument("--brand")
+        t.add_argument("--limit", type=int, default=40)
+        t.set_defaults(func=cmd_trim)
 
     p = sub.add_parser("review", help="see and resolve unmatched labels")
     p.add_argument("--limit", type=int, default=25)

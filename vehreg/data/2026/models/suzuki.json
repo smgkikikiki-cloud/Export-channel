@@ -296,6 +296,44 @@
           ]
         }
       ]
+    },
+    {
+      "id": "suzuki_carry",
+      "name_en": "Suzuki Carry",
+      "name_th": "ซูซูกิ แครี่",
+      "nameplate": "",
+      "body_type": "TRUCK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "COMMERCIAL",
+      "aliases": [
+        "carry"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "UNKNOWN",
+          "seats": 2,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1462,
+              "battery_kwh": null,
+              "price_thb": 399000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

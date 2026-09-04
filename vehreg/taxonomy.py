@@ -71,6 +71,9 @@ class BodyType(Facet):
     COUPE = "COUPE"
     MPV = "MPV"
     PICKUP = "PICKUP"
+    WAGON = "WAGON"      # estate / shooting brake
+    VAN = "VAN"          # fleet passenger van: Commuter, Hiace, Vito, Sprinter
+    TRUCK = "TRUCK"      # light/medium truck registered รย.3 alongside pickups
     OTHER = "OTHER"
 
 
@@ -254,6 +257,11 @@ class RegistrationType(Facet):
     OTHER = "OTHER"
 
 
+#: Bodies whose รย. class the data decides, not the taxonomy: a van can be
+#: รย.2 or รย.3 and a truck is รย.3, but neither follows from a cab type.
+FLEET_BODIES = frozenset({BodyType.VAN, BodyType.TRUCK})
+
+
 def registration_type_for(body: BodyType, cab: CabType) -> RegistrationType:
     """Which DLT class a car is registered under.
 
@@ -266,6 +274,8 @@ def registration_type_for(body: BodyType, cab: CabType) -> RegistrationType:
     if body is BodyType.PICKUP:
         return RegistrationType.RY1 if cab is CabType.DOUBLE_CAB \
             else RegistrationType.RY3
+    if body is BodyType.TRUCK:
+        return RegistrationType.RY3
     return RegistrationType.RY1
 
 
@@ -278,9 +288,10 @@ class MarketScope(Facet):
     forever - each model declares its scope, and reports default to CORE.
     """
 
-    CORE = "CORE"        # official distributor, meaningful volume
-    NICHE = "NICHE"      # official but halo / exotic / very low volume
-    GREY = "GREY"        # not sold by the official Thai distributor
+    CORE = "CORE"              # official distributor, meaningful volume
+    NICHE = "NICHE"            # official but halo / exotic / very low volume
+    GREY = "GREY"              # not sold by the official Thai distributor
+    COMMERCIAL = "COMMERCIAL"  # trucks and fleet vans - a different market
     UNKNOWN = "UNKNOWN"
 
 
@@ -317,6 +328,8 @@ def check_registration(body: BodyType, cab: CabType,
     reg = RegistrationType.parse(reg)
     if reg is RegistrationType.RY2:
         return []                      # >7 seats: van and large MPV, owner's call
+    if BodyType.parse(body) in FLEET_BODIES:
+        return []                      # the source file decides for these
     if reg is not expected:
         return [f"{BodyType.parse(body).value}/{CabType.parse(cab).value} is "
                 f"registered {expected.value}, not {reg.value}"]
@@ -379,7 +392,9 @@ THAI_LABELS: dict[str, dict[str, str]] = {
     "BodyType": {
         "HATCHBACK": "แฮทช์แบ็ก", "SEDAN": "ซีดาน", "CROSSOVER": "ครอสโอเวอร์",
         "SUV": "เอสยูวี", "PPV": "เอสยูวีบอดี้ออนเฟรม (PPV)", "COUPE": "คูเป้",
-        "MPV": "เอ็มพีวี", "PICKUP": "กระบะ", "OTHER": "อื่น ๆ",
+        "MPV": "เอ็มพีวี", "PICKUP": "กระบะ", "WAGON": "สเตชันแวกอน",
+        "VAN": "รถตู้",
+        "TRUCK": "รถบรรทุก", "OTHER": "อื่น ๆ",
     },
     "CabType": {
         "DOUBLE_CAB": "แค็บ 4 ประตู", "SMART_CAB": "แค็บ/สเปซแค็บ",
@@ -424,6 +439,7 @@ THAI_LABELS: dict[str, dict[str, str]] = {
         "CORE": "ตลาดหลัก (ตัวแทนจำหน่ายทางการ)",
         "NICHE": "เฉพาะกลุ่ม / ซูเปอร์คาร์ / ยอดน้อยมาก",
         "GREY": "เกรย์มาร์เก็ต ไม่ใช่ตัวแทนทางการ",
+        "COMMERCIAL": "รถบรรทุก/รถตู้เชิงพาณิชย์",
         "UNKNOWN": "ยังไม่จัด",
     },
 }
@@ -431,8 +447,8 @@ THAI_LABELS: dict[str, dict[str, str]] = {
 FACET_ALIASES: dict[str, dict[str, str]] = {
     "BodyType": {
         "SUV_BOF": "PPV", "BODY_ON_FRAME_SUV": "PPV", "PPV_SUV": "PPV",
-        "WAGON": "OTHER", "VAN": "MPV", "CONVERTIBLE": "COUPE",
-        "CABRIOLET": "COUPE", "ESTATE": "OTHER", "PICK_UP": "PICKUP",
+        "MINIVAN": "MPV", "CONVERTIBLE": "COUPE",
+        "CABRIOLET": "COUPE", "ESTATE": "WAGON", "PICK_UP": "PICKUP",
     },
     "CabType": {
         "CAB4": "DOUBLE_CAB", "4_DOOR": "DOUBLE_CAB", "CREW_CAB": "DOUBLE_CAB",
@@ -457,7 +473,8 @@ FACET_ALIASES: dict[str, dict[str, str]] = {
     },
     "MarketScope": {"MAIN": "CORE", "OFFICIAL": "CORE", "EXOTIC": "NICHE",
                     "SUPERCAR": "NICHE", "IMPORT": "GREY",
-                    "GREY_MARKET": "GREY", "เกรย์": "GREY"},
+                    "GREY_MARKET": "GREY", "เกรย์": "GREY",
+                    "TRUCK": "COMMERCIAL", "FLEET": "COMMERCIAL"},
     "BrandSegment": {"LUXURY": "PREMIUM_LUXURY", "PREMIUM": "PREMIUM_LUXURY",
                      "TECH": "PREMIUM_TECH", "SPORT": "PERFORMANCE",
                      "ECONOMY": "BUDGET", "VALUE": "BUDGET"},

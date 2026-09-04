@@ -145,6 +145,7 @@ class Catalog:
                                  BrandSegment.UNKNOWN),
             oem_group=raw_brand.get("oem_group", "UNKNOWN"),
             brand_origin=raw_brand.get("brand_origin", "UNKNOWN"),
+            trim_detail=bool(raw_brand.get("trim_detail", False)),
             aliases=_tuple(raw_brand.get("aliases")),
             overrides=_overrides(raw_brand.get("overrides")),
         )
@@ -283,6 +284,10 @@ class Catalog:
                        if g.model_id == model_id),
                       key=lambda g: (g.launched or "", g.code))
 
+    def trim_detail_brands(self) -> list[str]:
+        """Brands whose DLT รุ่น field carries trim, so the ledger tracks them."""
+        return sorted(b.id for b in self.brands.values() if b.trim_detail)
+
     def nameplates(self) -> dict[str, list[str]]:
         """``{"Toyota Hilux": [model_id, ...]}`` - the reporting roll-up."""
         out: dict[str, list[str]] = {}
@@ -367,6 +372,7 @@ class Catalog:
                 "id": brand.id, "name_en": brand.name_en, "name_th": brand.name_th,
                 "brand_segment": brand.brand_segment.value,
                 "oem_group": brand.oem_group, "brand_origin": brand.brand_origin,
+                "trim_detail": brand.trim_detail,
                 "aliases": list(brand.aliases),
             },
             "models": [],

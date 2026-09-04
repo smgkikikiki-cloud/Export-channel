@@ -64,7 +64,8 @@
       "market_scope": "CORE",
       "aliases": [
         "kicks",
-        "คิกส์"
+        "คิกส์",
+        "KICKS e-POWER"
       ],
       "notes": "",
       "generations": [
@@ -269,6 +270,85 @@
               "price_note": "seed-unverified",
               "price_min_thb": 1599000,
               "price_max_thb": 1599000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "serena",
+      "name_en": "Serena",
+      "name_th": "เซเรน่า",
+      "nameplate": "",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "GREY",
+      "aliases": [
+        "serena"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "C",
+          "seats": 8,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.4L REEV",
+              "powertrain": "REEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1433,
+              "battery_kwh": 1.8,
+              "price_thb": null,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "UNKNOWN",
+              "origin_country": "UNKNOWN",
+              "price_note": "grey import",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "x_trail",
+      "name_en": "X-Trail",
+      "name_th": "เอ็กซ์-เทรล",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "x-trail",
+        "xtrail",
+        "x trial",
+        "x-trial"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.5L REEV",
+              "powertrain": "REEV",
+              "drivetrain": "FWD",
+              "engine_cc": 1497,
+              "battery_kwh": 2.1,
+              "price_thb": 1599000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
             }
           ]
         }

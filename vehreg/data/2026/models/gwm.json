@@ -13,7 +13,8 @@
       "haval",
       "ora",
       "tank"
-    ]
+    ],
+    "trim_detail": true
   },
   "models": [
     {
@@ -213,7 +214,9 @@
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "tank 300"
+        "tank 300",
+        "TANK 300 HYBRID",
+        "300 HYBRID"
       ],
       "notes": "",
       "generations": [
@@ -255,7 +258,9 @@
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "tank 500"
+        "tank 500",
+        "TANK 500 HYBRID",
+        "500 HYBRID"
       ],
       "notes": "",
       "generations": [
@@ -282,6 +287,46 @@
               "price_note": "seed-unverified",
               "price_min_thb": 2999000,
               "price_max_thb": 2999000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poer_sahar",
+      "name_en": "Poer Sahar",
+      "name_th": "โพเออร์ ซาฮาร์",
+      "nameplate": "",
+      "body_type": "PICKUP",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "poer sahar",
+        "sahar",
+        "poer"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "F",
+          "seats": 5,
+          "launched": "2025-09-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0L HEV",
+              "powertrain": "HEV",
+              "drivetrain": "4WD",
+              "engine_cc": 1998,
+              "battery_kwh": 1.8,
+              "price_thb": 1399000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified",
+              "aliases": []
             }
           ]
         }

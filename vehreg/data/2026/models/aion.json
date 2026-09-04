@@ -9,7 +9,8 @@
     "aliases": [
       "gac aion",
       "ไอออน"
-    ]
+    ],
+    "trim_detail": true
   },
   "models": [
     {
@@ -134,6 +135,98 @@
               "price_note": "seed-unverified",
               "price_min_thb": 1199000,
               "price_max_thb": 1199000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aion_ut",
+      "name_en": "Aion UT",
+      "name_th": "ไอออน ยูที",
+      "nameplate": "",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "ut",
+        "aion ut"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2025-11-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "44 kWh BEV",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 44.2,
+              "price_thb": 459000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            },
+            {
+              "name": "53 kWh BEV",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 52.9,
+              "price_thb": 559000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hyptec_ht",
+      "name_en": "Hyptec HT",
+      "name_th": "ไฮเทค เอชที",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "hyptec ht",
+        "hyptec"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2025-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "77 kWh BEV",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 76.8,
+              "price_thb": 1299000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified",
+              "aliases": []
             }
           ]
         }

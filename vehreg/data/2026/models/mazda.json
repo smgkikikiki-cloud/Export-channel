@@ -453,6 +453,83 @@
           ]
         }
       ]
+    },
+    {
+      "id": "mazda6",
+      "name_en": "Mazda6",
+      "name_th": "มาสด้า6",
+      "nameplate": "",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "mazda 6"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 2488,
+              "battery_kwh": null,
+              "price_thb": 1890000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mx_5",
+      "name_en": "MX-5",
+      "name_th": "เอ็มเอ็กซ์-5",
+      "nameplate": "",
+      "body_type": "COUPE",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "mx-5",
+        "roadster"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "B",
+          "seats": 2,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 1998,
+              "battery_kwh": null,
+              "price_thb": 2790000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

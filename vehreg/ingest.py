@@ -21,6 +21,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Optional, Sequence
 
+from . import trimledger
 from .catalog import Catalog
 from .db import loaded_years, register_source
 from .normalize import MatchIndex, fold, period_key, split_brand_model
@@ -78,6 +79,7 @@ class IngestReport:
     units_review: float = 0.0
     by_grain: dict[str, int] = field(default_factory=dict)
     reasons: dict[str, int] = field(default_factory=dict)
+    trim_rows: int = 0
 
     @property
     def units_total(self) -> float:
@@ -98,6 +100,9 @@ class IngestReport:
         if self.by_grain:
             lines.append("grain           : " + ", ".join(
                 f"{k}={v}" for k, v in sorted(self.by_grain.items())))
+        if self.trim_rows:
+            lines.append(f"trim ledger     : {self.trim_rows} rows "
+                         "(Chinese marques + Tesla)")
         if self.reasons:
             lines.append("review reasons  : " + ", ".join(
                 f"{k}={v}" for k, v in sorted(self.reasons.items())))
@@ -206,6 +211,11 @@ class Resolver:
             model_score, model_how = 1.0, "override"
         else:
             model_id, model_score, model_how = index.lookup(model_text)
+            if not model_id and model_how != "ambiguous" and model_text != label:
+                # DLT sometimes splits a nameplate across the two columns -
+                # ยี่ห้อ "GWM TANK" with รุ่น "300 HYBRID" - so the model name
+                # only appears when the cells are read together.
+                model_id, model_score, model_how = index.lookup(label)
             if not model_id and model_how == "ambiguous":
                 # The label fits several models equally; the DLT class of the
                 # file is the tie-breaker, and only when it leaves exactly one.
@@ -222,8 +232,15 @@ class Resolver:
             self.last_candidates = []
             return brand_id, Grain.BRAND, how, score, "model-not-found"
 
-        # Only go looking for a spec line when the source actually said
-        # something beyond the model name. Without this, a label like
+        # For the marques that publish trim, the master stops at the model by
+        # design: the detail belongs in the trim ledger, and letting the master
+        # split some brands and fold others would make every brand-versus-brand
+        # comparison unsafe.
+        if self.catalog.brands[brand_id].trim_detail:
+            return model_id, Grain.MODEL, model_how, model_score, ""
+
+        # Otherwise only go looking for a spec line when the source actually
+        # said something beyond the model name. Without this, a label like
         # "Honda e:N1" would match the folded line whose alias is "e:N1" and
         # claim trim-level precision the source never had.
         trim_text = raw_variant or (model_text if self._has_residual(
@@ -307,7 +324,7 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
                colmap: Optional[ColumnMap] = None,
                default_registration_type: str = "RY1",
                url: str = "", publisher: str = "DLT",
-               notes: str = "") -> IngestReport:
+               notes: str = "", trim_ledger: bool = True) -> IngestReport:
     path = Path(path)
     mapping, rows = read_rows(path, wide=wide, colmap=colmap)
     missing = mapping.missing()
@@ -329,6 +346,7 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
     report = IngestReport(source_id=source_id)
     facts: list[tuple] = []
     reviews: list[tuple] = []
+    ledger_rows: list[dict[str, Any]] = []
 
     for row in rows:
         report.rows_read += 1
@@ -395,6 +413,14 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
                     if mapping.province else "ALL")
         facts.append((period, reg, province or "ALL", unit_id, grain.value, units,
                       source_id, label, how, score))
+        if grain in (Grain.MODEL, Grain.VARIANT):
+            model_id = unit_id if grain is Grain.MODEL else \
+                catalog.model_for_variant(unit_id).id
+            ledger_rows.append({
+                "period": period, "registration_type": reg,
+                "province": province or "ALL", "model_id": model_id,
+                "units": units, "raw_label": label,
+            })
         report.units_matched += units
         report.by_grain[grain.value] = report.by_grain.get(grain.value, 0) + 1
 
@@ -413,6 +439,9 @@ def ingest_csv(conn: sqlite3.Connection, catalog: Catalog, path: Path | str,
             "raw_label, units, reason, best_guess, score) VALUES (?,?,?,?,?,?,?,?,?)",
             reviews)
     report.facts_written = len(facts)
+    if trim_ledger:
+        report.trim_rows = trimledger.record(conn, catalog, ledger_rows,
+                                             source_id)
     return report
 
 

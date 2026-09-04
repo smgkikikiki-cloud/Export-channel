@@ -214,6 +214,121 @@
           ]
         }
       ]
+    },
+    {
+      "id": "santa_fe",
+      "name_en": "Santa Fe",
+      "name_th": "ซานตาเฟ",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "santa fe"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2024-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.6L HEV",
+              "powertrain": "HEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1598,
+              "battery_kwh": 1.5,
+              "price_thb": 2299000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "palisade",
+      "name_en": "Palisade",
+      "name_th": "พาลิเสด",
+      "nameplate": "",
+      "body_type": "SUV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "palisade"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2025-06-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.2L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "AWD",
+              "engine_cc": 2199,
+              "battery_kwh": null,
+              "price_thb": 2799000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h_1",
+      "name_en": "H-1",
+      "name_th": "เอช-1",
+      "nameplate": "",
+      "body_type": "VAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY2",
+      "market_scope": "COMMERCIAL",
+      "aliases": [
+        "h-1",
+        "h1"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 11,
+          "launched": "2018-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2497,
+              "battery_kwh": null,
+              "price_thb": 1799000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

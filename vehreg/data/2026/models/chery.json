@@ -10,7 +10,8 @@
       "omoda",
       "jaecoo",
       "jetour"
-    ]
+    ],
+    "trim_detail": true
   },
   "models": [
     {
@@ -94,6 +95,58 @@
               "price_note": "seed-unverified",
               "price_min_thb": 1099000,
               "price_max_thb": 1099000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chery_v23",
+      "name_en": "Chery V23",
+      "name_th": "เชอรี่ วี23",
+      "nameplate": "",
+      "body_type": "SUV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "v23"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2025-10-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "60 kWh BEV",
+              "powertrain": "BEV",
+              "drivetrain": "RWD",
+              "engine_cc": null,
+              "battery_kwh": 60.0,
+              "price_thb": 799000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            },
+            {
+              "name": "60 kWh BEV AWD",
+              "powertrain": "BEV",
+              "drivetrain": "AWD",
+              "engine_cc": null,
+              "battery_kwh": 60.0,
+              "price_thb": 899000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
             }
           ]
         }

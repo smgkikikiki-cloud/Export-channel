@@ -27,12 +27,25 @@ _CORPORATE_NOISE = re.compile(
 MATCH_FLOOR = 0.86
 
 
-def fold(text: str) -> str:
-    """Aggressive comparison key: case, spacing, punctuation and Thai marks."""
+#: DLT and the catalog disagree on whether a model number is joined to its
+#: name: "ATTO3" vs "Atto 3", "MG4" vs "MG 4", "CX5" vs "CX-5". Splitting every
+#: letter/digit boundary on both sides makes the two spellings the same key,
+#: and does the same for "410KM" -> "410 km" and "2WD" -> "2 wd".
+_LETTER_DIGIT = re.compile(r"(?<=[^\W\d_])(?=\d)|(?<=\d)(?=[^\W\d_])")
+
+
+def fold(text: str, split_digits: bool = True) -> str:
+    """Aggressive comparison key: case, spacing, punctuation and Thai marks.
+
+    ``split_digits`` is on for matching and off for ``slug``: catalog ids are
+    identity, and they should not churn because the matcher learned a trick.
+    """
     if text is None:
         return ""
     s = unicodedata.normalize("NFKC", str(text)).strip().lower()
     s = _NON_ALNUM.sub(" ", s)
+    if split_digits:
+        s = _LETTER_DIGIT.sub(" ", s)
     s = _CORPORATE_NOISE.sub(" ", s)
     s = _THAI_COMBINING.sub("", s)
     return " ".join(s.split())
@@ -278,5 +291,5 @@ def base_nameplate(name: str) -> str:
 
 
 def slug(text: str) -> str:
-    s = fold(text).replace(" ", "_")
+    s = fold(text, split_digits=False).replace(" ", "_")
     return re.sub(r"_+", "_", s).strip("_") or "unnamed"

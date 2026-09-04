@@ -117,6 +117,58 @@ CREATE TABLE IF NOT EXISTS allocation_weight (
     PRIMARY KEY (model_id, period, unit_id)
 );
 
+-- The trim ledger. A second, finer set of books kept only for the brands whose
+-- DLT รุ่น field carries trim - the Chinese marques and Tesla. The master facts
+-- above stay folded to the model; nothing here feeds them, and the two are
+-- reconciled by `trim check`.
+CREATE TABLE IF NOT EXISTS dim_trim (
+    trim_id        TEXT NOT NULL,
+    catalog_year   INTEGER NOT NULL,
+    brand_id       TEXT NOT NULL,
+    brand          TEXT,
+    model_id       TEXT NOT NULL,
+    nameplate      TEXT,
+    model          TEXT,
+    trim_label     TEXT NOT NULL,      -- '' when the label named no trim
+    grade          TEXT,               -- PREMIUM, MAX, PRO, STD, ...
+    drive          TEXT,               -- 2WD / 4WD / AWD / FWD / RWD
+    range_km       REAL,
+    battery_kwh    REAL,
+    powertrain_hint TEXT,              -- EV / REEV / PHEV / DM-i / SHS / HEV
+    raw_example    TEXT,
+    PRIMARY KEY (trim_id, catalog_year)
+);
+CREATE INDEX IF NOT EXISTS ix_dim_trim_model ON dim_trim(model_id);
+
+CREATE TABLE IF NOT EXISTS fact_trim (
+    trim_fact_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    period            TEXT NOT NULL,
+    registration_type TEXT NOT NULL,
+    province          TEXT NOT NULL DEFAULT 'ALL',
+    trim_id           TEXT NOT NULL,
+    units             REAL NOT NULL,
+    source_id         INTEGER NOT NULL REFERENCES dim_source(source_id),
+    raw_label         TEXT,
+    UNIQUE (period, registration_type, province, trim_id, source_id, raw_label)
+);
+CREATE INDEX IF NOT EXISTS ix_fact_trim_period ON fact_trim(period);
+
+CREATE VIEW IF NOT EXISTS trim_classified AS
+SELECT f.period, f.registration_type, f.province, f.units, f.raw_label,
+       f.source_id, t.trim_id, t.brand, t.nameplate, t.model, t.model_id,
+       t.trim_label, t.grade, t.drive, t.range_km, t.battery_kwh,
+       t.powertrain_hint, t.catalog_year,
+       d.segment, d.body_type, d.market_position, d.powertrain,
+       d.powertrain_group, d.import_type, d.origin_country, d.brand_segment,
+       d.market_scope, d.price_thb
+FROM fact_trim f
+JOIN dim_trim t
+  ON t.trim_id = f.trim_id
+ AND t.catalog_year = CAST(substr(f.period, 1, 4) AS INTEGER)
+LEFT JOIN dim_unit d
+  ON d.unit_id = t.model_id AND d.grain = 'MODEL'
+ AND d.catalog_year = t.catalog_year;
+
 CREATE VIEW IF NOT EXISTS fact_classified AS
 SELECT f.fact_id, f.period, f.registration_type AS fact_registration_type,
        f.province, f.grain, f.units, f.raw_label, f.source_id,

@@ -98,6 +98,11 @@ class Brand:
     brand_segment: BrandSegment = BrandSegment.UNKNOWN
     oem_group: str = "UNKNOWN"                # e.g. "Toyota Group", "Geely"
     brand_origin: str = "UNKNOWN"             # ISO-2 of the marque's home market
+    #: True when DLT prints trim inside the รุ่น field for this brand, which is
+    #: the case for the Chinese marques and Tesla and not for the Japanese ones.
+    #: The master facts stay folded to the model either way; this flag is what
+    #: routes the extra detail into the separate trim ledger.
+    trim_detail: bool = False
     aliases: tuple[str, ...] = ()
     overrides: dict[str, Any] = field(default_factory=dict)
 

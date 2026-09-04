@@ -6,7 +6,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from vehreg import allocate, authoring, cube, db, dlt, normalize, taxonomy
+from vehreg import (
+    allocate, authoring, cube, db, dlt, normalize, taxonomy, trimledger,
+)
 from vehreg.catalog import (
     DEFAULT_YEAR, Catalog, CatalogError, available_years, fork_year, year_dir,
 )
@@ -91,6 +93,17 @@ def tiny_payload():
                        "aliases": ["1.5 E", "1.5 EL", "1.5 RS"]},
                   ]},
              ]},
+            {"id": "sprint", "name_en": "Sprint", "name_th": "สปรินท์",
+             "body_type": "CROSSOVER",
+             "generations": [{
+                 "code": "S1", "segment": "B", "seats": 5,
+                 "launched": "2025-01-01",
+                 "variants": [
+                     {"name": "60 kWh BEV", "powertrain": "BEV",
+                      "drivetrain": "RWD", "battery_kwh": 60.0,
+                      "price_thb": 899000, "import_type": "CKD",
+                      "origin_country": "TH"},
+                 ]}]},
             {"id": "meteor", "name_en": "Meteor", "name_th": "มีเทีย",
              "body_type": "COUPE", "market_scope": "NICHE",
              "generations": [{
@@ -685,6 +698,117 @@ class DltFeedTests(unittest.TestCase):
                        mapping.units, mapping.registration_type):
             self.assertIn(column, dlt.CSV_HEADER)
         self.assertEqual(mapping.missing(), [])
+
+
+class TrimLedgerTests(unittest.TestCase):
+    """The second set of books: split for the marques that publish trim,
+    while the master stays folded for every brand."""
+
+    def setUp(self):
+        payload = tiny_payload()
+        # Acme now behaves like a Chinese marque: DLT prints trim in its
+        # รุ่น field.
+        payload["brand"]["trim_detail"] = True
+        self.catalog = Catalog(YEAR)
+        self.catalog.add_brand_payload(payload)
+        self.catalog.build_indexes()
+        self.conn = db.connect(":memory:")
+        db.rebuild_dimension(self.conn, self.catalog)
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.dir = Path(self.temp.name)
+
+    def load(self, rows, name="dlt.csv"):
+        path = self.dir / name
+        with open(path, "w", newline="", encoding="utf-8-sig") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["เดือน", "ยี่ห้อ", "แบบรถ", "จำนวน"])
+            writer.writerows(rows)
+        return ingest_csv(self.conn, self.catalog, path, name)
+
+    def test_parse_pulls_grade_range_drive_and_powertrain(self):
+        spec = trimledger.parse_trim("(410KM-PREMIUM)")
+        self.assertEqual((spec.grade, spec.range_km), ("PREMIUM", 410.0))
+        spec = trimledger.parse_trim("V23 4WD PEAK")
+        self.assertEqual((spec.grade, spec.drive), ("PEAK", "4WD"))
+        spec = trimledger.parse_trim("S05 REEV MAX")
+        self.assertEqual((spec.grade, spec.powertrain_hint), ("MAX", "REEV"))
+        spec = trimledger.parse_trim("5 EV Long Range Max")
+        self.assertEqual(spec.grade, "LONG RANGE MAX")
+        self.assertEqual(spec.powertrain_hint, "BEV")
+        blank = trimledger.parse_trim("")
+        self.assertEqual((blank.grade, blank.range_km), (None, None))
+
+    def test_the_trim_label_is_what_the_source_added(self):
+        label = trimledger.residual_trim(self.catalog, "acme.sprint",
+                                         "Acme Sprint (500KM-PREMIUM)")
+        self.assertEqual(label, "500KM-PREMIUM")
+        # Nothing beyond the names means no trim was published.
+        self.assertEqual(
+            trimledger.residual_trim(self.catalog, "acme.sprint", "Acme Sprint"),
+            "")
+
+    def test_master_folds_the_trims_and_the_ledger_splits_them(self):
+        report = self.load([
+            (f"{YEAR}-01", "Acme", "Sprint (400KM-STD)", "100"),
+            (f"{YEAR}-01", "Acme", "Sprint (500KM-PREMIUM)", "60"),
+        ])
+        self.assertEqual(report.by_grain, {"MODEL": 2})     # master folded
+        master = cube.run(self.conn, ["model"], filters={"model": "Sprint"})
+        self.assertEqual(master.total_units, 160.0)
+        self.assertEqual(len(master.rows), 1)               # one row, one model
+
+        ledger = trimledger.rows(self.conn)
+        self.assertEqual({r["trim_label"] for r in ledger},
+                         {"400KM-STD", "500KM-PREMIUM"})
+        self.assertEqual(sum(r["units"] for r in ledger), 160.0)
+        self.assertEqual({r["grade"] for r in ledger}, {"STD", "PREMIUM"})
+        self.assertEqual(trimledger.reconcile(self.conn), [])
+
+    def test_the_ledger_carries_the_master_facets_for_cross_tabs(self):
+        self.load([(f"{YEAR}-01", "Acme", "Sprint (500KM-PREMIUM)", "60")])
+        row = trimledger.rows(self.conn)[0]
+        self.assertEqual(row["segment"], "B")
+        self.assertEqual(row["body_type"], "CROSSOVER")
+        self.assertEqual(row["powertrain"], "BEV")
+        self.assertEqual(row["market_position"], "VOLUME")
+
+    def test_brands_that_do_not_publish_trim_are_left_out(self):
+        payload = tiny_payload()          # trim_detail defaults to False
+        catalog = Catalog(YEAR)
+        catalog.add_brand_payload(payload)
+        catalog.build_indexes()
+        conn = db.connect(":memory:")
+        db.rebuild_dimension(conn, catalog)
+        path = self.dir / "plain.csv"
+        with open(path, "w", newline="", encoding="utf-8-sig") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["เดือน", "ยี่ห้อ", "แบบรถ", "จำนวน"])
+            writer.writerow([f"{YEAR}-01", "Acme", "Sprint", "60"])
+        report = ingest_csv(conn, catalog, path, "plain")
+        self.assertEqual(report.trim_rows, 0)
+        self.assertEqual(trimledger.rows(conn), [])
+
+    def test_a_mismatch_between_the_two_books_is_reported(self):
+        self.load([(f"{YEAR}-01", "Acme", "Sprint (400KM-STD)", "100")])
+        self.assertEqual(trimledger.reconcile(self.conn), [])
+        with self.conn:
+            self.conn.execute(
+                "UPDATE fact_registration SET units = 90 "
+                "WHERE unit_id = 'acme.sprint'")
+        problems = trimledger.reconcile(self.conn)
+        self.assertEqual(len(problems), 1)
+        self.assertEqual(problems[0]["difference"], 10.0)
+
+    def test_export_writes_its_own_file(self):
+        self.load([(f"{YEAR}-01", "Acme", "Sprint (400KM-STD)", "100")])
+        out = self.dir / "trims.csv"
+        count = trimledger.export_csv(self.conn, out)
+        self.assertEqual(count, 1)
+        with open(out, encoding="utf-8-sig") as handle:
+            written = list(csv.DictReader(handle))
+        self.assertEqual(written[0]["trim_label"], "400KM-STD")
+        self.assertEqual(written[0]["units"], "100.0")
 
 
 class AuthoringTests(unittest.TestCase):

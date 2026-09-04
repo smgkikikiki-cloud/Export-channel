@@ -134,6 +134,82 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ev5",
+      "name_en": "EV5",
+      "name_th": "อีวี5",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "ev5"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2025-09-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "88 kWh BEV",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 88.1,
+              "price_thb": 1899000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sorento",
+      "name_en": "Sorento",
+      "name_th": "โซเรนโต",
+      "nameplate": "",
+      "body_type": "SUV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "sorento"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2024-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "1.6L HEV",
+              "powertrain": "HEV",
+              "drivetrain": "AWD",
+              "engine_cc": 1598,
+              "battery_kwh": 1.5,
+              "price_thb": 2399000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "KR",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

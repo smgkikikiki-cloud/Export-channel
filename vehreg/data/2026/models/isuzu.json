@@ -231,6 +231,91 @@
           ]
         }
       ]
+    },
+    {
+      "id": "isuzu_elf",
+      "name_en": "Isuzu Elf",
+      "name_th": "อีซูซุ เอลฟ์",
+      "nameplate": "",
+      "body_type": "TRUCK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "COMMERCIAL",
+      "aliases": [
+        "NLR",
+        "NPR",
+        "NMR",
+        "NKR",
+        "elf"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "UNKNOWN",
+          "seats": 3,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "3.0L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2999,
+              "battery_kwh": null,
+              "price_thb": 1050000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "isuzu_f_series",
+      "name_en": "Isuzu F-Series",
+      "name_th": "อีซูซุ เอฟ-ซีรีส์",
+      "nameplate": "",
+      "body_type": "TRUCK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "COMMERCIAL",
+      "aliases": [
+        "FTR",
+        "FVZ",
+        "FRR",
+        "FXZ",
+        "FVM",
+        "GVR"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "UNKNOWN",
+          "seats": 3,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "7.8L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 7790,
+              "battery_kwh": null,
+              "price_thb": 2500000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -737,7 +737,10 @@
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
       "market_scope": "NICHE",
-      "aliases": [],
+      "aliases": [
+        "ALPHARD HYBRID",
+        "ALPHARD 2.5 HYBRID"
+      ],
       "notes": "",
       "generations": [
         {
@@ -848,6 +851,535 @@
               "price_note": "seed-unverified",
               "price_min_thb": 5990000,
               "price_max_thb": 5990000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hilux_travo_single_cab",
+      "name_en": "Hilux Travo Single Cab",
+      "name_th": "ไฮลักซ์ ทราโว่ ตอนเดียว",
+      "nameplate": "Hilux",
+      "body_type": "PICKUP",
+      "cab_type": "SINGLE_CAB",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "Hilux Travo",
+        "travo",
+        "travo ตอนเดียว"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "F",
+          "seats": 3,
+          "launched": "2025-07-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "price_thb": 559000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hilux_travo_smart_cab",
+      "name_en": "Hilux Travo Smart Cab",
+      "name_th": "ไฮลักซ์ ทราโว่ แค็บ",
+      "nameplate": "Hilux",
+      "body_type": "PICKUP",
+      "cab_type": "SMART_CAB",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "Hilux Travo",
+        "travo",
+        "travo แค็บ"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "F",
+          "seats": 4,
+          "launched": "2025-07-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "price_thb": 679000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hilux_travo_double_cab",
+      "name_en": "Hilux Travo Double Cab",
+      "name_th": "ไฮลักซ์ ทราโว่ 4 ประตู",
+      "nameplate": "Hilux",
+      "body_type": "PICKUP",
+      "cab_type": "DOUBLE_CAB",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "Hilux Travo",
+        "travo",
+        "travo 4 ประตู"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "F",
+          "seats": 5,
+          "launched": "2025-07-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2393,
+              "battery_kwh": null,
+              "price_thb": 799000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "commuter",
+      "name_en": "Commuter",
+      "name_th": "คอมมิวเตอร์",
+      "nameplate": "",
+      "body_type": "VAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY2",
+      "market_scope": "COMMERCIAL",
+      "aliases": [
+        "commuter"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 15,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.8L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2755,
+              "battery_kwh": null,
+              "price_thb": 1398000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CKD",
+              "origin_country": "TH",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hiace",
+      "name_en": "Hiace",
+      "name_th": "ไฮเอซ",
+      "nameplate": "",
+      "body_type": "VAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY2",
+      "market_scope": "COMMERCIAL",
+      "aliases": [
+        "hiace"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 11,
+          "launched": "2019-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.8L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2755,
+              "battery_kwh": null,
+              "price_thb": 1299000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hiace_majesty",
+      "name_en": "Hiace Majesty",
+      "name_th": "ไฮเอซ มาเจสตี้",
+      "nameplate": "",
+      "body_type": "VAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "RY2",
+      "market_scope": "NICHE",
+      "aliases": [
+        "hiace majesty",
+        "majesty"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 9,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.8L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2755,
+              "battery_kwh": null,
+              "price_thb": 2299000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vellfire",
+      "name_en": "Vellfire",
+      "name_th": "เวลไฟร์",
+      "nameplate": "",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "vellfire"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 7,
+          "launched": "2023-09-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.5L HEV",
+              "powertrain": "HEV",
+              "drivetrain": "AWD",
+              "engine_cc": 2487,
+              "battery_kwh": 1.0,
+              "price_thb": 4299000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crown",
+      "name_en": "Crown",
+      "name_th": "คราวน์",
+      "nameplate": "",
+      "body_type": "SEDAN",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "GREY",
+      "aliases": [],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "E",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "grey import",
+              "powertrain": "UNKNOWN",
+              "drivetrain": "UNKNOWN",
+              "engine_cc": null,
+              "battery_kwh": null,
+              "price_thb": null,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "UNKNOWN",
+              "origin_country": "UNKNOWN",
+              "price_note": "grey import, spec not tracked",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harrier",
+      "name_en": "Harrier",
+      "name_th": "แฮริเออร์",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "GREY",
+      "aliases": [],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "grey import",
+              "powertrain": "UNKNOWN",
+              "drivetrain": "UNKNOWN",
+              "engine_cc": null,
+              "battery_kwh": null,
+              "price_thb": null,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "UNKNOWN",
+              "origin_country": "UNKNOWN",
+              "price_note": "grey import, spec not tracked",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voxy",
+      "name_en": "Voxy",
+      "name_th": "วอกซี่",
+      "nameplate": "",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "GREY",
+      "aliases": [],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "C",
+          "seats": 7,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "grey import",
+              "powertrain": "UNKNOWN",
+              "drivetrain": "UNKNOWN",
+              "engine_cc": null,
+              "battery_kwh": null,
+              "price_thb": null,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "UNKNOWN",
+              "origin_country": "UNKNOWN",
+              "price_note": "grey import, spec not tracked",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noah",
+      "name_en": "Noah",
+      "name_th": "โนอาห์",
+      "nameplate": "",
+      "body_type": "MPV",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "GREY",
+      "aliases": [],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "C",
+          "seats": 7,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "grey import",
+              "powertrain": "UNKNOWN",
+              "drivetrain": "UNKNOWN",
+              "engine_cc": null,
+              "battery_kwh": null,
+              "price_thb": null,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "UNKNOWN",
+              "origin_country": "UNKNOWN",
+              "price_note": "grey import, spec not tracked",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c_hr",
+      "name_en": "C-HR",
+      "name_th": "ซี-เอชอาร์",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "GREY",
+      "aliases": [],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2023-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "grey import",
+              "powertrain": "UNKNOWN",
+              "drivetrain": "UNKNOWN",
+              "engine_cc": null,
+              "battery_kwh": null,
+              "price_thb": null,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "UNKNOWN",
+              "origin_country": "UNKNOWN",
+              "price_note": "grey import, spec not tracked",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr86",
+      "name_en": "GR86",
+      "name_th": "จีอาร์86",
+      "nameplate": "",
+      "body_type": "COUPE",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "GR86"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 4,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "coupe",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2387,
+              "battery_kwh": null,
+              "price_thb": 2599000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gr_supra",
+      "name_en": "GR Supra",
+      "name_th": "จีอาร์ ซูปร้า",
+      "nameplate": "",
+      "body_type": "COUPE",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "NICHE",
+      "aliases": [
+        "GRSupra"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 4,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "coupe",
+              "powertrain": "ICE",
+              "drivetrain": "RWD",
+              "engine_cc": 2387,
+              "battery_kwh": null,
+              "price_thb": 2599000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "aliases": []
             }
           ]
         }

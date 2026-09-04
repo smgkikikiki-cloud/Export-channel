@@ -448,6 +448,44 @@
           ]
         }
       ]
+    },
+    {
+      "id": "outlander_phev",
+      "name_en": "Outlander PHEV",
+      "name_th": "เอาท์แลนเดอร์",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "GREY",
+      "aliases": [
+        "outlander"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "D",
+          "seats": 7,
+          "launched": "2022-01-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.4L PHEV",
+              "powertrain": "PHEV",
+              "drivetrain": "AWD",
+              "engine_cc": 2359,
+              "battery_kwh": 20.0,
+              "price_thb": null,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "UNKNOWN",
+              "origin_country": "UNKNOWN",
+              "price_note": "grey import",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

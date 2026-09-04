@@ -294,3 +294,38 @@ python -m vehreg dlt load  --fetch-year 2025   # ทุกเดือนขอ�
 | กระบะ | `HILUX REVO` โผล่ทั้ง รย.1, รย.2 และ รย.3 — ยืนยันว่าใช้ประเภทจดทะเบียนแยกแค็บถูกแล้ว |
 | แยก trim | **แยกบางยี่ห้อ** ค่ายจีนยัด trim มาในช่อง `รุ่น` (`BYD ATTO3 (410KM-PREMIUM)`, `AION UT 420 STANDARD`, `JAECOO 5 EV Long Range Max`) ค่ายญี่ปุ่นไม่แยก |
 | ก.พ. 2569 | ยังไม่สมบูรณ์ (6 แถว / 18 คัน) ตอนโหลด — ต้องรอ DLT อัปเดต |
+
+## trim ledger — บัญชีที่สองสำหรับค่ายจีนกับ Tesla
+
+DLT เขียนช่อง `รุ่น` ไม่เหมือนกันในแต่ละค่าย ญี่ปุ่นให้แค่ชื่อรุ่น
+(`YARIS ATIV`) ส่วนค่ายจีนกับ Tesla ยัด trim/แบต/ระยะทาง/ขับเคลื่อนมาด้วย
+(`BYD ATTO3 (410KM-PREMIUM)`, `AION UT 420 STANDARD`, `JAECOO 5 EV Long Range Max`)
+
+ทิ้งไปก็เสียของ เอาเข้า master ก็พัง — Toyota รวม BYD แยก แล้วเทียบยี่ห้อไม่ได้อีกเลย
+ระบบเลยเก็บสองบัญชี:
+
+| | master | trim ledger |
+|---|---|---|
+| ตาราง | `fact_registration` | `fact_trim` + `dim_trim` |
+| ความละเอียด | **รวม trim เป็นรุ่นเดียว ทุกยี่ห้อ** | แยกทุก trim |
+| ครอบคลุม | ทุกยี่ห้อ | เฉพาะยี่ห้อที่ตั้ง `trim_detail` |
+
+```bash
+python -m vehreg trim list --brand BYD        # ดู trim
+python -m vehreg trim check                   # กระทบยอดกับ master
+python -m vehreg trim export data/trims_2026.csv
+```
+
+```
+brand        nameplate       trim              grade      km    units
+BYD          Dolphin         435KM-STD         STD       435    5,061
+BYD          Atto 3          480KM-EXT         EXT       480    2,691
+BYD          Atto 3          410KM-PREMIUM     PREMIUM   410    1,384
+```
+
+* ยี่ห้อที่ `trim_detail = true` **master จะหยุดที่ระดับรุ่นเสมอ** ไม่มีทางเผลอแยก
+* `trim check` ต้องขึ้น "agree on every model-month" ถ้าไม่ขึ้นแปลว่าสองบัญชีไม่ตรง
+* ledger ดึง facet จาก master มาให้ด้วย (segment / body / powertrain / ช่วงราคา)
+  จะ cross ต่อก็ได้ เช่น trim ไหนของ BEV ราคา 5 แสน-1 ล้าน ขายดีสุด
+* เปิด/ปิดต่อยี่ห้อที่คอลัมน์ `trim_detail` ใน CSV — ตอนนี้เปิดไว้ 20 ยี่ห้อ
+  (จีนทั้งหมด + Tesla)

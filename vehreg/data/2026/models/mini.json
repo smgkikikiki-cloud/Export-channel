@@ -92,6 +92,45 @@
           ]
         }
       ]
+    },
+    {
+      "id": "aceman",
+      "name_en": "Aceman",
+      "name_th": "เอซแมน",
+      "nameplate": "",
+      "body_type": "CROSSOVER",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "aceman",
+        "jcw aceman"
+      ],
+      "generations": [
+        {
+          "code": "gen1",
+          "segment": "B",
+          "seats": 5,
+          "launched": "2024-09-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "54 kWh BEV",
+              "powertrain": "BEV",
+              "drivetrain": "FWD",
+              "engine_cc": null,
+              "battery_kwh": 54.2,
+              "price_thb": 2399000.0,
+              "price_min_thb": null,
+              "price_max_thb": null,
+              "import_type": "CBU",
+              "origin_country": "CN",
+              "price_note": "seed-unverified",
+              "aliases": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }
