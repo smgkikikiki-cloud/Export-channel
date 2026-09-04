@@ -199,7 +199,12 @@ def reconcile(conn: sqlite3.Connection) -> list[sqlite3.Row]:
         WITH ledger AS (
             SELECT t.model_id AS model_id, f.period AS period,
                    SUM(f.units) AS units
-            FROM fact_trim f JOIN dim_trim t ON t.trim_id = f.trim_id
+            FROM fact_trim f
+            JOIN dim_trim t
+              ON t.trim_id = f.trim_id
+             -- dim_trim is keyed by (trim_id, catalog_year); without the year
+             -- the join fans a fact out once per year the trim exists in.
+             AND t.catalog_year = CAST(substr(f.period, 1, 4) AS INTEGER)
             GROUP BY t.model_id, f.period
         ), master AS (
             SELECT unit_id AS model_id, period, SUM(units) AS units

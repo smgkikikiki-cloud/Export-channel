@@ -830,6 +830,31 @@ class TrimLedgerTests(unittest.TestCase):
         self.assertEqual(len(problems), 1)
         self.assertEqual(problems[0]["difference"], 10.0)
 
+    def test_reconcile_does_not_fan_out_across_years(self):
+        """dim_trim is keyed by (trim_id, catalog_year), so a trim that exists
+        in several years must still be counted once per fact."""
+        self.load([(f"{YEAR}-01", "Acme", "Sprint (400KM-STD)", "100")])
+        # Same catalog, next year, same trim id.
+        next_year = Catalog(YEAR + 1)
+        payload = tiny_payload()
+        payload["brand"]["trim_detail"] = True
+        next_year.add_brand_payload(payload)
+        next_year.build_indexes()
+        db.rebuild_dimension(self.conn, next_year)
+        path = self.dir / "next.csv"
+        with open(path, "w", newline="", encoding="utf-8-sig") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["เดือน", "ยี่ห้อ", "แบบรถ", "จำนวน"])
+            writer.writerow([f"{YEAR + 1}-01", "Acme", "Sprint (400KM-STD)", "70"])
+        ingest_csv(self.conn, next_year, path, "next")
+
+        years = self.conn.execute(
+            "SELECT COUNT(DISTINCT catalog_year) n FROM dim_trim").fetchone()["n"]
+        self.assertEqual(years, 2)
+        self.assertEqual(trimledger.reconcile(self.conn), [])
+        totals = {r["period"]: r["units"] for r in trimledger.rows(self.conn)}
+        self.assertEqual(totals, {f"{YEAR}-01": 100.0, f"{YEAR + 1}-01": 70.0})
+
     def test_export_writes_its_own_file(self):
         self.load([(f"{YEAR}-01", "Acme", "Sprint (400KM-STD)", "100")])
         out = self.dir / "trims.csv"

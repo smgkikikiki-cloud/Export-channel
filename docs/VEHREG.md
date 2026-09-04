@@ -4,8 +4,8 @@
 ที่ cross ได้ทุกแกน: ยี่ห้อ × รุ่น × รุ่นย่อย × segment × body type ×
 market position × powertrain × ประเทศผลิต × CBU/SKD/CKD × brand segment
 
-**ทำงานเป็นรายปี** ตอนนี้คือปี **2026** catalog แต่ละปีแยกโฟลเดอร์กันสนิท
-ไม่มีการอ่านข้ามปี ปีหน้าค่อย `catalog fork` ออกไปแก้
+**ทำงานเป็นรายปี** catalog แต่ละปีแยกโฟลเดอร์กันสนิท ไม่มีการอ่านข้ามปี
+ตอนนี้มี catalog + ข้อมูลจริง **2022–2026** (พ.ศ. 2565–2569)
 
 **ข้อจำกัดที่ต้องรู้ก่อนใช้:** DLT ไม่ประกาศยอดแยกรุ่นย่อย ละเอียดสุดคือระดับ
 "แบบรถ" ระบบจึงไม่แยก trim และไม่ยอมให้ฉลากที่บอกแค่ชื่อรุ่นตกลงไประดับ trim
@@ -18,15 +18,13 @@ market position × powertrain × ประเทศผลิต × CBU/SKD/CKD �
 
 ```bash
 python -m vehreg facets                       # ดู vocabulary ทั้งหมด
-python -m vehreg init                         # ตรวจ catalog 2026 + สร้าง warehouse
-python -m vehreg ingest data/raw/<ไฟล์ รย.1>.csv --registration-type RY1
-python -m vehreg ingest data/raw/<ไฟล์ รย.3>.csv --registration-type RY3
+python -m vehreg init                         # ตรวจ catalog + สร้าง warehouse
+python -m vehreg dlt load --fetch-year 2026   # โหลดจาก DLT + ingest
 python -m vehreg cube --by segment,powertrain
 ```
 
-ในรีโปมีไฟล์ตัวอย่าง **สังเคราะห์** `data/raw/sample_dlt_ry{1,2,3}_2026.csv`
-(สร้างจาก `tools/make_sample_data.py`) ไว้ลองท่อทั้งเส้นแบบออฟไลน์
-ตัวเลขในนั้นไม่ใช่ยอดจดทะเบียนจริง อย่าเอาไปอ่านผล
+ข้อมูลดิบที่โหลดมาแล้วอยู่ใน `data/raw/dlt_<YYYY-MM>.csv` คู่กับ `.meta.json`
+(resource id, URL, เวลาโหลด, sha256) สร้างฐานใหม่ทั้งหมดจากไฟล์พวกนี้ได้โดยไม่ต้องต่อเน็ต
 
 ## ขั้นตอนจริง
 
@@ -199,15 +197,26 @@ Toyota Camry
       2.5L HEV                  1,899,000  (1,899,000-2,099,000)
 ```
 
-### 6. ขึ้นปีใหม่
+### 6. ขึ้นปีใหม่ / ย้อนหลัง
 
 ```bash
 python -m vehreg catalog fork --to 2027        # ก๊อป 2026 ไปเป็นจุดตั้งต้น
 python -m vehreg --year 2027 catalog import newprices.csv
 python -m vehreg --year 2027 init              # เพิ่ม dimension ของ 2027
+python -m vehreg --year 2027 dlt load --fetch-year 2027
 ```
 
 2026 ไม่ขยับเลย ยอดปี 2026 ยังถูกจัดด้วยราคาและ segment ของปี 2026 ตลอดไป
+
+**ปี 2022–2025 ที่โหลดไว้แล้ว fork มาจาก catalog 2026 ทั้งหมด** แปลว่า
+ยอดปีเก่าถูกจัดด้วย **ราคาปี 2026** และการจัดหมวดปี 2026 — ยี่ห้อ/รุ่น/บอดี้
+ถูกอยู่ ส่วน `market_position` ของปีเก่ายังไม่ถูกจนกว่าจะแก้ราคาในโฟลเดอร์ปีนั้น
+
+```bash
+python -m vehreg --year 2023 catalog export prices_2023.csv   # แก้ราคาปีนั้น
+python -m vehreg --year 2023 catalog import prices_2023.csv
+python -m vehreg --year 2023 init
+```
 
 ## เรื่อง grain กับ MIXED — อ่านก่อนเชื่อตัวเลข
 
@@ -251,11 +260,13 @@ vehreg/
   allocate.py       ปันส่วนยอดระดับรุ่นลงรุ่นย่อย
   cube.py           cross-tab
   cli.py            `python -m vehreg`
-  data/2026/models/ catalog รายยี่ห้อของปี 2026 (JSON, แก้มือได้ diff ได้)
+  dlt.py            ตัวโหลดจาก DLT open-data API
+  trimledger.py     บัญชีที่สอง แยก trim ของค่ายจีน/Tesla
+  data/<ปี>/models/ catalog รายยี่ห้อของแต่ละปี (JSON, แก้มือได้ diff ได้)
 tools/
   seed_catalog.py       สร้าง catalog 2026 ตั้งต้น (รันครั้งเดียว)
-  make_sample_data.py   สร้างไฟล์ตัวอย่างสังเคราะห์ แยกตาม รย. (ระดับแบบรถ)
-tests/test_vehreg.py    50 เทสต์ ออฟไลน์ล้วน
+  add_2026_models.py    เติม catalog จาก label จริงที่จับคู่ไม่ได้
+tests/test_vehreg.py    76 เทสต์ ออฟไลน์ล้วน
 docs/VEHREG_TAXONOMY.md เหตุผลการออกแบบ + ข้อที่เจ้าของต้องตัดสินใจ
 ```
 
@@ -332,3 +343,18 @@ BYD          Atto 3          410KM-PREMIUM     PREMIUM   410    1,384
   จะ cross ต่อก็ได้ เช่น trim ไหนของ BEV ราคา 5 แสน-1 ล้าน ขายดีสุด
 * เปิด/ปิดต่อยี่ห้อที่คอลัมน์ `trim_detail` ใน CSV — ตอนนี้เปิดไว้ 20 ยี่ห้อ
   (จีนทั้งหมด + Tesla)
+
+## สถานะข้อมูลตอนนี้
+
+| ปี | เดือน | คัน |
+|---|---|---|
+| 2022 | 12 | 841,644 |
+| 2023 | 12 | 800,235 |
+| 2024 | 12 | 599,902 |
+| 2025 | 12 | 600,066 |
+| 2026 | 1 (ม.ค.) | 90,728 |
+
+รวม **49 เดือน / 2,932,575 คัน** จับคู่ได้ 99.95% (ค้าง review 1,497 คัน)
+trim ledger 2,580 แถว / 383,416 คัน กระทบยอดกับ master ตรงทุก model-month
+
+ก.พ. 2569 ที่ DLT ปล่อยมายังไม่สมบูรณ์ (18 คัน) เลยยังไม่โหลด
