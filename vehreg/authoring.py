@@ -322,11 +322,20 @@ def import_csv(path: Path | str, data_dir: Path | str = DATA_DIR, *,
     return applied, problems, written
 
 
-def export_csv(catalog: Catalog, path: Path | str) -> int:
-    """Flatten a year's catalog back out to the same wide CSV shape."""
+def export_csv(catalog: Catalog, path: Path | str,
+               volumes: Optional[dict[str, float]] = None) -> int:
+    """Flatten a year's catalog back out to the same wide CSV shape.
+
+    Pass ``volumes`` (model_id -> units) to add a ``units`` column and sort by
+    it, so a spreadsheet session starts with the rows that actually matter
+    instead of whatever is alphabetically first. The extra column is ignored on
+    re-import, so the round trip still works.
+    """
     count = 0
+    fieldnames = list(COLUMNS) + (["units"] if volumes is not None else [])
     with open(path, "w", newline="", encoding="utf-8-sig") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(COLUMNS))
+        writer = csv.DictWriter(handle, fieldnames=fieldnames,
+                                extrasaction="ignore")
         writer.writeheader()
         # Ordered brand -> model -> generation (oldest first) so a nameplate's
         # โฉม sit next to each other in the spreadsheet.
@@ -335,11 +344,16 @@ def export_csv(catalog: Catalog, path: Path | str) -> int:
                    for gen in catalog.generations_of(model.id)
                    for v in catalog.variants.values()
                    if v.generation_id == gen.id]
+        if volumes is not None:
+            ordered.sort(key=lambda v: -volumes.get(
+                catalog.model_for_variant(v.id).id, 0.0))
         for variant in ordered:
             gen = catalog.generation_for_variant(variant.id)
             model = catalog.model_for_variant(variant.id)
             brand = catalog.brand_for_variant(variant.id)
             writer.writerow({
+                "units": (None if volumes is None
+                          else round(volumes.get(model.id, 0.0))),
                 "brand": brand.name_en, "model": model.name_en,
                 "generation": gen.code, "variant": variant.name,
                 "brand_th": brand.name_th,

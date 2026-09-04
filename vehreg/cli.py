@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from . import allocate as allocate_mod, authoring, cube as cube_mod
-from . import dlt as dlt_mod, trimledger
+from . import dlt as dlt_mod, editor as editor_mod, trimledger
 from .catalog import (
     DATA_DIR, DEFAULT_YEAR, Catalog, CatalogError, available_years, fork_year,
 )
@@ -153,8 +153,16 @@ def cmd_catalog(args) -> int:
               "owner-confirmed price")
         return 0
     if args.catalog_cmd == "export":
-        count = authoring.export_csv(catalog, args.path)
-        print(f"wrote {count} rows to {args.path}")
+        volumes = None
+        if getattr(args, "with_volume", False):
+            conn = _conn(args)
+            volumes = {r["unit_id"]: r["units"] for r in conn.execute(
+                "SELECT unit_id, SUM(units) units FROM fact_registration "
+                "WHERE CAST(substr(period, 1, 4) AS INTEGER) = ? "
+                "AND grain = 'MODEL' GROUP BY unit_id", (catalog.year,))}
+        count = authoring.export_csv(catalog, args.path, volumes)
+        print(f"wrote {count} rows to {args.path}"
+              + (" (sorted by units)" if volumes else ""))
         return 0
     if args.catalog_cmd == "nameplate":
         plates = catalog.nameplates()
@@ -274,6 +282,11 @@ def cmd_dlt(args) -> int:
         print(f"--- {report.period}")
         print(ingested.render())
         print()
+    return 0
+
+
+def cmd_edit(args) -> int:
+    editor_mod.serve(args.data_dir, args.year, args.db, args.host, args.port)
     return 0
 
 
@@ -455,6 +468,9 @@ def build_parser() -> argparse.ArgumentParser:
     c.set_defaults(func=cmd_catalog)
     c = csub.add_parser("export", help="flatten the catalog to CSV")
     c.add_argument("path")
+    c.add_argument("--with-volume", action="store_true",
+                   help="add a units column and sort by it, so the rows that "
+                        "matter come first")
     c.set_defaults(func=cmd_catalog)
 
     p = sub.add_parser("ingest", help="load a DLT export")
@@ -486,6 +502,11 @@ def build_parser() -> argparse.ArgumentParser:
             d.add_argument("--month", default=None, help=argparse.SUPPRESS)
             d.add_argument("--fetch-year", default=None, help=argparse.SUPPRESS)
         d.set_defaults(func=cmd_dlt)
+
+    p = sub.add_parser("edit", help="open the local editor in a browser")
+    p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--host", default="127.0.0.1")
+    p.set_defaults(func=cmd_edit)
 
     p = sub.add_parser("trim", help="the separate trim ledger for the Chinese "
                                     "marques and Tesla")

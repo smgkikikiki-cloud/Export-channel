@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 from vehreg import (
-    allocate, authoring, cube, db, dlt, normalize, taxonomy, trimledger,
+    allocate, authoring, cube, db, dlt, editor, normalize, taxonomy, trimledger,
 )
 from vehreg.catalog import (
     DEFAULT_YEAR, Catalog, CatalogError, available_years, fork_year, year_dir,
@@ -864,6 +864,115 @@ class TrimLedgerTests(unittest.TestCase):
             written = list(csv.DictReader(handle))
         self.assertEqual(written[0]["trim_label"], "400KM-STD")
         self.assertEqual(written[0]["units"], "100.0")
+
+
+class EditorTests(unittest.TestCase):
+    """Manual re-classification: the edits must land, and a bad one must not."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.dir = Path(self.temp.name)
+        target = year_dir(self.dir, YEAR)
+        target.mkdir(parents=True)
+        (target / "acme.json").write_text(
+            json.dumps(tiny_payload(), ensure_ascii=False), encoding="utf-8")
+
+    def test_an_edit_is_written_and_logged_with_its_previous_value(self):
+        ok, problems, written = editor.apply_edit(
+            self.dir, YEAR, "generation", "acme.volt.v2",
+            {"segment": "C"}, reason="ตัดสินใหม่")
+        self.assertEqual((ok, problems), (True, []))
+        self.assertTrue(written)
+        catalog = Catalog.load(self.dir, YEAR)
+        self.assertIs(catalog.generations["acme.volt.v2"].segment, Segment.C)
+
+        log = editor.decisions_path(self.dir, YEAR).read_text(encoding="utf-8")
+        entry = json.loads(log.strip().splitlines()[-1])
+        self.assertEqual(entry["changes"], {"segment": "C"})
+        self.assertEqual(entry["previous"], {"segment": "B"})
+        self.assertEqual(entry["reason"], "ตัดสินใหม่")
+        self.assertIn("at", entry)
+
+    def test_an_edit_that_breaks_a_rule_is_refused_whole(self):
+        ok, problems, written = editor.apply_edit(
+            self.dir, YEAR, "model", "acme.runner_double_cab",
+            {"registration_type": "RY3"})
+        self.assertFalse(ok)
+        self.assertTrue(any("is registered RY1" in p for p in problems))
+        self.assertEqual(written, [])
+        # Nothing reached disk, so the catalog still loads and still validates.
+        catalog = Catalog.load(self.dir, YEAR)
+        self.assertIs(catalog.models["acme.runner_double_cab"].registration_type,
+                      RegistrationType.RY1)
+        self.assertEqual(catalog.validate(), [])
+        self.assertFalse(editor.decisions_path(self.dir, YEAR).exists())
+
+    def test_only_declared_fields_may_be_edited(self):
+        with self.assertRaises(CatalogError):
+            editor.apply_edit(self.dir, YEAR, "model", "acme.volt",
+                              {"units": "9999"})
+        with self.assertRaises(CatalogError):
+            editor.apply_edit(self.dir, YEAR, "nonsense", "acme.volt",
+                              {"segment": "C"})
+
+    def test_price_edits_move_the_band_and_clear_the_flag(self):
+        catalog = Catalog.load(self.dir, YEAR)
+        variant = catalog.variants["acme.volt.v2.1_5l_ice"]
+        self.assertIs(catalog.resolve(variant.id)["market_position"],
+                      MarketPosition.VOLUME)
+        ok, problems, _ = editor.apply_edit(
+            self.dir, YEAR, "variant", variant.id,
+            {"price_thb": "1,250,000", "price_min_thb": "1250000",
+             "price_max_thb": "1250000", "price_note": "ยืนยันจากใบราคา"})
+        self.assertEqual((ok, problems), (True, []))
+        after = Catalog.load(self.dir, YEAR)
+        self.assertIs(after.resolve(variant.id)["market_position"],
+                      MarketPosition.UPPER)
+        self.assertEqual(after.variants[variant.id].price_note, "ยืนยันจากใบราคา")
+
+    def test_rows_carry_the_volume_that_makes_a_row_worth_judging(self):
+        catalog = Catalog.load(self.dir, YEAR)
+        conn = db.connect(":memory:")
+        db.rebuild_dimension(conn, catalog)
+        path = self.dir / "facts.csv"
+        with open(path, "w", newline="", encoding="utf-8-sig") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["เดือน", "ยี่ห้อ", "แบบรถ", "จำนวน"])
+            writer.writerow([f"{YEAR}-01", "Acme", "Volt", "700"])
+            writer.writerow([f"{YEAR}-01", "Acme", "Meteor", "3"])
+        ingest_csv(conn, catalog, path, "facts")
+
+        rows = editor.model_rows(catalog, conn)
+        self.assertEqual(rows[0]["model_id"], "acme.volt")   # sorted by units
+        self.assertEqual(rows[0]["units"], 700.0)
+        self.assertEqual(rows[0]["unverified"], 0)     # every price is filled in
+
+        # Clearing a price is what makes a row show as needing attention.
+        editor.apply_edit(self.dir, YEAR, "variant", "acme.volt.v2.1_5l_ice",
+                          {"price_thb": ""})
+        again = editor.model_rows(Catalog.load(self.dir, YEAR), conn)
+        self.assertEqual(next(r for r in again
+                              if r["model_id"] == "acme.volt")["unverified"], 1)
+
+        detail = editor.model_detail(catalog, conn, "acme.volt")
+        self.assertEqual([l["raw_label"] for l in detail["labels"]],
+                         ["Acme Volt"])
+        self.assertEqual(len(detail["spec_lines"]), 3)
+
+    def test_export_with_volume_puts_the_big_rows_first(self):
+        catalog = Catalog.load(self.dir, YEAR)
+        out = self.dir / "flat.csv"
+        authoring.export_csv(catalog, out, {"acme.meteor": 900.0,
+                                            "acme.volt": 10.0})
+        with open(out, encoding="utf-8-sig") as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual(rows[0]["model"], "Meteor")
+        self.assertEqual(rows[0]["units"], "900")
+        # The extra column must not break a re-import.
+        applied, problems, _ = authoring.import_csv(out, self.dir, year=YEAR)
+        self.assertEqual(problems, [])
+        self.assertGreater(applied, 0)
 
 
 class AuthoringTests(unittest.TestCase):
