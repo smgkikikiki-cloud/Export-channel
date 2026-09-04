@@ -14,8 +14,8 @@ from vehreg.catalog import (
 )
 from vehreg.ingest import Resolver, ingest_csv, teach_alias
 from vehreg.taxonomy import (
-    BodyType, BrandSegment, CabType, ImportType, MarketPosition, MarketScope,
-    Powertrain, RegistrationType, Segment,
+    BodyType, BrandSegment, CabType, Grain, ImportType, MarketPosition,
+    MarketScope, Powertrain, RegistrationType, Segment,
 )
 
 YEAR = DEFAULT_YEAR
@@ -30,28 +30,16 @@ def tiny_payload():
                   "brand_segment": "MASS", "oem_group": "Acme Group",
                   "brand_origin": "TH", "aliases": ["แอคมี่"]},
         "models": [
-            {"id": "runner_single_cab", "name_en": "Runner Single Cab",
-             "name_th": "รันเนอร์ ตอนเดียว", "nameplate": "Runner",
+            {"id": "runner_cab", "name_en": "Runner Cab",
+             "name_th": "รันเนอร์ ตอนเดียว/แค็บ", "nameplate": "Runner",
              "body_type": "PICKUP",
-             "cab_type": "SINGLE_CAB", "aliases": ["Runner"],
-             "generations": [{
-                 "code": "R1", "segment": "F", "seats": 3,
-                 "launched": "2022-01-01",
-                 "variants": [
-                     {"name": "2.4 Base", "powertrain": "ICE", "drivetrain": "RWD",
-                      "engine_cc": 2400, "price_thb": 480000,
-                      "import_type": "CKD", "origin_country": "TH"},
-                 ]}]},
-            {"id": "runner_smart_cab", "name_en": "Runner Smart Cab",
-             "name_th": "รันเนอร์ แค็บ", "nameplate": "Runner",
-             "body_type": "PICKUP",
-             "cab_type": "SMART_CAB", "aliases": ["Runner"],
+             "cab_type": "SINGLE_SMART", "aliases": ["Runner"],
              "generations": [{
                  "code": "R1", "segment": "F", "seats": 4,
                  "launched": "2022-01-01",
                  "variants": [
-                     {"name": "2.4 Mid", "powertrain": "ICE", "drivetrain": "RWD",
-                      "engine_cc": 2400, "price_thb": 690000,
+                     {"name": "2.4 Base", "powertrain": "ICE", "drivetrain": "RWD",
+                      "engine_cc": 2400, "price_thb": 480000,
                       "import_type": "CKD", "origin_country": "TH"},
                  ]}]},
             {"id": "runner_double_cab", "name_en": "Runner Double Cab",
@@ -160,6 +148,9 @@ class TaxonomyTests(unittest.TestCase):
 
     def test_double_cab_is_ry1_and_other_cabs_are_ry3(self):
         self.assertIs(taxonomy.registration_type_for(BodyType.PICKUP,
+                                                     CabType.SINGLE_SMART),
+                      RegistrationType.RY3)
+        self.assertIs(taxonomy.registration_type_for(BodyType.PICKUP,
                                                      CabType.DOUBLE_CAB),
                       RegistrationType.RY1)
         self.assertIs(taxonomy.registration_type_for(BodyType.PICKUP,
@@ -213,7 +204,7 @@ class ResolutionTests(unittest.TestCase):
 
     def test_lower_layer_overrides_higher_layer(self):
         payload = tiny_payload()
-        payload["models"][3]["generations"][1]["variants"][0]["overrides"] = {
+        payload["models"][2]["generations"][1]["variants"][0]["overrides"] = {
             "brand_segment": "PREMIUM_TECH"}
         catalog = Catalog(YEAR)
         catalog.add_brand_payload(payload)
@@ -224,7 +215,7 @@ class ResolutionTests(unittest.TestCase):
 
     def test_body_and_cab_cannot_be_overridden_below_the_model(self):
         payload = tiny_payload()
-        payload["models"][3]["generations"][1]["variants"][0]["overrides"] = {
+        payload["models"][2]["generations"][1]["variants"][0]["overrides"] = {
             "body_type": "HATCHBACK"}
         catalog = Catalog(YEAR)
         catalog.add_brand_payload(payload)
@@ -236,7 +227,7 @@ class ResolutionTests(unittest.TestCase):
                       BodyType.CROSSOVER)
 
     def test_registration_type_defaults_from_body_and_cab(self):
-        self.assertIs(self.catalog.models["acme.runner_single_cab"].registration_type,
+        self.assertIs(self.catalog.models["acme.runner_cab"].registration_type,
                       RegistrationType.RY3)
         self.assertIs(self.catalog.models["acme.runner_double_cab"].registration_type,
                       RegistrationType.RY1)
@@ -254,7 +245,7 @@ class ResolutionTests(unittest.TestCase):
 
     def test_same_name_and_body_twice_is_a_duplicate_not_a_split(self):
         payload = tiny_payload()
-        clone = json.loads(json.dumps(payload["models"][3]))
+        clone = json.loads(json.dumps(payload["models"][2]))
         clone["id"] = "volt_again"
         payload["models"].append(clone)
         catalog = Catalog(YEAR)
@@ -267,8 +258,7 @@ class ResolutionTests(unittest.TestCase):
         plates = self.catalog.nameplates()
         self.assertEqual(
             sorted(plates["Acme Runner"]),
-            ["acme.runner_double_cab", "acme.runner_single_cab",
-             "acme.runner_smart_cab"])
+            ["acme.runner_cab", "acme.runner_double_cab"])
         # A model that was never split is its own nameplate.
         self.assertEqual(plates["Acme Volt"], ["acme.volt"])
         for model_id in plates["Acme Runner"]:
@@ -301,7 +291,7 @@ class ResolutionTests(unittest.TestCase):
 
     def test_a_folded_line_may_not_straddle_a_price_band(self):
         payload = tiny_payload()
-        line = payload["models"][3]["generations"][1]["variants"][1]
+        line = payload["models"][2]["generations"][1]["variants"][1]
         line["price_max_thb"] = 1_200_000        # was 829,000: VOLUME -> UPPER
         catalog = Catalog(YEAR)
         catalog.add_brand_payload(payload)
@@ -325,6 +315,49 @@ class ResolutionTests(unittest.TestCase):
                         if model.cab_type is CabType.DOUBLE_CAB
                         else RegistrationType.RY3)
             self.assertIs(model.registration_type, expected, model.id)
+
+    def test_every_seeded_pickup_nameplate_resolves_per_dlt_class(self):
+        """The whole point of the two-way cab split: DLT prints the bare
+        nameplate, and each รย. class must leave exactly one model."""
+        catalog = Catalog.load()
+        conn = db.connect(":memory:")
+        db.rebuild_dimension(conn, catalog)
+        resolver = Resolver(catalog, conn)
+
+        # Group by the name DLT actually prints - "HILUX REVO", "HILUX CHAMP"
+        # - which is the model name minus its cab suffix, not the wider
+        # reporting roll-up that puts every Hilux together.
+        plates: dict[tuple[str, str], set[str]] = {}
+        for model in catalog.models.values():
+            if model.body_type is BodyType.PICKUP:
+                plates.setdefault(
+                    (model.brand_id, normalize.base_nameplate(model.name_en)),
+                    set()).add(model.registration_type.value)
+
+        for (brand_id, plate), classes in plates.items():
+            brand = catalog.brands[brand_id]
+            for reg in sorted(classes):
+                unit_id, grain, _, _, reason = resolver.resolve(
+                    brand.name_en, plate, reg=reg)
+                self.assertEqual(reason, "", f"{brand.name_en} {plate} {reg}")
+                self.assertEqual(grain, Grain.MODEL)
+                self.assertEqual(
+                    catalog.models[unit_id].registration_type.value, reg)
+
+    def test_a_split_body_never_steals_the_base_nameplate(self):
+        """Mazda2 is the sedan and Mazda2 Hatchback is not, the same way City
+        is the sedan - so a bare label lands on the base body, not on a tie."""
+        catalog = Catalog.load()
+        conn = db.connect(":memory:")
+        resolver = Resolver(catalog, conn)
+        for brand, plate, expected in (("Mazda", "MAZDA 2", "mazda.mazda2"),
+                                       ("Honda", "CITY", "honda.city")):
+            unit_id, _, _, _, reason = resolver.resolve(brand, plate, reg="RY1")
+            self.assertEqual((unit_id, reason), (expected, ""))
+        self.assertEqual(
+            resolver.resolve("Honda", "CITY HATCHBACK", reg="RY1")[0],
+            "honda.city_hatchback")
+        self.assertIn("mazda.mazda2_hatchback", catalog.models)
 
     def test_duplicate_ids_are_rejected(self):
         catalog = Catalog(YEAR)
@@ -494,31 +527,28 @@ class WarehouseTests(unittest.TestCase):
                                                         reg="RY1")
         self.assertEqual(unit_id, "acme.runner_double_cab")
         self.assertEqual(reason, "")
-        # รย.3 still has two cabs, so the row falls back to brand grain and
-        # names both candidates rather than picking one.
-        unit_id, grain, _, _, reason = resolver.resolve("Acme", "Runner",
-                                                        reg="RY3")
-        self.assertEqual((unit_id, grain.value), ("acme", "BRAND"))
-        self.assertTrue(reason.startswith("model-ambiguous"))
-        self.assertIn("acme.runner_single_cab", reason)
-        self.assertIn("acme.runner_smart_cab", reason)
-        self.assertNotIn("double", reason)
+        # รย.3 leaves exactly one model too, because a nameplate is split the
+        # two ways the registration data actually distinguishes.
+        unit_id, _, _, _, reason = resolver.resolve("Acme", "Runner", reg="RY3")
+        self.assertEqual(unit_id, "acme.runner_cab")
+        self.assertEqual(reason, "")
+        # A รย.2 pickup is a passenger conversion, so it follows the รย.1 body.
+        self.assertEqual(resolver.resolve("Acme", "Runner", reg="RY2")[0],
+                         "acme.runner_double_cab")
 
     def test_a_lesson_can_be_limited_to_one_dlt_class(self):
         rows = [(f"{YEAR}-02", "Acme", "Runner", "", "90")]
         path = self.write_csv(rows)
-        report = ingest_csv(self.conn, self.catalog, path, "first",
-                            default_registration_type="RY3")
-        # Ambiguous: the volume is kept, but only at brand grain.
-        self.assertEqual(report.by_grain, {"BRAND": 1})
-        self.assertEqual(report.units_matched, 90.0)
-
+        # Taught lessons override the class tie-break, and only for that class.
         teach_alias(self.conn, "model", "Acme Runner",
-                    "acme.runner_single_cab", reg="RY3")
-        report = ingest_csv(self.conn, self.catalog, path, "second",
+                    "acme.runner_double_cab", reg="RY3")
+        report = ingest_csv(self.conn, self.catalog, path, "taught",
                             default_registration_type="RY3")
         self.assertEqual(report.by_grain, {"MODEL": 1})
         self.assertEqual(report.units_matched, 90.0)
+        unit_id = self.conn.execute(
+            "SELECT unit_id FROM fact_registration").fetchone()["unit_id"]
+        self.assertEqual(unit_id, "acme.runner_double_cab")
         # The lesson is scoped: รย.1 still resolves to the double cab.
         resolver = Resolver(self.catalog, self.conn)
         self.assertEqual(resolver.resolve("Acme", "Runner", reg="RY1")[0],
@@ -568,10 +598,10 @@ class CubeTests(unittest.TestCase):
             writer = csv.writer(handle)
             writer.writerow(["เดือน", "ยี่ห้อ", "แบบรถ", "รุ่นย่อย", "จำนวน"])
             writer.writerows([
-                (f"{YEAR}-05", "Acme", "Runner Single Cab", "2.4 Base", "300"),
+                (f"{YEAR}-05", "Acme", "Runner Cab", "2.4 Base", "300"),
                 (f"{YEAR}-05", "Acme", "Runner Double Cab", "2.4 4x4", "100"),
                 (f"{YEAR}-05", "Acme", "Volt", "", "200"),
-                (f"{YEAR}-09", "Acme", "Runner Single Cab", "2.4 Base", "400"),
+                (f"{YEAR}-09", "Acme", "Runner Cab", "2.4 Base", "400"),
                 (f"{YEAR}-09", "Acme", "Volt", "50 kWh BEV", "150"),
                 (f"{YEAR}-09", "Acme", "Volt", "1.5 EL", "50"),
                 (f"{YEAR}-09", "Acme", "Meteor", "", "30"),
@@ -590,7 +620,7 @@ class CubeTests(unittest.TestCase):
                           filters={"body_type": "PICKUP"})
         rows = {(r["cab_type"], r["registration_type"]): r["units"]
                 for r in result.rows}
-        self.assertEqual(rows[("SINGLE_CAB", "RY3")], 700.0)
+        self.assertEqual(rows[("SINGLE_SMART", "RY3")], 700.0)
         self.assertEqual(rows[("DOUBLE_CAB", "RY1")], 100.0)
 
     def test_model_grain_volume_shows_as_mixed_not_as_a_guess(self):

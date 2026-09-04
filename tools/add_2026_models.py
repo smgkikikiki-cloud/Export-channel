@@ -208,20 +208,19 @@ R("Changan", "Changan Lumin", "33 kWh BEV", model_th="ฉางอาน ลู�
   import_type="CKD", origin_country="TH", model_aliases="lumin")
 
 # ----------------------------------------------------- Toyota: Hilux Travo
-# A separate nameplate from Revo, sold in all three DLT classes, so it splits
-# by cab the same way and rolls up under the same Hilux nameplate.
-for cab, cab_th, seats, price, extra in (
-    ("SINGLE_CAB", "ตอนเดียว", "3", "559000", "travo ตอนเดียว"),
-    ("SMART_CAB", "แค็บ", "4", "679000", "travo แค็บ"),
-    ("DOUBLE_CAB", "4 ประตู", "5", "799000", "travo 4 ประตู"),
+# A separate nameplate from Revo, so it splits the same two ways - double cab
+# is รย.1, everything else รย.3 - and rolls up under the same Hilux nameplate.
+for name, cab, cab_th, seats, price, extra in (
+    ("Hilux Travo Cab", "SINGLE_SMART", "ตอนเดียว/แค็บ", "4", "599000",
+     "travo cab|travo ตอนเดียว|travo แค็บ"),
+    ("Hilux Travo Double Cab", "DOUBLE_CAB", "4 ประตู", "5", "799000",
+     "travo double cab|travo 4 ประตู"),
 ):
-    label = cab.replace("_", " ").title()
-    R("Toyota", f"Hilux Travo {label}", "2.4L ICE", nameplate="Hilux",
+    R("Toyota", name, "2.4L ICE", nameplate="Hilux",
       model_th=f"ไฮลักซ์ ทราโว่ {cab_th}", body_type="PICKUP", cab_type=cab,
       segment="F", seats=seats, launched="2025-07-01", powertrain="ICE",
       drivetrain="RWD", engine_cc="2393", price_thb=price, import_type="CKD",
-      origin_country="TH",
-      model_aliases=f"Hilux Travo|travo|{extra}")
+      origin_country="TH", model_aliases=f"Hilux Travo|travo|{extra}")
 
 # ------------------------------------------------- fleet vans and trucks
 R("Toyota", "Commuter", "2.8L ICE", model_th="คอมมิวเตอร์", body_type="VAN",

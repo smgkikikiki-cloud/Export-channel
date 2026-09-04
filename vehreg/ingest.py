@@ -155,6 +155,12 @@ class Resolver:
             return candidates
         narrowed = [c for c in candidates
                     if self.catalog.models[c].registration_type.value == reg]
+        if not narrowed and reg == RegistrationType.RY2.value:
+            # A pickup registered รย.2 is a passenger conversion, so it sits on
+            # the same body as the รย.1 rows rather than the cargo cabs.
+            narrowed = [c for c in candidates
+                        if self.catalog.models[c].registration_type
+                        is RegistrationType.RY1]
         return narrowed or candidates
 
     def _variants_index(self, model_id: str) -> MatchIndex:

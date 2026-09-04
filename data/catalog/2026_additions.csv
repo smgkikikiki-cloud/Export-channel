@@ -31,9 +31,8 @@ Aion,Hyptec HT,,77 kWh BEV,,,,,,,ไฮเทค เอชที,CROSSOVER,,,,hy
 Chery,Chery V23,,60 kWh BEV,,,,,,,เชอรี่ วี23,SUV,,,,v23,B,5,2025-10-01,,BEV,RWD,,60.0,,799000,,,CKD,TH,seed-unverified
 Chery,Chery V23,,60 kWh BEV AWD,,,,,,,,,,,,,,,,,BEV,AWD,,60.0,,899000,,,CKD,TH,seed-unverified
 Changan,Changan Lumin,,33 kWh BEV,,,,,,,ฉางอาน ลูมิน,HATCHBACK,,,,lumin,A,4,2025-01-01,,BEV,FWD,,32.8,,479000,,,CKD,TH,seed-unverified
-Toyota,Hilux Travo Single Cab,,2.4L ICE,,,,,,Hilux,ไฮลักซ์ ทราโว่ ตอนเดียว,PICKUP,SINGLE_CAB,,,Hilux Travo|travo|travo ตอนเดียว,F,3,2025-07-01,,ICE,RWD,2393,,,559000,,,CKD,TH,seed-unverified
-Toyota,Hilux Travo Smart Cab,,2.4L ICE,,,,,,Hilux,ไฮลักซ์ ทราโว่ แค็บ,PICKUP,SMART_CAB,,,Hilux Travo|travo|travo แค็บ,F,4,2025-07-01,,ICE,RWD,2393,,,679000,,,CKD,TH,seed-unverified
-Toyota,Hilux Travo Double Cab,,2.4L ICE,,,,,,Hilux,ไฮลักซ์ ทราโว่ 4 ประตู,PICKUP,DOUBLE_CAB,,,Hilux Travo|travo|travo 4 ประตู,F,5,2025-07-01,,ICE,RWD,2393,,,799000,,,CKD,TH,seed-unverified
+Toyota,Hilux Travo Cab,,2.4L ICE,,,,,,Hilux,ไฮลักซ์ ทราโว่ ตอนเดียว/แค็บ,PICKUP,SINGLE_SMART,,,Hilux Travo|travo|travo cab|travo ตอนเดียว|travo แค็บ,F,4,2025-07-01,,ICE,RWD,2393,,,599000,,,CKD,TH,seed-unverified
+Toyota,Hilux Travo Double Cab,,2.4L ICE,,,,,,Hilux,ไฮลักซ์ ทราโว่ 4 ประตู,PICKUP,DOUBLE_CAB,,,Hilux Travo|travo|travo double cab|travo 4 ประตู,F,5,2025-07-01,,ICE,RWD,2393,,,799000,,,CKD,TH,seed-unverified
 Toyota,Commuter,,2.8L ICE,,,,,,,คอมมิวเตอร์,VAN,,RY2,COMMERCIAL,commuter,E,15,2019-01-01,,ICE,RWD,2755,,,1398000,,,CKD,TH,seed-unverified
 Toyota,Hiace,,2.8L ICE,,,,,,,ไฮเอซ,VAN,,RY2,COMMERCIAL,hiace,E,11,2019-01-01,,ICE,RWD,2755,,,1299000,,,CBU,JP,seed-unverified
 Toyota,Hiace Majesty,,2.8L ICE,,,,,,,ไฮเอซ มาเจสตี้,VAN,,RY2,NICHE,hiace majesty|majesty,E,9,2022-01-01,,ICE,RWD,2755,,,2299000,,,CBU,JP,seed-unverified

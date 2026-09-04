@@ -98,62 +98,18 @@
       ]
     },
     {
-      "id": "navara_single_cab",
-      "name_en": "Navara Single Cab",
-      "name_th": "นาวาร่า ตอนเดียว",
+      "id": "navara_cab",
+      "name_en": "Navara Cab",
+      "name_th": "นาวาร่า ตอนเดียว/แค็บ",
       "nameplate": "",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "navara single cab",
-        "นาวาร่า ตอนเดียว",
-        "Navara",
-        "นาวาร่า"
-      ],
-      "notes": "",
-      "generations": [
-        {
-          "code": "D23",
-          "segment": "F",
-          "seats": 3,
-          "launched": "2021-01-01",
-          "ended": null,
-          "variants": [
-            {
-              "name": "2.5L ICE",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2488,
-              "battery_kwh": null,
-              "aliases": [
-                "2.5 S"
-              ],
-              "overrides": {},
-              "price_thb": 569000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified",
-              "price_min_thb": 569000,
-              "price_max_thb": 569000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "navara_king_cab",
-      "name_en": "Navara King Cab",
-      "name_th": "นาวาร่า คิงแค็บ",
-      "nameplate": "",
-      "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
-      "registration_type": "",
-      "market_scope": "CORE",
-      "aliases": [
-        "navara king cab",
+        "navara cab",
         "king cab",
+        "นาวาร่า ตอนเดียว",
         "นาวาร่า แค็บ",
         "Navara",
         "นาวาร่า"
@@ -174,14 +130,15 @@
               "engine_cc": 2488,
               "battery_kwh": null,
               "aliases": [
+                "2.5 S",
                 "2.5 E"
               ],
               "overrides": {},
-              "price_thb": 729000,
+              "price_thb": 569000,
               "import_type": "CKD",
               "origin_country": "TH",
               "price_note": "seed-unverified",
-              "price_min_thb": 729000,
+              "price_min_thb": 569000,
               "price_max_thb": 729000
             }
           ]

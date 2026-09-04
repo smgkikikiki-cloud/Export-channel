@@ -78,9 +78,17 @@ class BodyType(Facet):
 
 
 class CabType(Facet):
-    """Only meaningful when ``body_type == PICKUP``."""
+    """Only meaningful when ``body_type == PICKUP``.
+
+    The catalog splits a pickup nameplate the way the registration data does,
+    which is two ways and not three: a double cab is รย.1 and everything else is
+    รย.3. ``SINGLE_SMART`` is that รย.3 group. ``SINGLE_CAB`` and ``SMART_CAB``
+    stay in the vocabulary for anyone who later gets a source that tells them
+    apart - DLT does not.
+    """
 
     DOUBLE_CAB = "DOUBLE_CAB"
+    SINGLE_SMART = "SINGLE_SMART"    # single + smart/space/club cab, i.e. รย.3
     SMART_CAB = "SMART_CAB"          # half / space / extended cab
     SINGLE_CAB = "SINGLE_CAB"
     NOT_APPLICABLE = "NOT_APPLICABLE"
@@ -397,8 +405,10 @@ THAI_LABELS: dict[str, dict[str, str]] = {
         "TRUCK": "รถบรรทุก", "OTHER": "อื่น ๆ",
     },
     "CabType": {
-        "DOUBLE_CAB": "แค็บ 4 ประตู", "SMART_CAB": "แค็บ/สเปซแค็บ",
-        "SINGLE_CAB": "ตอนเดียว", "NOT_APPLICABLE": "-",
+        "DOUBLE_CAB": "แค็บ 4 ประตู (รย.1)",
+        "SINGLE_SMART": "ตอนเดียว/แค็บ (รย.3)",
+        "SMART_CAB": "แค็บ/สเปซแค็บ", "SINGLE_CAB": "ตอนเดียว",
+        "NOT_APPLICABLE": "-",
     },
     "MarketPosition": {
         "ENTRY": "0-5 แสนบาท", "VOLUME": "5 แสน-1 ล้านบาท",
@@ -454,7 +464,9 @@ FACET_ALIASES: dict[str, dict[str, str]] = {
         "CAB4": "DOUBLE_CAB", "4_DOOR": "DOUBLE_CAB", "CREW_CAB": "DOUBLE_CAB",
         "SPACE_CAB": "SMART_CAB", "EXTENDED_CAB": "SMART_CAB",
         "HALF_CAB": "SMART_CAB", "OPEN_CAB": "SMART_CAB",
-        "STANDARD_CAB": "SINGLE_CAB", "CHASSIS": "SINGLE_CAB", "NA": "NOT_APPLICABLE",
+        "STANDARD_CAB": "SINGLE_CAB", "CHASSIS": "SINGLE_CAB",
+        "SINGLE_SMART_CAB": "SINGLE_SMART", "CAB": "SINGLE_SMART",
+        "RY3_CAB": "SINGLE_SMART", "NA": "NOT_APPLICABLE",
         "NONE": "NOT_APPLICABLE",
     },
     "Powertrain": {

@@ -428,63 +428,19 @@
       ]
     },
     {
-      "id": "hilux_revo_single_cab",
-      "name_en": "Hilux Revo Single Cab",
-      "name_th": "ไฮลักซ์ รีโว่ ตอนเดียว",
+      "id": "hilux_revo_cab",
+      "name_en": "Hilux Revo Cab",
+      "name_th": "ไฮลักซ์ รีโว่ ตอนเดียว/แค็บ",
       "nameplate": "Hilux",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "revo single cab",
-        "revo standard cab",
-        "รีโว่ ตอนเดียว",
-        "Hilux Revo",
-        "ไฮลักซ์ รีโว่"
-      ],
-      "notes": "",
-      "generations": [
-        {
-          "code": "AN120",
-          "segment": "F",
-          "seats": 3,
-          "launched": "2020-06-01",
-          "ended": null,
-          "variants": [
-            {
-              "name": "2.4L ICE",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2393,
-              "battery_kwh": null,
-              "aliases": [
-                "2.4 Entry"
-              ],
-              "overrides": {},
-              "price_thb": 599000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified",
-              "price_min_thb": 599000,
-              "price_max_thb": 599000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "hilux_revo_smart_cab",
-      "name_en": "Hilux Revo Smart Cab",
-      "name_th": "ไฮลักซ์ รีโว่ สมาร์ทแค็บ",
-      "nameplate": "Hilux",
-      "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
-      "registration_type": "",
-      "market_scope": "CORE",
-      "aliases": [
-        "revo smart cab",
         "revo cab",
+        "revo single cab",
+        "revo smart cab",
+        "รีโว่ ตอนเดียว",
         "รีโว่ แค็บ",
         "Hilux Revo",
         "ไฮลักซ์ รีโว่"
@@ -505,15 +461,16 @@
               "engine_cc": 2393,
               "battery_kwh": null,
               "aliases": [
+                "2.4 Entry",
                 "2.4 Mid",
                 "2.4 Prerunner Z Edition"
               ],
               "overrides": {},
-              "price_thb": 749000,
+              "price_thb": 599000,
               "import_type": "CKD",
               "origin_country": "TH",
               "price_note": "seed-unverified",
-              "price_min_thb": 749000,
+              "price_min_thb": 599000,
               "price_max_thb": 899000
             }
           ]
@@ -590,7 +547,7 @@
       "name_th": "ไฮลักซ์ แชมป์",
       "nameplate": "Hilux",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
@@ -857,57 +814,19 @@
       ]
     },
     {
-      "id": "hilux_travo_single_cab",
-      "name_en": "Hilux Travo Single Cab",
-      "name_th": "ไฮลักซ์ ทราโว่ ตอนเดียว",
+      "id": "hilux_travo_cab",
+      "name_en": "Hilux Travo Cab",
+      "name_th": "ไฮลักซ์ ทราโว่ ตอนเดียว/แค็บ",
       "nameplate": "Hilux",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
         "Hilux Travo",
         "travo",
-        "travo ตอนเดียว"
-      ],
-      "generations": [
-        {
-          "code": "gen1",
-          "segment": "F",
-          "seats": 3,
-          "launched": "2025-07-01",
-          "ended": null,
-          "variants": [
-            {
-              "name": "2.4L ICE",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2393,
-              "battery_kwh": null,
-              "price_thb": 559000.0,
-              "price_min_thb": null,
-              "price_max_thb": null,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified",
-              "aliases": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "hilux_travo_smart_cab",
-      "name_en": "Hilux Travo Smart Cab",
-      "name_th": "ไฮลักซ์ ทราโว่ แค็บ",
-      "nameplate": "Hilux",
-      "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
-      "registration_type": "",
-      "market_scope": "CORE",
-      "aliases": [
-        "Hilux Travo",
-        "travo",
+        "travo cab",
+        "travo ตอนเดียว",
         "travo แค็บ"
       ],
       "generations": [
@@ -924,7 +843,7 @@
               "drivetrain": "RWD",
               "engine_cc": 2393,
               "battery_kwh": null,
-              "price_thb": 679000.0,
+              "price_thb": 599000.0,
               "price_min_thb": null,
               "price_max_thb": null,
               "import_type": "CKD",
@@ -948,6 +867,7 @@
       "aliases": [
         "Hilux Travo",
         "travo",
+        "travo double cab",
         "travo 4 ประตู"
       ],
       "generations": [

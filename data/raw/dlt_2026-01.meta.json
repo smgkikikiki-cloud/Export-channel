@@ -4,7 +4,7 @@
   "resource_name": "รถจดทะเบียนครั้งแรก (รถยนต์)-จำแนกตามยี่ห้อและรุ่น มกราคม 2569",
   "package_id": "59a045dc-3ec4-4908-b035-ba789101b7f5",
   "api": "https://gdcatalog.dlt.go.th/api/3/action/datastore_search?resource_id=4bc376ba-1d64-49be-8e8c-fbdc6f0e2013",
-  "fetched_at": "2026-09-04T02:57:06+00:00",
+  "fetched_at": "2026-09-04T03:09:50+00:00",
   "rows_from_dlt": 1421,
   "rows_kept": 609,
   "units_kept": 90733,

@@ -12,62 +12,18 @@
   },
   "models": [
     {
-      "id": "ranger_single_cab",
-      "name_en": "Ranger Single Cab",
-      "name_th": "เรนเจอร์ ตอนเดียว",
+      "id": "ranger_cab",
+      "name_en": "Ranger Cab",
+      "name_th": "เรนเจอร์ ตอนเดียว/แค็บ",
       "nameplate": "",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "ranger single cab",
-        "เรนเจอร์ ตอนเดียว",
-        "Ranger",
-        "เรนเจอร์"
-      ],
-      "notes": "",
-      "generations": [
-        {
-          "code": "P703",
-          "segment": "F",
-          "seats": 3,
-          "launched": "2022-06-01",
-          "ended": null,
-          "variants": [
-            {
-              "name": "2.0L ICE",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 1996,
-              "battery_kwh": null,
-              "aliases": [
-                "2.0 XL"
-              ],
-              "overrides": {},
-              "price_thb": 649000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified",
-              "price_min_thb": 649000,
-              "price_max_thb": 649000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ranger_open_cab",
-      "name_en": "Ranger Open Cab",
-      "name_th": "เรนเจอร์ โอเพ่นแค็บ",
-      "nameplate": "",
-      "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
-      "registration_type": "",
-      "market_scope": "CORE",
-      "aliases": [
-        "ranger open cab",
+        "ranger cab",
         "open cab",
+        "เรนเจอร์ ตอนเดียว",
         "เรนเจอร์ แค็บ",
         "Ranger",
         "เรนเจอร์"
@@ -88,14 +44,15 @@
               "engine_cc": 1996,
               "battery_kwh": null,
               "aliases": [
+                "2.0 XL",
                 "2.0 XLT"
               ],
               "overrides": {},
-              "price_thb": 849000,
+              "price_thb": 649000,
               "import_type": "CKD",
               "origin_country": "TH",
               "price_note": "seed-unverified",
-              "price_min_thb": 849000,
+              "price_min_thb": 649000,
               "price_max_thb": 849000
             }
           ]

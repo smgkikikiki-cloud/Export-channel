@@ -12,20 +12,18 @@
   },
   "models": [
     {
-      "id": "mazda2_sedan",
-      "name_en": "Mazda2 Sedan",
-      "name_th": "มาสด้า2 ซีดาน",
+      "id": "mazda2",
+      "name_en": "Mazda2",
+      "name_th": "มาสด้า2",
       "nameplate": "",
       "body_type": "SEDAN",
       "cab_type": "NOT_APPLICABLE",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "mazda 2 sedan",
-        "mazda2 4 ประตู",
-        "มาสด้า 2 ซีดาน",
-        "Mazda2",
-        "มาสด้า2"
+        "mazda 2",
+        "mazda2 sedan",
+        "มาสด้า 2"
       ],
       "notes": "",
       "generations": [
@@ -70,9 +68,7 @@
       "aliases": [
         "mazda 2 hatchback",
         "mazda2 5 ประตู",
-        "มาสด้า 2 แฮทช์แบ็ก",
-        "Mazda2",
-        "มาสด้า2"
+        "มาสด้า 2 แฮทช์แบ็ก"
       ],
       "notes": "",
       "generations": [
@@ -141,6 +137,49 @@
               "price_note": "seed-unverified",
               "price_min_thb": 1199000,
               "price_max_thb": 1199000
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mazda3_hatchback",
+      "name_en": "Mazda3 Hatchback",
+      "name_th": "มาสด้า3 แฮทช์แบ็ก",
+      "nameplate": "",
+      "body_type": "HATCHBACK",
+      "cab_type": "NOT_APPLICABLE",
+      "registration_type": "",
+      "market_scope": "CORE",
+      "aliases": [
+        "mazda 3 hatchback",
+        "มาสด้า 3 แฮทช์แบ็ก"
+      ],
+      "notes": "",
+      "generations": [
+        {
+          "code": "BP",
+          "segment": "C",
+          "seats": 5,
+          "launched": "2019-05-01",
+          "ended": null,
+          "variants": [
+            {
+              "name": "2.0L ICE",
+              "powertrain": "ICE",
+              "drivetrain": "FWD",
+              "engine_cc": 1998,
+              "battery_kwh": null,
+              "aliases": [
+                "2.0 SP"
+              ],
+              "overrides": {},
+              "price_thb": 1249000,
+              "import_type": "CBU",
+              "origin_country": "JP",
+              "price_note": "seed-unverified",
+              "price_min_thb": 1249000,
+              "price_max_thb": 1249000
             }
           ]
         }
@@ -319,62 +358,18 @@
       ]
     },
     {
-      "id": "bt50_single_cab",
-      "name_en": "BT-50 Single Cab",
-      "name_th": "บีที-50 ตอนเดียว",
+      "id": "bt50_cab",
+      "name_en": "BT-50 Cab",
+      "name_th": "บีที-50 ตอนเดียว/แค็บ",
       "nameplate": "",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "bt 50 single cab",
-        "bt50 ตอนเดียว",
-        "BT-50",
-        "บีที-50"
-      ],
-      "notes": "",
-      "generations": [
-        {
-          "code": "TFR",
-          "segment": "F",
-          "seats": 3,
-          "launched": "2020-11-01",
-          "ended": null,
-          "variants": [
-            {
-              "name": "1.9L ICE",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 1898,
-              "battery_kwh": null,
-              "aliases": [
-                "1.9 S"
-              ],
-              "overrides": {},
-              "price_thb": 559000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified",
-              "price_min_thb": 559000,
-              "price_max_thb": 559000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "bt50_freestyle_cab",
-      "name_en": "BT-50 Freestyle Cab",
-      "name_th": "บีที-50 ฟรีสไตล์แค็บ",
-      "nameplate": "",
-      "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
-      "registration_type": "",
-      "market_scope": "CORE",
-      "aliases": [
-        "bt 50 freestyle cab",
+        "bt 50 cab",
         "freestyle cab",
+        "bt50 ตอนเดียว",
         "bt50 แค็บ",
         "BT-50",
         "บีที-50"
@@ -395,14 +390,15 @@
               "engine_cc": 1898,
               "battery_kwh": null,
               "aliases": [
+                "1.9 S",
                 "1.9 C"
               ],
               "overrides": {},
-              "price_thb": 729000,
+              "price_thb": 559000,
               "import_type": "CKD",
               "origin_country": "TH",
               "price_note": "seed-unverified",
-              "price_min_thb": 729000,
+              "price_min_thb": 559000,
               "price_max_thb": 729000
             }
           ]

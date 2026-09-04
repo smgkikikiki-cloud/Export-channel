@@ -280,9 +280,10 @@ def year_key(value: str) -> str:
 #: per body, and one per pickup cab. Stripping them recovers the nameplate.
 SPLIT_SUFFIX = re.compile(
     r"\s+(single cab|double cab|smart cab|club cab|king cab|open cab|"
-    r"freestyle cab|giant cab|cab4|spark|sedan|hatchback|coupe|"
+    r"freestyle cab|giant cab|cab4|spark|sedan|hatchback|coupe|cab|"
     r"ตอนเดียว|4 ประตู|สมาร์ทแค็บ|คลับแค็บ|คิงแค็บ|โอเพ่นแค็บ|ฟรีสไตล์แค็บ|"
-    r"ไจแอนท์แค็บ|แค็บโฟร์|สปาร์ค|ซีดาน|แฮทช์แบ็ก|แค็บ)$", re.IGNORECASE)
+    r"ไจแอนท์แค็บ|แค็บโฟร์|สปาร์ค|ซีดาน|แฮทช์แบ็ก|ตอนเดียว/แค็บ|แค็บ)$",
+    re.IGNORECASE)
 
 
 def base_nameplate(name: str) -> str:

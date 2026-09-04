@@ -345,16 +345,16 @@
       ]
     },
     {
-      "id": "mg_extender_giant_cab",
-      "name_en": "MG Extender Giant Cab",
-      "name_th": "เอ็มจี เอ็กซ์เทนเดอร์ ไจแอนท์แค็บ",
+      "id": "mg_extender_cab",
+      "name_en": "MG Extender Cab",
+      "name_th": "เอ็มจี เอ็กซ์เทนเดอร์ ตอนเดียว/แค็บ",
       "nameplate": "",
       "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "extender giant cab",
+        "extender cab",
         "giant cab",
         "MG Extender",
         "เอ็มจี เอ็กซ์เทนเดอร์"

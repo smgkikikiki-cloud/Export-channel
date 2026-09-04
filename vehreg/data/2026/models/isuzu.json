@@ -13,65 +13,20 @@
   },
   "models": [
     {
-      "id": "dmax_spark",
-      "name_en": "D-Max Spark",
-      "name_th": "ดีแมคซ์ สปาร์ค",
+      "id": "dmax_cab",
+      "name_en": "D-Max Cab",
+      "name_th": "ดีแมคซ์ ตอนเดียว/แค็บ",
       "nameplate": "",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "dmax spark",
+        "dmax cab",
         "spark",
+        "cab4",
         "d max spark",
         "ดีแมคซ์ ตอนเดียว",
-        "D-Max",
-        "ดีแมคซ์"
-      ],
-      "notes": "",
-      "generations": [
-        {
-          "code": "RG",
-          "segment": "F",
-          "seats": 3,
-          "launched": "2019-10-11",
-          "ended": null,
-          "variants": [
-            {
-              "name": "1.9L ICE",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 1898,
-              "battery_kwh": null,
-              "aliases": [
-                "1.9 S"
-              ],
-              "overrides": {},
-              "price_thb": 569000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified",
-              "price_min_thb": 569000,
-              "price_max_thb": 569000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "dmax_cab4",
-      "name_en": "D-Max Cab4",
-      "name_th": "ดีแมคซ์ แค็บโฟร์",
-      "nameplate": "",
-      "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
-      "registration_type": "",
-      "market_scope": "CORE",
-      "aliases": [
-        "dmax cab4",
-        "cab4",
-        "d max cab 4",
         "ดีแมคซ์ แค็บ",
         "D-Max",
         "ดีแมคซ์"
@@ -92,14 +47,15 @@
               "engine_cc": 1898,
               "battery_kwh": null,
               "aliases": [
+                "1.9 S",
                 "1.9 Hi-Lander"
               ],
               "overrides": {},
-              "price_thb": 829000,
+              "price_thb": 569000,
               "import_type": "CKD",
               "origin_country": "TH",
               "price_note": "seed-unverified",
-              "price_min_thb": 829000,
+              "price_min_thb": 569000,
               "price_max_thb": 829000
             }
           ]

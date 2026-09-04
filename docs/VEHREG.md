@@ -145,8 +145,11 @@ python -m vehreg init                          # rebuild dimension
 
 * **หนึ่งชื่อรุ่น = หนึ่ง body** ถ้ากรอกชื่อเดิมแต่ body ใหม่ ระบบจะฟ้องและ
   ไม่เขียนอะไรเลย ให้ตั้งชื่อแยก เช่น `Mazda2 Sedan` กับ `Mazda2 Hatchback`
-* **กระบะแยกตามแค็บ** ตั้งชื่อรุ่นแยก แล้วกรอก `cab_type` ให้ถูก
-  (`SINGLE_CAB` / `SMART_CAB` / `DOUBLE_CAB`)
+* **บอดี้หลักใช้ชื่อเปล่า** `Mazda2` (ซีดาน) กับ `Mazda2 Hatchback`
+  เหมือน `City` / `City Hatchback` ฉลากเปล่าจะตกลงบอดี้หลักเอง
+* **กระบะแยกสองทาง** `<รุ่น> Double Cab` (`cab_type=DOUBLE_CAB` → รย.1) กับ
+  `<รุ่น> Cab` (`cab_type=SINGLE_SMART` → รย.3) ไม่ต้องแยกตอนเดียว/แค็บ
+  เพราะ DLT ไม่ได้บอก
 * **`nameplate` คือตัวรวมกลับ** ปล่อยว่างได้ถ้าชื่อรุ่นบอกอยู่แล้ว
   (`Mazda2 Sedan` → `Mazda2`) แต่ถ้ารวมข้ามชื่อต้องกรอก — Revo กับ Champ
   ใส่ `Hilux` ทั้งคู่

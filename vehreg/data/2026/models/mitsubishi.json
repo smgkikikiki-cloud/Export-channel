@@ -13,62 +13,18 @@
   },
   "models": [
     {
-      "id": "triton_single_cab",
-      "name_en": "Triton Single Cab",
-      "name_th": "ไทรทัน ตอนเดียว",
+      "id": "triton_cab",
+      "name_en": "Triton Cab",
+      "name_th": "ไทรทัน ตอนเดียว/แค็บ",
       "nameplate": "",
       "body_type": "PICKUP",
-      "cab_type": "SINGLE_CAB",
+      "cab_type": "SINGLE_SMART",
       "registration_type": "",
       "market_scope": "CORE",
       "aliases": [
-        "triton single cab",
-        "ไทรทัน ตอนเดียว",
-        "Triton",
-        "ไทรทัน"
-      ],
-      "notes": "",
-      "generations": [
-        {
-          "code": "MV",
-          "segment": "F",
-          "seats": 3,
-          "launched": "2023-07-26",
-          "ended": null,
-          "variants": [
-            {
-              "name": "2.4L ICE",
-              "powertrain": "ICE",
-              "drivetrain": "RWD",
-              "engine_cc": 2442,
-              "battery_kwh": null,
-              "aliases": [
-                "2.4 GL"
-              ],
-              "overrides": {},
-              "price_thb": 569000,
-              "import_type": "CKD",
-              "origin_country": "TH",
-              "price_note": "seed-unverified",
-              "price_min_thb": 569000,
-              "price_max_thb": 569000
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "triton_club_cab",
-      "name_en": "Triton Club Cab",
-      "name_th": "ไทรทัน คลับแค็บ",
-      "nameplate": "",
-      "body_type": "PICKUP",
-      "cab_type": "SMART_CAB",
-      "registration_type": "",
-      "market_scope": "CORE",
-      "aliases": [
-        "triton club cab",
+        "triton cab",
         "club cab",
+        "ไทรทัน ตอนเดียว",
         "ไทรทัน แค็บ",
         "Triton",
         "ไทรทัน"
@@ -89,14 +45,15 @@
               "engine_cc": 2442,
               "battery_kwh": null,
               "aliases": [
+                "2.4 GL",
                 "2.4 GLX"
               ],
               "overrides": {},
-              "price_thb": 719000,
+              "price_thb": 569000,
               "import_type": "CKD",
               "origin_country": "TH",
               "price_note": "seed-unverified",
-              "price_min_thb": 719000,
+              "price_min_thb": 569000,
               "price_max_thb": 719000
             }
           ]

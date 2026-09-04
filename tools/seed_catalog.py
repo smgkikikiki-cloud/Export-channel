@@ -27,14 +27,13 @@ can list what the owner still has to confirm against a real price list.
 from __future__ import annotations
 
 import json
-import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from vehreg.normalize import slug  # noqa: E402
+from vehreg.normalize import SPLIT_SUFFIX, slug  # noqa: E402
 
 YEAR = 2026
 OUT = ROOT / "vehreg" / "data" / str(YEAR) / "models"
@@ -86,13 +85,6 @@ def V(name, powertrain, drivetrain, cc, kwh, price, import_type, origin,
     })
 
 
-SPLIT_SUFFIX = re.compile(
-    r"\s+(single cab|double cab|smart cab|club cab|king cab|open cab|"
-    r"freestyle cab|giant cab|cab4|spark|sedan|hatchback|"
-    r"ตอนเดียว|4 ประตู|สมาร์ทแค็บ|คลับแค็บ|คิงแค็บ|โอเพ่นแค็บ|ฟรีสไตล์แค็บ|"
-    r"ไจแอนท์แค็บ|แค็บโฟร์|สปาร์ค|ซีดาน|แฮทช์แบ็ก|แค็บ)$", re.IGNORECASE)
-
-
 def add_base_aliases() -> None:
     """Let every split model answer to the bare nameplate as well.
 
@@ -103,9 +95,15 @@ def add_base_aliases() -> None:
     owner to teach once - which is the truth about that file.
     """
     for payload in _files.values():
+        real_names = {slug(m["name_en"]) for m in payload["models"]}
         for model in payload["models"]:
             base = SPLIT_SUFFIX.sub("", model["name_en"])
             if base == model["name_en"]:
+                continue
+            if slug(base) in real_names:
+                # Another model already *is* the bare name - Mazda2 is the
+                # sedan, City is the sedan - so the suffixed body does not get
+                # to answer to it as well.
                 continue
             for alias in (base, SPLIT_SUFFIX.sub("", model["name_th"])):
                 if alias and alias not in model["aliases"]:
@@ -253,15 +251,12 @@ def seed_japanese() -> None:
     V("2.4 V 4x2", "ICE", "RWD", 2393, None, 1399000, "CKD", "TH")
     V("2.8 Legender 4x2", "ICE", "RWD", 2755, None, 1699000, "CKD", "TH")
     V("2.8 GR Sport 4x4", "ICE", "4WD", 2755, None, 1999000, "CKD", "TH")
-    M("hilux_revo_single_cab", "Hilux Revo Single Cab", "ไฮลักซ์ รีโว่ ตอนเดียว",
-      "PICKUP", cab="SINGLE_CAB", nameplate="Hilux",
-      aliases=["revo single cab", "revo standard cab", "รีโว่ ตอนเดียว"])
-    G("AN120", "F", 3, "2020-06-01")
-    V("2.4 Entry", "ICE", "RWD", 2393, None, 599000, "CKD", "TH")
-    M("hilux_revo_smart_cab", "Hilux Revo Smart Cab", "ไฮลักซ์ รีโว่ สมาร์ทแค็บ",
-      "PICKUP", cab="SMART_CAB", nameplate="Hilux",
-      aliases=["revo smart cab", "revo cab", "รีโว่ แค็บ"])
+    M("hilux_revo_cab", "Hilux Revo Cab", "ไฮลักซ์ รีโว่ ตอนเดียว/แค็บ",
+      "PICKUP", cab="SINGLE_SMART", nameplate="Hilux",
+      aliases=["revo cab", "revo single cab", "revo smart cab",
+               "รีโว่ ตอนเดียว", "รีโว่ แค็บ"])
     G("AN120", "F", 4, "2020-06-01")
+    V("2.4 Entry", "ICE", "RWD", 2393, None, 599000, "CKD", "TH")
     V("2.4 Mid", "ICE", "RWD", 2393, None, 749000, "CKD", "TH")
     V("2.4 Prerunner Z Edition", "ICE", "RWD", 2393, None, 899000, "CKD", "TH")
     M("hilux_revo_double_cab", "Hilux Revo Double Cab", "ไฮลักซ์ รีโว่ 4 ประตู",
@@ -272,7 +267,7 @@ def seed_japanese() -> None:
     V("2.4 Prerunner", "ICE", "RWD", 2393, None, 949000, "CKD", "TH")
     V("2.8 GR Sport 4x4", "ICE", "4WD", 2755, None, 1359000, "CKD", "TH")
     M("hilux_champ", "Hilux Champ", "ไฮลักซ์ แชมป์", "PICKUP",
-      cab="SINGLE_CAB", nameplate="Hilux",
+      cab="SINGLE_SMART", nameplate="Hilux",
       aliases=["champ", "hilux champ", "แชมป์"])
     G("CHAMP", "F", 2, "2023-11-22")
     V("2.0", "ICE", "RWD", 1998, None, 459000, "CKD", "TH")
@@ -336,15 +331,11 @@ def seed_japanese() -> None:
 
     # ----------------------------------------------------------------- Isuzu
     B("isuzu", "Isuzu", "อีซูซุ", "MASS", "Isuzu", "JP", ["อีซูซุ", "tri petch isuzu"])
-    M("dmax_spark", "D-Max Spark", "ดีแมคซ์ สปาร์ค", "PICKUP",
-      cab="SINGLE_CAB", aliases=["dmax spark", "spark", "d max spark",
-                                 "ดีแมคซ์ ตอนเดียว"])
-    G("RG", "F", 3, "2019-10-11")
-    V("1.9 S", "ICE", "RWD", 1898, None, 569000, "CKD", "TH")
-    M("dmax_cab4", "D-Max Cab4", "ดีแมคซ์ แค็บโฟร์", "PICKUP",
-      cab="SMART_CAB", aliases=["dmax cab4", "cab4", "d max cab 4",
-                                "ดีแมคซ์ แค็บ"])
+    M("dmax_cab", "D-Max Cab", "ดีแมคซ์ ตอนเดียว/แค็บ", "PICKUP",
+      cab="SINGLE_SMART", aliases=["dmax cab", "spark", "cab4", "d max spark",
+                                   "ดีแมคซ์ ตอนเดียว", "ดีแมคซ์ แค็บ"])
     G("RG", "F", 4, "2019-10-11")
+    V("1.9 S", "ICE", "RWD", 1898, None, 569000, "CKD", "TH")
     V("1.9 Hi-Lander", "ICE", "RWD", 1898, None, 829000, "CKD", "TH")
     M("dmax_double_cab", "D-Max Double Cab", "ดีแมคซ์ 4 ประตู", "PICKUP",
       cab="DOUBLE_CAB", aliases=["dmax double cab", "v-cross", "vcross",
@@ -360,13 +351,11 @@ def seed_japanese() -> None:
     # ------------------------------------------------------------ Mitsubishi
     B("mitsubishi", "Mitsubishi", "มิตซูบิชิ", "MASS", "Mitsubishi Motors", "JP",
       ["มิตซูบิชิ", "mitsubishi motors"])
-    M("triton_single_cab", "Triton Single Cab", "ไทรทัน ตอนเดียว", "PICKUP",
-      cab="SINGLE_CAB", aliases=["triton single cab", "ไทรทัน ตอนเดียว"])
-    G("MV", "F", 3, "2023-07-26")
-    V("2.4 GL", "ICE", "RWD", 2442, None, 569000, "CKD", "TH")
-    M("triton_club_cab", "Triton Club Cab", "ไทรทัน คลับแค็บ", "PICKUP",
-      cab="SMART_CAB", aliases=["triton club cab", "club cab", "ไทรทัน แค็บ"])
+    M("triton_cab", "Triton Cab", "ไทรทัน ตอนเดียว/แค็บ", "PICKUP",
+      cab="SINGLE_SMART", aliases=["triton cab", "club cab",
+                                   "ไทรทัน ตอนเดียว", "ไทรทัน แค็บ"])
     G("MV", "F", 4, "2023-07-26")
+    V("2.4 GL", "ICE", "RWD", 2442, None, 569000, "CKD", "TH")
     V("2.4 GLX", "ICE", "RWD", 2442, None, 719000, "CKD", "TH")
     M("triton_double_cab", "Triton Double Cab", "ไทรทัน 4 ประตู", "PICKUP",
       cab="DOUBLE_CAB", aliases=["triton double cab", "triton athlete",
@@ -405,13 +394,11 @@ def seed_japanese() -> None:
       aliases=["kicks", "คิกส์"])
     G("P15", "B", 5, "2020-05-01")
     V("e-Power VL", "REEV", "FWD", 1198, 2.1, 1029000, "CKD", "TH")
-    M("navara_single_cab", "Navara Single Cab", "นาวาร่า ตอนเดียว", "PICKUP",
-      cab="SINGLE_CAB", aliases=["navara single cab", "นาวาร่า ตอนเดียว"])
-    G("D23", "F", 3, "2021-01-01")
-    V("2.5 S", "ICE", "RWD", 2488, None, 569000, "CKD", "TH")
-    M("navara_king_cab", "Navara King Cab", "นาวาร่า คิงแค็บ", "PICKUP",
-      cab="SMART_CAB", aliases=["navara king cab", "king cab", "นาวาร่า แค็บ"])
+    M("navara_cab", "Navara Cab", "นาวาร่า ตอนเดียว/แค็บ", "PICKUP",
+      cab="SINGLE_SMART", aliases=["navara cab", "king cab",
+                                   "นาวาร่า ตอนเดียว", "นาวาร่า แค็บ"])
     G("D23", "F", 4, "2021-01-01")
+    V("2.5 S", "ICE", "RWD", 2488, None, 569000, "CKD", "TH")
     V("2.5 E", "ICE", "RWD", 2488, None, 729000, "CKD", "TH")
     M("navara_double_cab", "Navara Double Cab", "นาวาร่า 4 ประตู", "PICKUP",
       cab="DOUBLE_CAB", aliases=["navara double cab", "pro-4x", "pro 4x",
@@ -424,8 +411,8 @@ def seed_japanese() -> None:
 
     # ----------------------------------------------------------------- Mazda
     B("mazda", "Mazda", "มาสด้า", "MASS", "Mazda", "JP", ["มาสด้า"])
-    M("mazda2_sedan", "Mazda2 Sedan", "มาสด้า2 ซีดาน", "SEDAN",
-      aliases=["mazda 2 sedan", "mazda2 4 ประตู", "มาสด้า 2 ซีดาน"])
+    M("mazda2", "Mazda2", "มาสด้า2", "SEDAN",
+      aliases=["mazda 2", "mazda2 sedan", "มาสด้า 2"])
     G("DJ", "B", 5, "2019-11-01")
     V("1.3 S", "ICE", "FWD", 1298, None, 546000, "CKD", "TH")
     V("1.3 SP", "ICE", "FWD", 1298, None, 749000, "CKD", "TH")
@@ -436,6 +423,10 @@ def seed_japanese() -> None:
     M("mazda3", "Mazda3", "มาสด้า3", "SEDAN", aliases=["mazda 3"])
     G("BP", "C", 5, "2019-05-01")
     V("2.0 SP", "ICE", "FWD", 1998, None, 1199000, "CBU", "JP")
+    M("mazda3_hatchback", "Mazda3 Hatchback", "มาสด้า3 แฮทช์แบ็ก", "HATCHBACK",
+      aliases=["mazda 3 hatchback", "มาสด้า 3 แฮทช์แบ็ก"])
+    G("BP", "C", 5, "2019-05-01")
+    V("2.0 SP", "ICE", "FWD", 1998, None, 1249000, "CBU", "JP")
     M("cx3", "CX-3", "ซีเอ็กซ์-3", "CROSSOVER", aliases=["cx 3", "cx3"])
     G("DK", "B", 5, "2020-01-01")
     V("2.0 Base Plus", "ICE", "FWD", 1998, None, 799000, "CKD", "TH")
@@ -448,14 +439,11 @@ def seed_japanese() -> None:
     M("cx8", "CX-8", "ซีเอ็กซ์-8", "CROSSOVER", aliases=["cx 8", "cx8"])
     G("KG", "D", 7, "2019-01-01")
     V("2.5 SP", "ICE", "FWD", 2488, None, 1699000, "CKD", "TH")
-    M("bt50_single_cab", "BT-50 Single Cab", "บีที-50 ตอนเดียว", "PICKUP",
-      cab="SINGLE_CAB", aliases=["bt 50 single cab", "bt50 ตอนเดียว"])
-    G("TFR", "F", 3, "2020-11-01")
-    V("1.9 S", "ICE", "RWD", 1898, None, 559000, "CKD", "TH")
-    M("bt50_freestyle_cab", "BT-50 Freestyle Cab", "บีที-50 ฟรีสไตล์แค็บ",
-      "PICKUP", cab="SMART_CAB",
-      aliases=["bt 50 freestyle cab", "freestyle cab", "bt50 แค็บ"])
+    M("bt50_cab", "BT-50 Cab", "บีที-50 ตอนเดียว/แค็บ", "PICKUP",
+      cab="SINGLE_SMART", aliases=["bt 50 cab", "freestyle cab",
+                                   "bt50 ตอนเดียว", "bt50 แค็บ"])
     G("TFR", "F", 4, "2020-11-01")
+    V("1.9 S", "ICE", "RWD", 1898, None, 559000, "CKD", "TH")
     V("1.9 C", "ICE", "RWD", 1898, None, 729000, "CKD", "TH")
     M("bt50_double_cab", "BT-50 Double Cab", "บีที-50 4 ประตู", "PICKUP",
       cab="DOUBLE_CAB", aliases=["bt 50 double cab", "bt50 4 ประตู"])
@@ -525,9 +513,9 @@ def seed_chinese() -> None:
       aliases=["vs hev"])
     G("VSH", "B", 5, "2023-08-01")
     V("HEV D", "HEV", "FWD", 1498, 1.8, 899000, "CBU", "CN")
-    M("mg_extender_giant_cab", "MG Extender Giant Cab",
-      "เอ็มจี เอ็กซ์เทนเดอร์ ไจแอนท์แค็บ", "PICKUP", cab="SMART_CAB",
-      aliases=["extender giant cab", "giant cab"])
+    M("mg_extender_cab", "MG Extender Cab",
+      "เอ็มจี เอ็กซ์เทนเดอร์ ตอนเดียว/แค็บ", "PICKUP", cab="SINGLE_SMART",
+      aliases=["extender cab", "giant cab"])
     G("EXT", "F", 4, "2019-10-01")
     V("2.0 Grand X", "ICE", "RWD", 1996, None, 649000, "CKD", "TH")
     M("mg_extender_double_cab", "MG Extender Double Cab",
@@ -692,13 +680,11 @@ def seed_korean_western() -> None:
 
     # ----------------------------------------------------------------- Ford
     B("ford", "Ford", "ฟอร์ด", "MASS", "Ford", "US", ["ฟอร์ด"])
-    M("ranger_single_cab", "Ranger Single Cab", "เรนเจอร์ ตอนเดียว", "PICKUP",
-      cab="SINGLE_CAB", aliases=["ranger single cab", "เรนเจอร์ ตอนเดียว"])
-    G("P703", "F", 3, "2022-06-01")
-    V("2.0 XL", "ICE", "RWD", 1996, None, 649000, "CKD", "TH")
-    M("ranger_open_cab", "Ranger Open Cab", "เรนเจอร์ โอเพ่นแค็บ", "PICKUP",
-      cab="SMART_CAB", aliases=["ranger open cab", "open cab", "เรนเจอร์ แค็บ"])
+    M("ranger_cab", "Ranger Cab", "เรนเจอร์ ตอนเดียว/แค็บ", "PICKUP",
+      cab="SINGLE_SMART", aliases=["ranger cab", "open cab",
+                                   "เรนเจอร์ ตอนเดียว", "เรนเจอร์ แค็บ"])
     G("P703", "F", 4, "2022-06-01")
+    V("2.0 XL", "ICE", "RWD", 1996, None, 649000, "CKD", "TH")
     V("2.0 XLT", "ICE", "RWD", 1996, None, 849000, "CKD", "TH")
     M("ranger_double_cab", "Ranger Double Cab", "เรนเจอร์ 4 ประตู", "PICKUP",
       cab="DOUBLE_CAB", aliases=["ranger double cab", "ranger raptor",
